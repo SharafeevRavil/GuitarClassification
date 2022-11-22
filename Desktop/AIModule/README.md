@@ -34,10 +34,10 @@ pip install jams
 Необходимо скачать два архива:
 * [annotation.zip](https://zenodo.org/record/3371780/files/annotation.zip?download=1) - архив с аннотациями. Необходимо распаковать его в папке [./GuitarSet/annotations](./GuitarSet/annotation/). Папка annotations должна выглядеть так:
 <p align="center">
-  <img src="https://github.com/SharafeevRavil/GuitarClassification/tree/main/Desktop/AIModule/documentation/annotations.png" />
+  <img src="https://github.com/SharafeevRavil/GuitarClassification/blob/dungeon_master/Desktop/AIModule/documentation/annotations.png?raw=true"/>
 </p>
 
 * [audio_mono-mic.zip](https://zenodo.org/record/3371780/files/audio_mono-mic.zip?download=1) - архив с аудиофайлами. Необходимо распаковать его в папке [./GuitarSet/audio/mic](./GuitarSet/audio/mic/). Папка audio/mic должна выглядеть так:
 <p align="center">
-  <img src="https://github.com/SharafeevRavil/GuitarClassification/tree/main/Desktop/AIModule/documentation/audio_mic.png" />
+  <img src="https://github.com/SharafeevRavil/GuitarClassification/blob/dungeon_master/Desktop/AIModule/documentation/audio_mic.png?raw=true" />
 </p>
