@@ -22,24 +22,24 @@ class ModelTeacher():
                 train_ids.append(i)
         return train_ids, test_ids
 
-    def teach_model(self, model, gen_train):
+    def teach_model(self, model, gen_train, workers = 6):
         model.fit(x = gen_train
                     ,validation_data=None
                     ,epochs=Settings.epochs
                     ,verbose=1
-                    #,use_multiprocessing=True не работает и намертво лочит комп - возможно генератор плохо написан
-                    ,workers=6
+                    #,use_multiprocessing=True # не работает и намертво лочит комп - возможно генератор плохо написан
+                    ,workers=workers
                     )
         return model
 
     def save_weights(self, model):
         model.save_weights(Settings.weights_path)
 
-    def test_model(self, model, gen_test):
+    def test_model(self, model, gen_test, workers = 6):
         predictions = model.predict(x = gen_test
                     ,verbose=1
                     #,use_multiprocessing=True
-                    ,workers=6
+                    ,workers=workers
                     )
         return predictions
 
