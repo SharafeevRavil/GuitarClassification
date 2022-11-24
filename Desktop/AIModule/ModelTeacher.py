@@ -22,15 +22,16 @@ class ModelTeacher():
                 train_ids.append(i)
         return train_ids, test_ids
 
-    def teach_model(self, model, gen_train, workers = 6):
-        model.fit(x = gen_train
+    def teach_model(self, model, gen_train, callbacks = [], workers = 6):
+        history = model.fit(x = gen_train
                     ,validation_data=None
                     ,epochs=Settings.epochs
                     ,verbose=1
                     #,use_multiprocessing=True # не работает и намертво лочит комп - возможно генератор плохо написан
                     ,workers=workers
+                    ,callbacks = callbacks
                     )
-        return model
+        return history
 
     def save_weights(self, model):
         model.save_weights(Settings.weights_path)

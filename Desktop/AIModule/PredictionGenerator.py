@@ -28,15 +28,14 @@ class PredictionGenerator(keras.utils.Sequence):
     
     def on_epoch_end(self):
         self.indexes = np.arange(len(self.list_IDs))
-        if Settings.shuffle == True:
-            np.random.shuffle(self.indexes)
+
             
     def __data_generation(self, list_IDs_temp):      
         X = np.empty(self.X_dim)
 
         for i, ID in enumerate(list_IDs_temp):
             # дополняем пустыми фреймами
-            full_x = np.pad(full_x, [(Settings.halfwin, Settings.halfwin), (0, 0)], mode='constant') # дополняем нулями
+            full_x = np.pad(self.audio_chunks, [(Settings.halfwin, Settings.halfwin), (0, 0)], mode='constant') # дополняем нулями
             sample_x = full_x[ID : ID + Settings.con_win_size] # берем окно с центром нашего id
             # поворачиваем матрицу в представление для нейросети
             sample_x = np.swapaxes(sample_x, 0, 1)
