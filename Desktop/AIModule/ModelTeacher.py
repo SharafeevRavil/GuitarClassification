@@ -1,57 +1,15 @@
-import keras
-import os
-from keras.models import Sequential
-from keras.layers import Dense, Dropout, Flatten, Reshape, Activation
-from keras.layers import Conv2D, MaxPooling2D, Conv1D, Lambda
-from keras import backend as K
 import pandas as pd
 import numpy as np
-import datetime
 import Settings
 from DataGenerator import DataGenerator
+from sklearn.model_selection import train_test_split
+import CnnModel as cnnModel
 
 class ModelTeacher():
-
-    def softmax_by_string(self, t):
-        string_sm = []
-        for i in range(Settings.num_strings):
-            string_sm.append(K.expand_dims(K.softmax(t[:,i,:]), axis=1))
-        return K.concatenate(string_sm, axis=1)
-
-    def catcross_by_string(self, target, output):
-        loss = 0
-        for i in range(Settings.num_strings):
-            loss += K.categorical_crossentropy(target[:,i,:], output[:,i,:])
-        return loss
-
-    def avg_acc(self, y_true, y_pred):
-        return K.mean(K.equal(K.argmax(y_true, axis=-1), K.argmax(y_pred, axis=-1)))
-
-    def create_model(self):
-        model = Sequential()
-        model.add(Conv2D(32, kernel_size=(3, 3),
-                                activation='relu',
-                                input_shape=Settings.input_shape))
-        model.add(Conv2D(64, (3, 3), activation='relu'))
-        model.add(Conv2D(64, (3, 3), activation='relu'))
-        model.add(MaxPooling2D(pool_size=(2, 2)))
-        model.add(Dropout(0.25))   
-        model.add(Flatten())
-        model.add(Dense(128, activation='relu'))
-        model.add(Dropout(0.5))
-        model.add(Dense(Settings.num_classes * Settings.num_strings))
-        model.add(Reshape((Settings.num_strings, Settings.num_classes)))
-        model.add(Activation(self.softmax_by_string))
-
-        model.compile(loss=self.catcross_by_string,
-                        optimizer=keras.optimizers.Adadelta(),
-                        metrics=[self.avg_acc])
-
-        return model
-
     def load_IDs(self):
         csv_file = Settings.ids_path
-        return list(pd.read_csv(csv_file, header=None)[0])
+        ids = np.array(pd.read_csv(csv_file, header=None))
+        return ids
 
     def split_IDs(self, ids):
         train_ids = []
@@ -64,22 +22,36 @@ class ModelTeacher():
                 train_ids.append(i)
         return train_ids, test_ids
 
-    def teach_model(self, model, ids):
-        gen = DataGenerator(ids)
-        model.fit_generator(gen,
+    def teach_model(self, model, gen_train):
+        model.fit(x = gen_train,
                     validation_data=None,
                     epochs=Settings.epochs,
                     verbose=1,
-                    use_multiprocessing=False,
+                    use_multiprocessing=True,
                     workers=9)
         return model
 
     def save_weights(self, model):
         model.save_weights(Settings.weights_path)
 
-mt = ModelTeacher()
+    def test_model(self, model, gen_test):
+        predictions = model.predict(x = gen_test,
+                    verbose=1,
+                    use_multiprocessing=True,
+                    workers=9)
+        return predictions
 
-model = mt.create_model()
-ids = mt.load_IDs()
-mt.teach_model(model, ids)
-mt.save_weights(model)
+
+
+if __name__ == "__main__":
+    mt = ModelTeacher()
+
+    ids = mt.load_IDs()
+    ids_train, ids_test = train_test_split(ids, test_size= (1 - Settings.train_split), random_state=42)
+    gen_train = DataGenerator(ids_train)
+    gen_test = DataGenerator(ids_test)
+
+    model = cnnModel.create_model()
+    mt.teach_model(model, gen_train)
+    mt.save_weights(model)
+    mt.test_model(model, gen_test)

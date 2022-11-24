@@ -35,9 +35,11 @@ class PredictionGenerator(keras.utils.Sequence):
         X = np.empty(self.X_dim)
 
         for i, ID in enumerate(list_IDs_temp):
-            
-            full_x = np.pad(self.audio_chunks, [(Settings.halfwin,Settings.halfwin), (0,0)], mode='constant')
-            sample_x = full_x[ID : ID + Settings.con_win_size]
-            X[i,] = np.expand_dims(np.swapaxes(sample_x, 0, 1), -1)
+            # дополняем пустыми фреймами
+            full_x = np.pad(full_x, [(Settings.halfwin, Settings.halfwin), (0, 0)], mode='constant') # дополняем нулями
+            sample_x = full_x[ID : ID + Settings.con_win_size] # берем окно с центром нашего id
+            # поворачиваем матрицу в представление для нейросети
+            sample_x = np.swapaxes(sample_x, 0, 1)
+            X[i,] = np.expand_dims(sample_x, -1)
 
         return X

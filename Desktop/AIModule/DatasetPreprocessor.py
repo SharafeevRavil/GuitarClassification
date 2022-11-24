@@ -1,29 +1,26 @@
 import os
 import numpy as np
 import jams
-from scipy.io import wavfile
-import sys
 import librosa
 from keras.utils import to_categorical
 import Settings
+from AudioPreprocessor import AudioPreprocessor
 
 class DatasetPreprocessor:
-
-    def load_file(self, filename):
-        file_audio = Settings.mic_path + filename + "_mic.wav"
+    # загрузка файла аннотации
+    def load_jam(self, filename):
         file_anno = Settings.annotations_path + filename + ".jams"
         jam = jams.load(file_anno)
-        sr_original, data = wavfile.read(file_audio)
-        return sr_original, data, jam
+        return jam
 
+    # обработка аудиофайла
     def process_audiofile(self, filename):
-        sr_original, data, jam = self.load_file(filename)
+        #sr_original, data, jam = self.load_file(filename)
+        jam = self.load_jam(filename)
 
-        if Settings.need_to_normalize:
-            data = self.normalize(data)
-        if Settings.need_to_downsample:
-            data = self.downsample(data, sr_original, Settings.sr_downs)
-        audio_chunks = np.swapaxes(self.cqt(data, Settings.sr_downs),0,1)
+        audioPreprocessor = AudioPreprocessor()
+        file_audio = Settings.mic_path + filename + "_mic.wav"
+        audio_chunks = audioPreprocessor.process_audiofile(file_audio)
         
         chunk_indices = range(len(audio_chunks))
         times = librosa.frames_to_time(chunk_indices, sr = Settings.sr_downs, hop_length=Settings.hop_length)
@@ -49,8 +46,21 @@ class DatasetPreprocessor:
         
         frets = self.clean_frets(frets)
 
+        # обрезаем фреймы, которые не влезают 
+        # (решили не обрезать, решили добавлять нулевые фреймы, что даст возможность размечать весь аудиофайл)
+        # calc_len = len(audio_chunks) // Settings.con_win_size * Settings.con_win_size
+        # audio_chunks = audio_chunks[:calc_len]
+        # frets = frets[:calc_len]
         return audio_chunks, frets
     
+    # то, что струна не играется обозначается -1, далее лады от 0 до 19
+    # чтобы to_categorical сработал корректно, избавляемся от -1, сдвинув все обозначения направо:
+    # было:
+    # [  -1   ;     0    ;   1  ;   2  ; ... ;   19  ]
+    # [не игр.; откр. лад; лад 1; лад 2; ... ; лад 19]
+    # стало:
+    # [   0   ;     1    ;   2  ;   3  ; ... ;   20  ]
+    # [не игр.; откр. лад; лад 1; лад 2; ... ; лад 19]
     def correct_numbering(self, n):
         n += 1
         if n < 0:
@@ -58,60 +68,47 @@ class DatasetPreprocessor:
         elif n > Settings.highest_fret + 1:
             n = Settings.highest_fret + 1
         return n
-    
-    def categorical(self, fret):
-        return to_categorical(fret, Settings.num_classes)
-    
+        
     def clean_fret(self, fret):
         fret = [self.correct_numbering(n) for n in fret]
-        return self.categorical(fret)
+        return to_categorical(fret, Settings.num_classes)
     
     def clean_frets(self, frets):
         return np.array([self.clean_fret(fret) for fret in frets])
 
-    def normalize(self, data):
-        data = data.astype(float)            
-        data = librosa.util.normalize(data)
-        return data
-
-    def downsample(self, data, sr_original, sr_downs):
-        data = data.astype(float)            
-        data = librosa.resample(data, sr_original, sr_downs)
-        return data
-
-    def cqt(self, data, sr):
-        data = data.astype(float)            
-        data = np.abs(librosa.cqt(data,
-            hop_length=Settings.hop_length, 
-            sr=sr, 
-            n_bins=Settings.cqt_n_bins, 
-            bins_per_octave=Settings.cqt_bins_per_octave))
-        return data
-
+    # получает все имена файлов по папке с аннотациями
     def get_all_filenames(self):
         return [file[:-5] for file in os.listdir(Settings.annotations_path) if file.endswith(".jams")]
 
-    def save_audiofile(self, audio_chunks, frets, filename):
-        if not os.path.exists(Settings.dataset_path):
-            os.makedirs(Settings.dataset_path)
-        audiofile = {}
-        audiofile['repr'] = audio_chunks
-        audiofile['labels'] = frets
-        np.savez(Settings.dataset_path + filename, **audiofile)
-        with open(Settings.ids_path, 'a+') as ids:
+    def process_audiofile_and_save(self, filename, folder_path = Settings.dataset_path, idsFile = Settings.ids_path):
+        audio_chunks, frets = self.process_audiofile(filename)
+        if not os.path.exists(folder_path):
+            os.makedirs(folder_path)
+        save_path = os.path.join(folder_path, filename + ".npz")
+        np.savez(save_path, audio_chunks=audio_chunks, frets=frets)
+
+        with open(idsFile, 'a+') as ids:
+            # для обучения сохраняем все фреймы - для крайних будем дополнять пустыми фреймами до размера окна
             for i in range(len(audio_chunks)):
-                ids.write(filename + '_' + str(i))
+                ids.write(filename + ',' + str(i))
                 ids.write('\n')
 
+if __name__ == "__main__":
+    dataset = DatasetPreprocessor()
 
-dataset = DatasetPreprocessor()
-
-filenames = dataset.get_all_filenames()
-for filename in filenames:
-    audio_chunks, frets = dataset.process_audiofile(filename)
+    # сносим старые файлы
     try:
         os.remove(Settings.ids_path)
     except OSError:
         pass
-    dataset.save_audiofile(audio_chunks, frets, filename)
-    
+    try:
+        for file in os.listdir(Settings.dataset_path):
+            if file.endswith(".npz"):
+                os.remove(os.path.join(Settings.dataset_path, file))
+    except OSError:
+        pass
+
+    filenames = dataset.get_all_filenames()
+    for filename in filenames:
+        dataset.process_audiofile_and_save(filename)
+        
