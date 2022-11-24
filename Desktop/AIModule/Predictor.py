@@ -8,9 +8,10 @@ import pandas as pd
 import numpy as np
 import datetime
 import Settings
-from DataGenerator import DataGenerator
+from AudioPreprocessor import AudioPreprocessor
+from PredictionGenerator import PredictionGenerator
 
-class ModelTeacher():
+class Predictor():
 
     def softmax_by_string(self, t):
         string_sm = []
@@ -27,7 +28,7 @@ class ModelTeacher():
     def avg_acc(self, y_true, y_pred):
         return K.mean(K.equal(K.argmax(y_true, axis=-1), K.argmax(y_pred, axis=-1)))
 
-    def create_model(self):
+    def load_model(self):
         model = Sequential()
         model.add(Conv2D(32, kernel_size=(3, 3),
                                 activation='relu',
@@ -47,39 +48,17 @@ class ModelTeacher():
                         optimizer=keras.optimizers.Adadelta(),
                         metrics=[self.avg_acc])
 
+        model.load_weights(Settings.weights_path)
         return model
 
-    def load_IDs(self):
-        csv_file = Settings.ids_path
-        return list(pd.read_csv(csv_file, header=None)[0])
+    def predict(self, audio, model):
+        gen = PredictionGenerator(audio)
+        return model.predict(gen)
 
-    def split_IDs(self, ids):
-        train_ids = []
-        test_ids = []
-        for i in ids:
-            result = np.random.choice(2, p=[Settings.train_split, 1 - Settings.train_split])
-            if result == 1:
-                test_ids.append(i)
-            else:
-                train_ids.append(i)
-        return train_ids, test_ids
+p = Predictor()
+a = AudioPreprocessor()
 
-    def teach_model(self, model, ids):
-        gen = DataGenerator(ids)
-        model.fit_generator(gen,
-                    validation_data=None,
-                    epochs=Settings.epochs,
-                    verbose=1,
-                    use_multiprocessing=False,
-                    workers=9)
-        return model
-
-    def save_weights(self, model):
-        model.save_weights(Settings.weights_path)
-
-mt = ModelTeacher()
-
-model = mt.create_model()
-ids = mt.load_IDs()
-mt.teach_model(model, ids)
-mt.save_weights(model)
+model = p.load_model()
+audio = a.process_audiofile('./audio_2022-09-15_14-10-56.mp3')
+result = p.predict(audio, model)
+print(result)

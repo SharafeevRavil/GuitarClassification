@@ -19,6 +19,7 @@ num_classes = 21
 num_strings = 6
 input_shape = (cqt_n_bins, con_win_size, 1)
 train_split = .65
+epochs = 8
 
 batch_size = 128
 shuffle = True
@@ -28,3 +29,4 @@ dataset_path = './data/repr/'
 ids_path = './data/ids.csv'
 mic_path = './GuitarSet/audio/mic/'
 annotations_path = './GuitarSet/annotation/'
+weights_path = './data/output/weights.h5'
