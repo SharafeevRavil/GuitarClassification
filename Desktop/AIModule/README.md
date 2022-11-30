@@ -13,17 +13,30 @@
 Необходимо установить Jupyter любым доступным способом (рекомендуется установить с помощью [расширения Jupyter для VS Code](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter) и/или установть [Jupyter Notebooks с официального сайта](https://jupyter.org/install))
 
 ## Установка необходимых библиотек Python
-tensorflow - библиотека для машинного обучения и нейросетей в частности.</br>
-keras - библиотека для взаимодействия с нейронными сетями.</br>
-numpy - библиотека для работы с массивами данных и их обработки.</br>
-librosa - библиотека для анализа музыки и аудио.</br>
-jams - библиотека для работы с JAMS файлами.
+Используемые библиотеки:</br>
+* tensorflow - библиотека для машинного обучения и нейросетей в частности.</br>
+* keras - библиотека для взаимодействия с нейронными сетями (скорее всего будет уж установлен после tensorflow).</br>
+* numpy - библиотека для работы с массивами данных и их обработки (скорее всего будет уж установлен после tensorflow).</br>
+* pandas - библиотека для работы с таблицами данных и их обработки (работает поверх numpy) (скорее всего будет уж установлен после tensorflow).</br>
+* scikit-learn (sklearn) - библиотека машинного обучения (скорее всего будет уж установлен после tensorflow).</br>
+* librosa - библиотека для анализа музыки и аудио (не поддерживает python 3.11, поэтому использовали python 3.10.8).</br>
+* jams - библиотека для работы с JAMS файлами.</br>
+* matplotlib - библиотека для отображения графиков в блокнотах.</br>
 ```bash
 pip install tensorflow
 pip install keras
 pip install numpy
+pip install pandas
+pip install scikit-learn
 pip install librosa
 pip install jams
+pip install matplotlib
+```
+Служебные библиотеки:</br>
+* ipykernel, nbformat - библиотеки для Jupyter.</br>
+```bash
+pip install ipykernel
+pip install nbformat
 ```
 
 ## Загрузка датасета для обучения модели
@@ -34,10 +47,10 @@ pip install jams
 Необходимо скачать два архива:
 * [annotation.zip](https://zenodo.org/record/3371780/files/annotation.zip?download=1) - архив с аннотациями. Необходимо распаковать его в папке [./GuitarSet/annotations](./GuitarSet/annotation/). Папка annotations должна выглядеть так:
 <p align="center">
-  <img src="https://github.com/SharafeevRavil/GuitarClassification/tree/main/Desktop/AIModule/documentation/annotations.png" />
+  <img src="https://github.com/SharafeevRavil/GuitarClassification/blob/main/Desktop/AIModule/documentation/annotations.png?raw=true"/>
 </p>
 
 * [audio_mono-mic.zip](https://zenodo.org/record/3371780/files/audio_mono-mic.zip?download=1) - архив с аудиофайлами. Необходимо распаковать его в папке [./GuitarSet/audio/mic](./GuitarSet/audio/mic/). Папка audio/mic должна выглядеть так:
 <p align="center">
-  <img src="https://github.com/SharafeevRavil/GuitarClassification/tree/main/Desktop/AIModule/documentation/audio_mic.png" />
+  <img src="https://github.com/SharafeevRavil/GuitarClassification/blob/main/Desktop/AIModule/documentation/audio_mic.png?raw=true" />
 </p>
