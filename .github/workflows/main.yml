@@ -1,0 +1,23 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build and deploy the Docker image
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+          APP_NAME: ${{ 'guitar-classification' }}
+        run: |
+          cd ./
+          docker login --username=_ --password=$HEROKU_API_KEY registry.heroku.com
+          docker build -f ./GuitarCogApi/Dockerfile -t registry.heroku.com/$APP_NAME/web .
+          docker push registry.heroku.com/$APP_NAME/web
+          heroku container:release web -a $APP_NAME
