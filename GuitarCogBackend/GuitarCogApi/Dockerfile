@@ -19,6 +19,7 @@ RUN dotnet publish "GuitarCogApi.csproj" -c Release -o /app/publish
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-#ENTRYPOINT ["dotnet", "GuitarCogApi.dll"]
+
+ENTRYPOINT ["dotnet", "GuitarCogApi.dll"]
 # heroku uses the following
-CMD ASPNETCORE_URLS=http://*:$PORT dotnet GuitarCogApi.dll
+#CMD ASPNETCORE_URLS=http://*:$PORT dotnet GuitarCogApi.dll
