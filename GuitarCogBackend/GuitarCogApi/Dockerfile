@@ -6,7 +6,8 @@ WORKDIR /app
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 
 WORKDIR /src
-COPY ["GuitarCogApi/GuitarCogApi.csproj", "GuitarCogApi/", "GuitarCogData/"]
+COPY ["GuitarCogApi/GuitarCogApi.csproj", "GuitarCogApi/"]
+COPY ["GuitarCogData/GuitarCogData.csproj", "GuitarCogData/"]
 RUN dotnet restore "GuitarCogApi/GuitarCogApi.csproj"
 COPY . .
 WORKDIR "/src/GuitarCogApi"
