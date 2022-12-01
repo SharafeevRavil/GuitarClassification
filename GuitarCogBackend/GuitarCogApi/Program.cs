@@ -59,6 +59,6 @@ app.MapControllers();
 if(builder.Environment.IsDevelopment())
     app.Run();
 else
-    app.Run($"0.0.0.0:{builder.Configuration.GetValue<int>("PORT")}");
+    app.Run($"http://0.0.0.0:{builder.Configuration.GetValue<int>("PORT")}");
 
 await DatabaseInitializer.EnsureDatabaseValid(app);
