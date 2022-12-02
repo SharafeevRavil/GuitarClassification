@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 if(!builder.Environment.IsDevelopment())
-    builder.WebHost.UseUrls($"https://0.0.0.0:{builder.Configuration.GetValue<int>("PORT")}");
+    builder.WebHost.UseUrls($"http://*:{builder.Configuration.GetValue<int>("PORT")}");
 
 // Add services to the container.
 
