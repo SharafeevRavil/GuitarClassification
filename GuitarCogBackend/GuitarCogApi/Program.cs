@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 if(!builder.Environment.IsDevelopment())
-    builder.WebHost.UseUrls($"http://*:{builder.Configuration.GetValue<int>("PORT")}");
+    builder.WebHost.UseUrls($"https://*:{builder.Configuration.GetValue<int>("PORT")}");
 
 Console.WriteLine($"PORT IS {builder.Configuration.GetValue<int>("PORT")} WTFFFF");
 
