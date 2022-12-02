@@ -5,9 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 if(!builder.Environment.IsDevelopment())
-    builder.WebHost.UseUrls($"https://*:{builder.Configuration.GetValue<int>("PORT")}");
-
-Console.WriteLine($"PORT IS {builder.Configuration.GetValue<int>("PORT")} WTFFFF");
+    builder.WebHost.UseUrls($"http://*:{builder.Configuration.GetValue<int>("PORT")}");
 
 // Add services to the container.
 
@@ -50,7 +48,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+if (!app.Environment.IsProduction())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
@@ -61,11 +59,6 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
-
-/*if(builder.Environment.IsDevelopment())
-    app.Run();
-else
-    app.Run($"http://0.0.0.0:{builder.Configuration.GetValue<int>("PORT")}");*/
 
 app.Run();
 
