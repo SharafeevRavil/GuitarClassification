@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+if(!builder.Environment.IsDevelopment())
+    builder.WebHost.UseUrls($"https://0.0.0.0:{builder.Configuration.GetValue<int>("PORT")}");
 
 // Add services to the container.
 
@@ -56,9 +58,11 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-if(builder.Environment.IsDevelopment())
+/*if(builder.Environment.IsDevelopment())
     app.Run();
 else
-    app.Run($"http://0.0.0.0:{builder.Configuration.GetValue<int>("PORT")}");
+    app.Run($"http://0.0.0.0:{builder.Configuration.GetValue<int>("PORT")}");*/
+
+app.Run();
 
 await DatabaseInitializer.EnsureDatabaseValid(app);
