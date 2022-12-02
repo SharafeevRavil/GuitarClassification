@@ -7,6 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 if(!builder.Environment.IsDevelopment())
     builder.WebHost.UseUrls($"http://*:{builder.Configuration.GetValue<int>("PORT")}");
 
+Console.WriteLine($"PORT IS {builder.Configuration.GetValue<int>("PORT")} WTFFFF");
+
 // Add services to the container.
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -54,8 +56,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-if(builder.Environment.IsDevelopment())
-    app.UseHttpsRedirection();
+app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
