@@ -14,7 +14,9 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(
         builder.Environment.IsDevelopment()
     ? builder.Configuration.GetConnectionString("DefaultConnection")
-    : builder.Configuration["DATABASE_URL"]);
+    : $"Host={builder.Configuration["PGHOST"]};Port={builder.Configuration["PGPORT"]};" +
+      $"Username={builder.Configuration["PGUSER"]};Password={builder.Configuration["PGPASSWORD"]};" +
+      $"Database={builder.Configuration["PGDATABASE"]}");
 });
 
 builder.Services.AddAuthentication();
