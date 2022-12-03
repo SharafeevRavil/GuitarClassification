@@ -38,6 +38,7 @@ class Ui_LogIn(object):
 
         self.passworld_field = QLineEdit(LogIn)
         self.passworld_field.setObjectName(u"passworld_field")
+        self.passworld_field.setEchoMode(QLineEdit.Password)
 
         self.gridLayout.addWidget(self.passworld_field, 2, 3, 1, 1)
 
