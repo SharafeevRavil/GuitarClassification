@@ -41,4 +41,5 @@ class Register(QDialog):
         else:
             keyring.set_password('GuitarCog', 'token', response_json['token'])
             keyring.set_password('GuitarCog', 'refreshToken', response_json['refreshToken'])
+            keyring.set_password('GuitarCog', 'expiration', response_json['expiration'])
             self.close()

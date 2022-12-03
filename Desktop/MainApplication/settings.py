@@ -1,3 +1,5 @@
 api_path = 'https://guitarclassification-production.up.railway.app'
 signup_path = '/Auth/SignUp'
 signin_path = '/Auth/SignIn'
+checkauth_path = '/Auth/CheckAuthorized'
+refresh_path = '/Auth/RefreshToken'

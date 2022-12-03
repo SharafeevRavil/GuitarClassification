@@ -25,7 +25,11 @@
     <widget class="QLineEdit" name="login_field"/>
    </item>
    <item row="2" column="3">
-    <widget class="QLineEdit" name="passworld_field"/>
+    <widget class="QLineEdit" name="passworld_field">
+     <property name="echoMode">
+      <enum>QLineEdit::Password</enum>
+     </property>
+    </widget>
    </item>
    <item row="2" column="0">
     <widget class="QLabel" name="password_label">
