@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+if(!builder.Environment.IsDevelopment())
+    builder.WebHost.UseUrls($"http://*:{builder.Configuration.GetValue<int>("PORT")}");
 
 // Add services to the container.
 
@@ -12,7 +14,9 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(
         builder.Environment.IsDevelopment()
     ? builder.Configuration.GetConnectionString("DefaultConnection")
-    : builder.Configuration["DATABASE_URL"]);
+    : $"Host={builder.Configuration["PGHOST"]};Port={builder.Configuration["PGPORT"]};" +
+      $"Username={builder.Configuration["PGUSER"]};Password={builder.Configuration["PGPASSWORD"]};" +
+      $"Database={builder.Configuration["PGDATABASE"]}");
 });
 
 builder.Services.AddAuthentication();
@@ -44,7 +48,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+if (!app.Environment.IsProduction())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
