@@ -5,6 +5,7 @@ using System.Text;
 using GuitarCogApi.Dtos.Auth;
 using GuitarCogApi.Dtos.General;
 using GuitarCogData.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -82,13 +83,21 @@ public class AuthController : ControllerBase
         var username = principal.Identity!.Name;
         var user = await _userManager.FindByNameAsync(username!);
 
-        if (user == null || user.RefreshToken != refreshToken || user.RefreshTokenExpiryTime <= DateTime.Now)
+        if (user == null || user.RefreshToken != refreshToken || user.RefreshTokenExpiryTime <= DateTimeOffset.UtcNow)
         {
             return BadRequest(new Response("Error", "Invalid access token or refresh token"));
         }
 
         var (newToken, newRefreshToken) = await GenerateTokensPair(user);
         return Ok(new TokenDto(new JwtSecurityTokenHandler().WriteToken(newToken), newToken.ValidTo, newRefreshToken));
+    }
+
+    [Authorize]
+    [HttpPost("CheckAuthorized")]
+    public async Task<IActionResult> CheckAuthorized()
+    {
+        var username = User.Identity!.Name;
+        return Ok(new { Username = username });
     }
 
     private async Task<(JwtSecurityToken token, string refreshToken)> GenerateTokensPair(User user)
