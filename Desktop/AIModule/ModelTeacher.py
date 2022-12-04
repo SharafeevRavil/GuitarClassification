@@ -4,6 +4,7 @@ import Settings
 from DataGenerator import DataGenerator
 from sklearn.model_selection import train_test_split
 import CnnModel as cnnModel
+from matplotlib import pyplot
 
 class ModelTeacher():
     def load_IDs(self):
@@ -55,6 +56,10 @@ if __name__ == "__main__":
     gen_test = DataGenerator(ids_test)
 
     model = cnnModel.create_model()
-    mt.teach_model(model, gen_train)
+    history = mt.teach_model(model, gen_train)
+    pyplot.title('Loss')
+    pyplot.plot(history.history['loss'], label='train')
+    pyplot.legend()
+    pyplot.show()
     mt.save_weights(model)
     mt.test_model(model, gen_test)
