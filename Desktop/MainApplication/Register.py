@@ -36,10 +36,9 @@ class Register(QDialog):
 
         response = requests.post(url, json=data)
         response_json = response.json()
-        if 'status' in response_json and response_json['status'] == 'Error':
-            self.ui.error_label.setText(response_json['message'])
-        else:
+        if response.status_code == 200:
+            response_json = response.json()
             keyring.set_password('GuitarCog', 'token', response_json['token'])
             keyring.set_password('GuitarCog', 'refreshToken', response_json['refreshToken'])
             keyring.set_password('GuitarCog', 'expiration', response_json['expiration'])
-            self.close()
+            self.accept()
