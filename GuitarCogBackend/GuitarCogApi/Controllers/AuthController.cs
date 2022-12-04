@@ -44,8 +44,7 @@ public class AuthController : ControllerBase
     {
         var userExists = await _userManager.FindByNameAsync(model.Username);
         if (userExists != null)
-            return StatusCode(StatusCodes.Status500InternalServerError,
-                new Response("Error", "User already exists!"));
+            return BadRequest(new Response("Error", "User already exists!"));
 
         User user = new()
         {
@@ -98,6 +97,34 @@ public class AuthController : ControllerBase
     {
         var username = User.Identity!.Name;
         return Ok(new { Username = username });
+    }
+
+    [Authorize]
+    [HttpPost("ChangePassword")]
+    public async Task<IActionResult> ChangePassword(ChangePasswordDto dto)
+    {
+        var username = User.Identity?.Name;
+        if (username == null)
+            return BadRequest(new Response("Error", "User not found"));
+        
+        var user = await _userManager.FindByNameAsync(username);
+        if (user == null)
+            return BadRequest(new Response("Error", "User not found"));
+        
+        if(dto.OldPassword == dto.NewPassword)
+            return BadRequest(new Response("Error", "Passwords are the same"));
+
+        var result = await _userManager.ChangePasswordAsync(user, dto.OldPassword, dto.NewPassword);
+        if (!result.Succeeded)
+        {
+            var errors = result.Errors
+                .Select(x => $"[{x.Code}] {x.Description}")
+                .Aggregate((a, b) => $"{a}\n{b}");
+            return BadRequest(new Response("Error", $"Password change failed! Errors:\n{errors}"));
+        }
+
+        var (token, refreshToken) = await GenerateTokensPair(user);
+        return Ok(new TokenDto(new JwtSecurityTokenHandler().WriteToken(token), token.ValidTo, refreshToken));
     }
 
     private async Task<(JwtSecurityToken token, string refreshToken)> GenerateTokensPair(User user)
