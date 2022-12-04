@@ -157,7 +157,40 @@ public class AuthController : ControllerBase
             return BadRequest(new Response("Error", $"Email change failed! Errors:\n{errors}"));
         }
 
-        return Ok();
+        var (token, refreshToken) = await GenerateTokensPair(user);
+        return Ok(new TokenDto(new JwtSecurityTokenHandler().WriteToken(token), token.ValidTo, refreshToken));
+    }
+
+    [Authorize]
+    [HttpPost("ChangeUsername")]
+    public async Task<IActionResult> ChangeUsername(ChangeUsernameDto dto)
+    {
+        var username = User.Identity?.Name;
+        if (username == null)
+            return BadRequest(new Response("Error", "User not found"));
+        
+        var user = await _userManager.FindByNameAsync(username);
+        if (user == null)
+            return BadRequest(new Response("Error", "User not found"));
+        
+        if(username == dto.NewUsername)
+            return BadRequest(new Response("Error", "Current username is the same"));
+
+        var otherUserWithUsername = await _userManager.FindByEmailAsync(dto.NewUsername);
+        if(otherUserWithUsername != null)
+            return BadRequest(new Response("Error", "Username is busy"));
+        
+        var result = await _userManager.SetUserNameAsync(user, dto.NewUsername);
+        if (!result.Succeeded)
+        {
+            var errors = result.Errors
+                .Select(x => $"[{x.Code}] {x.Description}")
+                .Aggregate((a, b) => $"{a}\n{b}");
+            return BadRequest(new Response("Error", $"Username change failed! Errors:\n{errors}"));
+        }
+
+        var (token, refreshToken) = await GenerateTokensPair(user);
+        return Ok(new TokenDto(new JwtSecurityTokenHandler().WriteToken(token), token.ValidTo, refreshToken));
     }
 
     private async Task<(JwtSecurityToken token, string refreshToken)> GenerateTokensPair(User user)
