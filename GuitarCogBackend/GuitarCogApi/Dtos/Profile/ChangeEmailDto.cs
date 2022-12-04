@@ -1,4 +1,4 @@
-namespace GuitarCogApi.Dtos.Auth;
+namespace GuitarCogApi.Dtos.Profile;
 
 public class ChangeEmailDto
 {
