@@ -16,9 +16,9 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
     QIcon, QImage, QKeySequence, QLinearGradient,
     QPainter, QPalette, QPixmap, QRadialGradient,
     QTransform)
-from PySide6.QtWidgets import (QApplication, QGridLayout, QMainWindow, QMenu,
-    QMenuBar, QSizePolicy, QStackedWidget, QStatusBar,
-    QTextBrowser, QWidget)
+from PySide6.QtWidgets import (QApplication, QGridLayout, QLabel, QMainWindow,
+    QMenu, QMenuBar, QSizePolicy, QSpacerItem,
+    QStackedWidget, QStatusBar, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -55,22 +55,31 @@ class Ui_MainWindow(object):
         self.page_welcome.setObjectName(u"page_welcome")
         self.gridLayout = QGridLayout(self.page_welcome)
         self.gridLayout.setObjectName(u"gridLayout")
-        self.textBrowser = QTextBrowser(self.page_welcome)
-        self.textBrowser.setObjectName(u"textBrowser")
+        self.label_welcome = QLabel(self.page_welcome)
+        self.label_welcome.setObjectName(u"label_welcome")
+        font = QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        self.label_welcome.setFont(font)
+        self.label_welcome.setTextFormat(Qt.AutoText)
+        self.label_welcome.setScaledContents(False)
+        self.label_welcome.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout.addWidget(self.textBrowser, 0, 0, 1, 1)
+        self.gridLayout.addWidget(self.label_welcome, 0, 0, 1, 1)
+
+        self.label_welcome_text = QLabel(self.page_welcome)
+        self.label_welcome_text.setObjectName(u"label_welcome_text")
+        self.label_welcome_text.setTextFormat(Qt.AutoText)
+        self.label_welcome_text.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
+        self.label_welcome_text.setWordWrap(True)
+
+        self.gridLayout.addWidget(self.label_welcome_text, 1, 0, 1, 1)
+
+        self.verticalSpacer_3 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.gridLayout.addItem(self.verticalSpacer_3, 2, 0, 1, 1)
 
         self.stackedWidget.addWidget(self.page_welcome)
-        self.page_from_file = QWidget()
-        self.page_from_file.setObjectName(u"page_from_file")
-        self.gridLayout_3 = QGridLayout(self.page_from_file)
-        self.gridLayout_3.setObjectName(u"gridLayout_3")
-        self.textBrowser_2 = QTextBrowser(self.page_from_file)
-        self.textBrowser_2.setObjectName(u"textBrowser_2")
-
-        self.gridLayout_3.addWidget(self.textBrowser_2, 0, 0, 1, 1)
-
-        self.stackedWidget.addWidget(self.page_from_file)
 
         self.gridLayout_2.addWidget(self.stackedWidget, 0, 0, 1, 1)
 
@@ -107,7 +116,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(1)
+        self.stackedWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -124,30 +133,8 @@ class Ui_MainWindow(object):
         self.action_login.setText(QCoreApplication.translate("MainWindow", u"Login", None))
         self.action_register.setText(QCoreApplication.translate("MainWindow", u"Register", None))
         self.action_logout.setText(QCoreApplication.translate("MainWindow", u"Logout", None))
-        self.textBrowser.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"hr { height: 1px; border-width: 0; }\n"
-"li.unchecked::marker { content: \"\\2610\"; }\n"
-"li.checked::marker { content: \"\\2612\"; }\n"
-"</style></head><body style=\" font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Helvetica'; font-size:8pt; font-weight:600; color:#666666;\">Welcome</span></p>\n"
-"<p align=\"center\" style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Helvetica'; font-size:8pt; color:#666666;\">Dori me Interimo, adapare Dori me Ameno, Ameno Latire Latirem"
-                        "o Dori me Ameno Omenare imperavi ameno Dimere, dimere matiro Matiremo Ameno Omenare imperavi emulari, ameno Omenare imperavi emulari, ameno Ameno dore Ameno dori me Ameno dori me Ameno dom Dori me reo Ameno dori me Ameno dori me Dori me am Ameno Omenare imperavi ameno Dimere dimere matiro Matiremo Ameno Omenare imperavi emulari, ameno Omenare imperavi emulari, ameno Ameno dore Ameno dori me Ameno dori me Ameno dom Dori me reo Ameno dori me Ameno dori me Dori me Ameno dori me Ameno dori me Dori me (dori me, dori me, dori me) (Dori me, dori me, dori me) Ameno Ameno dore Ameno dori me Ameno dori me Ameno dom Dori me reo Ameno dori me Ameno dori me Dori me dom Ameno dore Ameno dori me Ameno dori me Ameno dom Dori me reo Ameno dori me</span></p></body></html>", None))
-        self.textBrowser_2.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"hr { height: 1px; border-width: 0; }\n"
-"li.unchecked::marker { content: \"\\2610\"; }\n"
-"li.checked::marker { content: \"\\2612\"; }\n"
-"</style></head><body style=\" font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">\u0425\u0423\u0419</p>\n"
-"<p align=\"center\" style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">\u0425\u0423\u0419</p>\n"
-"<p align=\"center\" style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">\u0425\u0423\u0419</p>\n"
-"<p align=\"center\" styl"
-                        "e=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">\u0425\u0423\u0419</p>\n"
-"<p align=\"center\" style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">\u0425\u0423\u0419</p>\n"
-"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", None))
+        self.label_welcome.setText(QCoreApplication.translate("MainWindow", u"Welcome!", None))
+        self.label_welcome_text.setText(QCoreApplication.translate("MainWindow", u"Dori me Interimo, adapare Dori me Ameno, Ameno Latire Latiremo Dori me Ameno Omenare imperavi ameno Dimere, dimere matiro Matiremo Ameno Omenare imperavi emulari, ameno Omenare imperavi emulari, ameno Ameno dore Ameno dori me Ameno dori me Ameno dom Dori me reo Ameno dori me Ameno dori me Dori me am Ameno Omenare imperavi ameno Dimere dimere matiro Matiremo Ameno Omenare imperavi emulari, ameno Omenare imperavi emulari, ameno Ameno dore Ameno dori me Ameno dori me Ameno dom Dori me reo Ameno dori me Ameno dori me Dori me Ameno dori me Ameno dori me Dori me (dori me, dori me, dori me) (Dori me, dori me, dori me) Ameno Ameno dore Ameno dori me Ameno dori me Ameno dom Dori me reo Ameno dori me Ameno dori me Dori me dom Ameno dore Ameno dori me Ameno dori me Ameno dom Dori me reo Ameno dori me", None))
         self.menu_file.setTitle(QCoreApplication.translate("MainWindow", u"File", None))
         self.menu_view.setTitle(QCoreApplication.translate("MainWindow", u"View", None))
         self.menu_options.setTitle(QCoreApplication.translate("MainWindow", u"Options", None))
