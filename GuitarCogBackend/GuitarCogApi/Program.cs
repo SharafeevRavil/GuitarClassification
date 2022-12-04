@@ -1,5 +1,7 @@
 using System.Text;
+using GuitarCogApi.Controllers;
 using GuitarCogApi.Initializers;
+using GuitarCogApi.Services;
 using GuitarCogData;
 using GuitarCogData.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -94,6 +96,12 @@ builder.Services.AddSwaggerGen(option =>
         }
     });
 });
+
+//SERVICES
+builder.Services.AddScoped<AuthService>();
+builder.Services.AddScoped<ImageService>();
+//SERVICES
+
 
 var app = builder.Build();
 
