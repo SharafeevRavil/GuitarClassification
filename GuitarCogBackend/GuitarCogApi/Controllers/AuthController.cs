@@ -127,6 +127,39 @@ public class AuthController : ControllerBase
         return Ok(new TokenDto(new JwtSecurityTokenHandler().WriteToken(token), token.ValidTo, refreshToken));
     }
 
+    [Authorize]
+    [HttpPost("ChangeEmail")]
+    public async Task<IActionResult> ChangeEmail(ChangeEmailDto dto)
+    {
+        var username = User.Identity?.Name;
+        if (username == null)
+            return BadRequest(new Response("Error", "User not found"));
+        
+        var user = await _userManager.FindByNameAsync(username);
+        if (user == null)
+            return BadRequest(new Response("Error", "User not found"));
+        
+        if(user.Email == dto.NewEmail)
+            return BadRequest(new Response("Error", "Current email is the same"));
+
+        var otherUserWithEmail = await _userManager.FindByEmailAsync(dto.NewEmail);
+        if(otherUserWithEmail != null)
+            return BadRequest(new Response("Error", "Email is busy"));
+        
+        await _userManager.SetEmailAsync(user, dto.NewEmail);
+        var emailConfirmationToken = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+        var result = await _userManager.ConfirmEmailAsync(user, emailConfirmationToken);
+        if (!result.Succeeded)
+        {
+            var errors = result.Errors
+                .Select(x => $"[{x.Code}] {x.Description}")
+                .Aggregate((a, b) => $"{a}\n{b}");
+            return BadRequest(new Response("Error", $"Email change failed! Errors:\n{errors}"));
+        }
+
+        return Ok();
+    }
+
     private async Task<(JwtSecurityToken token, string refreshToken)> GenerateTokensPair(User user)
     {
         var token = await GetToken(user);
