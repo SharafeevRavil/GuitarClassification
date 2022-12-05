@@ -1,12 +1,12 @@
 import sys
-import requests
+import Requests
 from PySide6.QtWidgets import (
     QDialog, QApplication,
     QLabel, QStatusBar
 )
 from PySide6.QtGui import QAction, QIcon
 from PySide6.QtCore import Qt
-from ui_Register import Ui_Register
+from Ui.ui_Register import Ui_Register
 import settings
 import json
 import keyring
@@ -34,7 +34,7 @@ class Register(QDialog):
             'password': self.ui.passworld_field.text()
         }
 
-        response = requests.post(url, json=data)
+        response = Requests.post(url, json=data)
         response_json = response.json()
         if response.status_code == 200:
             response_json = response.json()

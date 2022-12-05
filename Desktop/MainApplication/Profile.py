@@ -2,10 +2,10 @@ from PySide6 import QtCore, QtGui, QtWidgets
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import QFileDialog
 from PySide6.QtGui import QPixmap, QImage
-from ui_Profile import Ui_Profile
+from Ui.ui_Profile import Ui_Profile
 from ChangePassword import ChangePassword
 import settings
-import requests
+import Requests
 import keyring
 import magic
 import os
@@ -24,11 +24,8 @@ class Profile(QtWidgets.QWidget):
         self.ui.button_change_password.clicked.connect(self.change_password)
         self.ui.button_change_avatar.clicked.connect(self.change_avatar)
 
-        t = QtCore.QTimer()
-        t.singleShot(0,self.load_profile)
-
     def load_profile(self):
-        response = requests.get(settings.api_path + settings.user_info_path, headers={'Authorization': 'Bearer ' + keyring.get_password('GuitarCog', 'token')})            
+        response = Requests.get(settings.api_path + settings.user_info_path, headers={'Authorization': 'Bearer ' + keyring.get_password('GuitarCog', 'token')})            
         if response.status_code == 200:
             response_json = response.json()
             self.username = response_json['username']
@@ -39,10 +36,9 @@ class Profile(QtWidgets.QWidget):
 
             self.load_avatar(response_json['imageUrl'])
 
-
     def change_nickname(self):
         data = {'newUsername': self.ui.field_login.text()}
-        response = requests.post(settings.api_path + settings.change_nickname_path, json=data, headers={'Authorization': 'Bearer ' + keyring.get_password('GuitarCog', 'token')})
+        response = Requests.post(settings.api_path + settings.change_nickname_path, json=data, headers={'Authorization': 'Bearer ' + keyring.get_password('GuitarCog', 'token')})
         if response.status_code == 200:
             response_json = response.json()
             keyring.set_password('GuitarCog', 'token', response_json['token'])
@@ -56,7 +52,7 @@ class Profile(QtWidgets.QWidget):
 
     def change_email(self):
         data = {'newEmail': self.ui.field_email.text()}
-        response = requests.post(settings.api_path + settings.change_email_path, json=data, headers={'Authorization': 'Bearer ' + keyring.get_password('GuitarCog', 'token')})
+        response = Requests.post(settings.api_path + settings.change_email_path, json=data, headers={'Authorization': 'Bearer ' + keyring.get_password('GuitarCog', 'token')})
         if response.status_code == 200:
             response_json = response.json()
             keyring.set_password('GuitarCog', 'token', response_json['token'])
@@ -84,7 +80,7 @@ class Profile(QtWidgets.QWidget):
         if pix.width() >= pix.height() * 2:
             self.ui.label_error.setText('Image too wide')
         else:
-            response = requests.post(settings.api_path + settings.change_avatar_path, files=files, headers={'Authorization': 'Bearer ' + keyring.get_password('GuitarCog', 'token')})
+            response = Requests.post(settings.api_path + settings.change_avatar_path, files=files, headers={'Authorization': 'Bearer ' + keyring.get_password('GuitarCog', 'token')})
             if response.status_code == 200:
                 response_json = response.json()
                 self.load_avatar(response_json['avatarUrl'])
@@ -94,10 +90,9 @@ class Profile(QtWidgets.QWidget):
                     self.ui.label_error.setText(response_json['message'])
 
     def load_avatar(self, url):
-        image_response = requests.get(url)
-        image = QImage()
-        image.loadFromData(image_response.content)
-        self.image = QPixmap.fromImage(image)
+        image_response = Requests.get(url)
+        self.image = QPixmap()
+        self.image.loadFromData(image_response.content)
         image_width = self.ui.label_image.height() * self.image.width() / self.image.height()
         self.ui.label_image.setPixmap(self.image.scaled(image_width, self.ui.label_image.height(), aspectMode=Qt.KeepAspectRatio))
         self.ui.label_image.setFixedWidth(image_width)
