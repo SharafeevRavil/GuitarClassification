@@ -1,12 +1,12 @@
 import sys
-import requests
+import Requests
 from PySide6.QtWidgets import (
     QDialog, QApplication,
     QLabel, QStatusBar
 )
 from PySide6.QtGui import QAction, QIcon
 from PySide6.QtCore import Qt
-from ui_Change_password import Ui_Change_password
+from Ui.ui_Change_password import Ui_Change_password
 import settings
 import json
 import keyring
@@ -33,10 +33,14 @@ class ChangePassword(QDialog):
             'newPassword': self.ui.field_new.text()
         }
 
-        response = requests.post(url, json=data, headers={'Authorization': 'Bearer ' + keyring.get_password('GuitarCog', 'token')})
+        response = Requests.post(url, json=data, headers={'Authorization': 'Bearer ' + keyring.get_password('GuitarCog', 'token')})
         if response.status_code == 200:
             response_json = response.json()
             keyring.set_password('GuitarCog', 'token', response_json['token'])
             keyring.set_password('GuitarCog', 'refreshToken', response_json['refreshToken'])
             keyring.set_password('GuitarCog', 'expiration', response_json['expiration'])
             self.accept()
+        elif response.headers.get('content-type') == 'application/json':
+            response_json = response.json()
+            if 'status' in response_json and response_json['status'] == 'Error':
+                self.ui.error_label.setText(response_json['message'])
