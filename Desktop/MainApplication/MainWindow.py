@@ -31,15 +31,14 @@ class MainWindow(QMainWindow):
         self.ui.action_logout.triggered.connect(self.logout)
         self.ui.action_open_profile.triggered.connect(self.open_profile)
 
-        self.profile = Profile()
-        self.ui.stackedWidget.addWidget(self.profile)
+
 
     def check_authorized(self):
         isAuthed = False
         if keyring.get_password('GuitarCog', 'token') != None and keyring.get_password('GuitarCog', 'refreshToken') != None:
-            if datetime.strptime(keyring.get_password('GuitarCog', 'expiration'), '%Y-%m-%dT%H:%M:%SZ') <= datetime.now():
+            if datetime.strptime(keyring.get_password('GuitarCog', 'expiration'), '%Y-%m-%dT%H:%M:%SZ') <= datetime.utcnow():
                 self.refresh_token()
-            response = requests.post(settings.api_path + settings.checkauth_path, headers={'Authorization': 'Bearer ' + keyring.get_password('GuitarCog', 'token')})            
+            response = requests.get(settings.api_path + settings.checkauth_path, headers={'Authorization': 'Bearer ' + keyring.get_password('GuitarCog', 'token')})            
 
             if response.status_code == 200:
                 isAuthed = True
@@ -98,8 +97,10 @@ class MainWindow(QMainWindow):
 
 
     def open_profile(self):
+        self.profile = Profile()
+        self.ui.stackedWidget.removeWidget(self.ui.stackedWidget.currentWidget())
+        self.ui.stackedWidget.addWidget(self.profile)
         self.ui.stackedWidget.setCurrentWidget(self.profile)
-
 
 if __name__ == '__main__':
     app = QApplication()
