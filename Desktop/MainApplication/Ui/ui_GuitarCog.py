@@ -16,6 +16,7 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
     QIcon, QImage, QKeySequence, QLinearGradient,
     QPainter, QPalette, QPixmap, QRadialGradient,
     QTransform)
+from PySide6.QtWebEngineWidgets import QWebEngineView
 from PySide6.QtWidgets import (QApplication, QGridLayout, QLabel, QMainWindow,
     QMenu, QMenuBar, QSizePolicy, QSpacerItem,
     QStackedWidget, QStatusBar, QWidget)
@@ -25,7 +26,7 @@ class Ui_MainWindow(object):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
         MainWindow.setEnabled(True)
-        MainWindow.resize(800, 600)
+        MainWindow.resize(1006, 705)
         self.action_new_from_file = QAction(MainWindow)
         self.action_new_from_file.setObjectName(u"action_new_from_file")
         self.action_new_from_realtime = QAction(MainWindow)
@@ -80,13 +81,24 @@ class Ui_MainWindow(object):
         self.gridLayout.addItem(self.verticalSpacer_3, 2, 0, 1, 1)
 
         self.stackedWidget.addWidget(self.page_welcome)
+        self.page_test = QWidget()
+        self.page_test.setObjectName(u"page_test")
+        self.gridLayout_3 = QGridLayout(self.page_test)
+        self.gridLayout_3.setObjectName(u"gridLayout_3")
+        self.webEngineView = QWebEngineView(self.page_test)
+        self.webEngineView.setObjectName(u"webEngineView")
+        self.webEngineView.setUrl(QUrl(u"about:blank"))
+
+        self.gridLayout_3.addWidget(self.webEngineView, 0, 0, 1, 1)
+
+        self.stackedWidget.addWidget(self.page_test)
 
         self.gridLayout_2.addWidget(self.stackedWidget, 0, 0, 1, 1)
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 800, 22))
+        self.menubar.setGeometry(QRect(0, 0, 1006, 22))
         self.menu_file = QMenu(self.menubar)
         self.menu_file.setObjectName(u"menu_file")
         self.menu_view = QMenu(self.menubar)
@@ -116,7 +128,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(MainWindow)

@@ -1,10 +1,13 @@
 import sys
+import os
 from PySide6.QtWidgets import (
     QMainWindow, QApplication,
     QLabel, QStatusBar
 )
 from PySide6.QtGui import QAction, QIcon
-from PySide6.QtCore import Qt
+from PySide6.QtCore import Qt, QUrl, QFile
+from PySide6.QtWebEngineWidgets import QWebEngineView
+from PySide6.QtWebEngineCore import QWebEngineSettings  
 from datetime import datetime
 from Ui.ui_GuitarCog import Ui_MainWindow
 from Register import Register
@@ -33,6 +36,10 @@ class MainWindow(QMainWindow):
 
         self.profile = Profile()
         self.ui.stackedWidget.addWidget(self.profile)
+
+        url = QUrl.fromLocalFile(os.path.realpath('.\\tab.html'))
+        self.ui.webEngineView.settings().setAttribute(QWebEngineSettings.WebAttribute.LocalContentCanAccessRemoteUrls, True)
+        self.ui.webEngineView.load(url)
 
     def check_authorized(self):
         isAuthed = False
