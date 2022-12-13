@@ -1,6 +1,6 @@
 import numpy as np
 import keras
-import Settings
+from . import Settings
 
 class PredictionGenerator(keras.utils.Sequence):
     

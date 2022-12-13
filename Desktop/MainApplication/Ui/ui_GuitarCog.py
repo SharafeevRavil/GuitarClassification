@@ -16,7 +16,6 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
     QIcon, QImage, QKeySequence, QLinearGradient,
     QPainter, QPalette, QPixmap, QRadialGradient,
     QTransform)
-from PySide6.QtWebEngineWidgets import QWebEngineView
 from PySide6.QtWidgets import (QApplication, QGridLayout, QLabel, QMainWindow,
     QMenu, QMenuBar, QSizePolicy, QSpacerItem,
     QStackedWidget, QStatusBar, QWidget)
@@ -81,17 +80,6 @@ class Ui_MainWindow(object):
         self.gridLayout.addItem(self.verticalSpacer_3, 2, 0, 1, 1)
 
         self.stackedWidget.addWidget(self.page_welcome)
-        self.page_test = QWidget()
-        self.page_test.setObjectName(u"page_test")
-        self.gridLayout_3 = QGridLayout(self.page_test)
-        self.gridLayout_3.setObjectName(u"gridLayout_3")
-        self.webEngineView = QWebEngineView(self.page_test)
-        self.webEngineView.setObjectName(u"webEngineView")
-        self.webEngineView.setUrl(QUrl(u"about:blank"))
-
-        self.gridLayout_3.addWidget(self.webEngineView, 0, 0, 1, 1)
-
-        self.stackedWidget.addWidget(self.page_test)
 
         self.gridLayout_2.addWidget(self.stackedWidget, 0, 0, 1, 1)
 
@@ -128,7 +116,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(1)
+        self.stackedWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
