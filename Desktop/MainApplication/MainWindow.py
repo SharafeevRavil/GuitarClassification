@@ -1,15 +1,21 @@
 import sys
+import os
 from PySide6.QtWidgets import (
     QMainWindow, QApplication,
     QLabel, QStatusBar
 )
 from PySide6.QtGui import QAction, QIcon
-from PySide6.QtCore import Qt
+from PySide6.QtCore import Qt, QUrl, QFile
+from PySide6.QtWebEngineWidgets import QWebEngineView
+from PySide6.QtWebEngineCore import QWebEngineSettings  
 from datetime import datetime
 from Ui.ui_GuitarCog import Ui_MainWindow
 from Register import Register
 from Login import Login
 from Profile import Profile
+from FromFile import FromFile
+from ViewTab import ViewTab
+import GPCreator
 import settings
 import keyring
 import Requests
@@ -30,9 +36,16 @@ class MainWindow(QMainWindow):
         self.ui.action_login.triggered.connect(self.open_login)
         self.ui.action_logout.triggered.connect(self.logout)
         self.ui.action_open_profile.triggered.connect(self.open_profile)
+        self.ui.action_new_from_file.triggered.connect(self.open_from_file)
 
         self.profile = Profile()
         self.ui.stackedWidget.addWidget(self.profile)
+        self.from_file = FromFile()
+        self.ui.stackedWidget.addWidget(self.from_file)
+        self.view_tab = ViewTab()
+        self.ui.stackedWidget.addWidget(self.view_tab)
+
+        self.from_file.ui.button_generate.clicked.connect(self.generate_gp)
 
     def check_authorized(self):
         isAuthed = False
@@ -61,6 +74,16 @@ class MainWindow(QMainWindow):
             self.ui.label_welcome.setText('Welcome!')
         else:
             self.ui.label_welcome.setText(f'Welcome, {self.username}!')
+  
+    def generate_gp(self):
+        self.from_file.ui.button_select.setEnabled(False)
+        self.from_file.ui.button_generate.setEnabled(False)
+
+        GPCreator.create(self.from_file.filename)
+        self.ui.stackedWidget.setCurrentWidget(self.view_tab)
+        url = QUrl.fromLocalFile(os.path.realpath('.\\tab.html'))
+        self.view_tab.ui.webEngineView.settings().setAttribute(QWebEngineSettings.WebAttribute.LocalContentCanAccessRemoteUrls, True)
+        self.view_tab.ui.webEngineView.load(url)
 
     def open_register(self):
         dlg = Register()
@@ -82,6 +105,11 @@ class MainWindow(QMainWindow):
     def open_profile(self):
         self.ui.stackedWidget.setCurrentWidget(self.profile)
         self.profile.load_profile()
+
+    def open_from_file(self):
+        self.from_file.ui.button_select.setEnabled(True)
+        self.from_file.ui.button_generate.setEnabled(False)
+        self.ui.stackedWidget.setCurrentWidget(self.from_file)
 
 if __name__ == '__main__':
     app = QApplication()
