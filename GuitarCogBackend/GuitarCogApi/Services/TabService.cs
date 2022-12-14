@@ -1,8 +1,11 @@
 using GuitarCogApi.Dtos;
 using GuitarCogApi.Dtos.General;
 using GuitarCogApi.Dtos.Tab;
+using GuitarCogApi.Helpers;
 using GuitarCogData;
 using GuitarCogData.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace GuitarCogApi.Services;
 
@@ -27,5 +30,19 @@ public class TabService
         _dbContext.Tabs.Add(tab);
         await _dbContext.SaveChangesAsync();
         return (tab, null);
+    }
+
+    public async Task<PagedResponse<TabListDto>> GetTabs(TabFilter tabFilter)
+    {
+        IQueryable<Tab> tabs = _dbContext.Tabs
+            .Include(x => x.Author);
+
+        if (tabFilter.UserIds != null) 
+            tabs = tabs.Where(x => tabFilter.UserIds.Contains(x.Author.Id));
+
+        var mapped = tabs
+            .Select(x => new TabListDto(x.Id, x.Name, x.Author.Id, x.LoadDateTime));
+        
+        return mapped.PagedResponse(tabFilter.Page ?? 1, tabFilter.PageSize ?? 10);
     }
 }
