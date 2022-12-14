@@ -8,6 +8,7 @@ using GuitarCogData.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace GuitarCogApi.Controllers;
 
@@ -18,14 +19,14 @@ public class ProfileController : ControllerBase
     private readonly UserManager<User> _userManager;
     private readonly AuthService _authService;
     private readonly ApplicationDbContext _dbContext;
-    private readonly ImageService _imageService;
+    private readonly FileService _fileService;
 
-    public ProfileController(UserManager<User> userManager, AuthService authService, ApplicationDbContext dbContext, ImageService imageService)
+    public ProfileController(UserManager<User> userManager, AuthService authService, ApplicationDbContext dbContext, FileService fileService)
     {
         _userManager = userManager;
         _authService = authService;
         _dbContext = dbContext;
-        _imageService = imageService;
+        _fileService = fileService;
     }
     
     [Authorize]
@@ -130,11 +131,16 @@ public class ProfileController : ControllerBase
         if (username == null)
             return BadRequest(new Response("Error", "User not found"));
         
-        var user = await _userManager.FindByNameAsync(username);
+        var user = await _dbContext.Users
+            .Include(x => x.AvatarImage)
+            .FirstOrDefaultAsync(x => x.UserName == username);
         if (user == null)
             return BadRequest(new Response("Error", "User not found"));
 
-        var avatarUrl = _imageService.GetUrlByImageId(Request, user.AvatarImageId);
+        
+        var avatarUrl = user.AvatarImage != null 
+            ? _fileService.GetUrlByFileId(Request, user.AvatarImage!.Id) 
+            : "";
 
         var dto = new ProfileDto(user.Id, user.UserName, user.Email, avatarUrl);
         return Ok(dto);
@@ -152,13 +158,13 @@ public class ProfileController : ControllerBase
         if (user == null)
             return BadRequest(new Response("Error", "User not found"));
 
-        var (img, error) = await _imageService.AddImageFromForm(image);
-        if (error != null)
+        var (img, error) = await _fileService.AddFileFromForm(image, 2);
+        if (error != null || img == null)
             return BadRequest(error);
 
-        user.AvatarImageId = img!.Id;
+        user.AvatarImage = img;
         await _userManager.UpdateAsync(user);
-        var avatarUrl = _imageService.GetUrlByImageId(Request, img.Id);
+        var avatarUrl = _fileService.GetUrlByFileId(Request, img.Id);
         
         return Ok(new {AvatarUrl = avatarUrl});
     }
