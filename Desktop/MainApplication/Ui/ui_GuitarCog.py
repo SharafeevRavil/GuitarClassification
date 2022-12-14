@@ -106,7 +106,6 @@ class Ui_MainWindow(object):
         self.menubar.addAction(self.menu_profile.menuAction())
         self.menu_file.addAction(self.action_new_from_file)
         self.menu_file.addAction(self.action_new_from_realtime)
-        self.menu_view.addAction(self.action_view_local)
         self.menu_view.addAction(self.action_view_owned)
         self.menu_view.addAction(self.action_view_global)
         self.menu_profile.addAction(self.action_open_profile)

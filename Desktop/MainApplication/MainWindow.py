@@ -14,11 +14,13 @@ from Register import Register
 from Login import Login
 from Profile import Profile
 from FromFile import FromFile
+from SaveTab import SaveTab
+from TabList import TabList
 from ViewTab import ViewTab
-import GPCreator
 import settings
 import keyring
 import Requests
+import jwt
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -37,38 +39,50 @@ class MainWindow(QMainWindow):
         self.ui.action_logout.triggered.connect(self.logout)
         self.ui.action_open_profile.triggered.connect(self.open_profile)
         self.ui.action_new_from_file.triggered.connect(self.open_from_file)
+        self.ui.action_view_global.triggered.connect(self.view_global)
+        self.ui.action_view_owned.triggered.connect(self.view_owned)
 
         self.profile = Profile()
         self.ui.stackedWidget.addWidget(self.profile)
         self.from_file = FromFile()
         self.ui.stackedWidget.addWidget(self.from_file)
+        self.save_tab = SaveTab()
+        self.ui.stackedWidget.addWidget(self.save_tab)
+        self.tab_list = TabList(self)
+        self.ui.stackedWidget.addWidget(self.tab_list)
         self.view_tab = ViewTab()
         self.ui.stackedWidget.addWidget(self.view_tab)
 
         self.from_file.ui.button_generate.clicked.connect(self.generate_gp)
+        self.save_tab.ui.button_save_file.clicked.connect(self.open_welcome)
+        self.save_tab.ui.button_upload.clicked.connect(self.open_welcome)
+        self.view_tab.ui.button_return.clicked.connect(self.return_to_list)
 
     def check_authorized(self):
-        isAuthed = False
+        self.isAuthed = False
         if keyring.get_password('GuitarCog', 'token') != None and keyring.get_password('GuitarCog', 'refreshToken') != None:
             if datetime.strptime(keyring.get_password('GuitarCog', 'expiration'), '%Y-%m-%dT%H:%M:%SZ') <= datetime.utcnow():
                 Requests.refresh_token()
-            response = Requests.get(settings.api_path + settings.checkauth_path, headers={'Authorization': 'Bearer ' + keyring.get_password('GuitarCog', 'token')})            
+            response = Requests.get(settings.api_path + settings.checkauth_path, needAuth=True)            
 
             if response.status_code == 200:
-                isAuthed = True
+                self.isAuthed = True
                 response_json = response.json()
                 self.username = response_json['username']
+                decoded = jwt.decode(keyring.get_password('GuitarCog', 'token'), options={"verify_signature": False})
+                self.user_id = decoded['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier']
 
-        if not isAuthed:
-            self.username = ''            
 
-        self.ui.action_login.setVisible(not isAuthed)
-        self.ui.action_register.setVisible(not isAuthed)
+        if not self.isAuthed:
+            self.username = ''
+            self.user_id = ''           
+
+        self.ui.action_login.setVisible(not self.isAuthed)
+        self.ui.action_register.setVisible(not self.isAuthed)
         
-        self.ui.action_open_profile.setVisible(isAuthed)
-        self.ui.action_logout.setVisible(isAuthed)
-        self.ui.action_view_global.setVisible(isAuthed)
-        self.ui.action_view_owned.setVisible(isAuthed)
+        self.ui.action_open_profile.setVisible(self.isAuthed)
+        self.ui.action_logout.setVisible(self.isAuthed)
+        self.ui.action_view_owned.setVisible(self.isAuthed)
 
         if self.username == '':
             self.ui.label_welcome.setText('Welcome!')
@@ -79,11 +93,11 @@ class MainWindow(QMainWindow):
         self.from_file.ui.button_select.setEnabled(False)
         self.from_file.ui.button_generate.setEnabled(False)
 
-        GPCreator.create(self.from_file.filename)
-        self.ui.stackedWidget.setCurrentWidget(self.view_tab)
-        url = QUrl.fromLocalFile(os.path.realpath('.\\tab.html'))
-        self.view_tab.ui.webEngineView.settings().setAttribute(QWebEngineSettings.WebAttribute.LocalContentCanAccessRemoteUrls, True)
-        self.view_tab.ui.webEngineView.load(url)
+        self.check_authorized()
+        if self.isAuthed:
+            self.save_tab.clear()
+            self.save_tab.generate(self.from_file.filename, self.isAuthed)
+            self.ui.stackedWidget.setCurrentWidget(self.save_tab)
 
     def open_register(self):
         dlg = Register()
@@ -107,9 +121,24 @@ class MainWindow(QMainWindow):
         self.profile.load_profile()
 
     def open_from_file(self):
-        self.from_file.ui.button_select.setEnabled(True)
-        self.from_file.ui.button_generate.setEnabled(False)
+        self.from_file.clear()
         self.ui.stackedWidget.setCurrentWidget(self.from_file)
+
+    def view_global(self):
+        self.tab_list.load_global()
+        self.ui.stackedWidget.setCurrentWidget(self.tab_list)
+
+    def view_owned(self):
+        self.check_authorized()
+        if self.isAuthed:
+            self.tab_list.load_user(self.user_id)
+            self.ui.stackedWidget.setCurrentWidget(self.tab_list)
+
+    def open_welcome(self):
+        self.ui.stackedWidget.setCurrentWidget(self.ui.page_welcome)
+
+    def return_to_list(self):
+        self.ui.stackedWidget.setCurrentWidget(self.tab_list)
 
 if __name__ == '__main__':
     app = QApplication()

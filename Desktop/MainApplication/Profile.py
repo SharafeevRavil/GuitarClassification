@@ -25,7 +25,7 @@ class Profile(QtWidgets.QWidget):
         self.ui.button_change_avatar.clicked.connect(self.change_avatar)
 
     def load_profile(self):
-        response = Requests.get(settings.api_path + settings.user_info_path, headers={'Authorization': 'Bearer ' + keyring.get_password('GuitarCog', 'token')})            
+        response = Requests.get(settings.api_path + settings.user_info_path, needAuth=True)            
         if response.status_code == 200:
             response_json = response.json()
             self.username = response_json['username']
@@ -38,7 +38,7 @@ class Profile(QtWidgets.QWidget):
 
     def change_nickname(self):
         data = {'newUsername': self.ui.field_login.text()}
-        response = Requests.post(settings.api_path + settings.change_nickname_path, json=data, headers={'Authorization': 'Bearer ' + keyring.get_password('GuitarCog', 'token')})
+        response = Requests.post(settings.api_path + settings.change_nickname_path, json=data, needAuth=True)
         if response.status_code == 200:
             response_json = response.json()
             keyring.set_password('GuitarCog', 'token', response_json['token'])
@@ -52,7 +52,7 @@ class Profile(QtWidgets.QWidget):
 
     def change_email(self):
         data = {'newEmail': self.ui.field_email.text()}
-        response = Requests.post(settings.api_path + settings.change_email_path, json=data, headers={'Authorization': 'Bearer ' + keyring.get_password('GuitarCog', 'token')})
+        response = Requests.post(settings.api_path + settings.change_email_path, json=data, needAuth=True)
         if response.status_code == 200:
             response_json = response.json()
             keyring.set_password('GuitarCog', 'token', response_json['token'])
@@ -80,7 +80,7 @@ class Profile(QtWidgets.QWidget):
         if pix.width() >= pix.height() * 2:
             self.ui.label_error.setText('Image too wide')
         else:
-            response = Requests.post(settings.api_path + settings.change_avatar_path, files=files, headers={'Authorization': 'Bearer ' + keyring.get_password('GuitarCog', 'token')})
+            response = Requests.post(settings.api_path + settings.change_avatar_path, files=files, needAuth=True)
             if response.status_code == 200:
                 response_json = response.json()
                 self.load_avatar(response_json['avatarUrl'])
