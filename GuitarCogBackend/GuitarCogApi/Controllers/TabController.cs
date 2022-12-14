@@ -45,4 +45,12 @@ public class TabController : ControllerBase
             tabUrl = _fileService.GetUrlByFileId(Request, tab.TabFile.Id)
         });
     }
+
+    [HttpGet]
+    public async Task<IActionResult> GetTabs([FromQuery] TabFilter tabFilter)
+    {
+        var tabs = await _tabService.GetTabs(tabFilter);
+
+        return Ok(tabs);
+    }
 }
