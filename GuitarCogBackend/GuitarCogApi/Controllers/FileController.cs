@@ -8,19 +8,19 @@ namespace GuitarCogApi.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class ImageController : ControllerBase
+public class FileController : ControllerBase
 {
-    private readonly ImageService _imageService;
+    private readonly FileService _fileService;
 
-    public ImageController(ImageService imageService)
+    public FileController(FileService fileService)
     {
-        _imageService = imageService;
+        _fileService = fileService;
     }
 
     [HttpGet("{imageId}")]
-    public async Task<IActionResult> GetImage(string imageId)
+    public async Task<IActionResult> GetImage(Guid imageId)
     {
-        var img = await _imageService.LoadById(imageId);
+        var img = await _fileService.LoadById(imageId);
         if (img == null)
             return BadRequest(new Response("Error", $"Image not found"));
         return File(img.Bytes, img.ContentType, img.FileName);

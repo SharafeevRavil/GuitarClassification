@@ -98,8 +98,13 @@ builder.Services.AddSwaggerGen(option =>
 });
 
 //SERVICES
+//SERVICES
+//SERVICES
 builder.Services.AddScoped<AuthService>();
-builder.Services.AddScoped<ImageService>();
+builder.Services.AddScoped<FileService>();
+builder.Services.AddScoped<TabService>();
+//SERVICES
+//SERVICES
 //SERVICES
 
 
