@@ -50,7 +50,7 @@ public class TabController : ControllerBase
     [ProducesResponseType(typeof(Response),StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<PagedResponse<TabListDto>>> GetTabs([FromQuery] TabFilter tabFilter)
     {
-        var tabs = await _tabService.GetTabs(tabFilter);
+        var tabs = await _tabService.GetTabs(Request, tabFilter);
 
         return Ok(tabs);
     }

@@ -22,7 +22,7 @@ public class TabService
 
     public async Task<(Tab?, Response?)> AddTab(AddTabDto addTabDto, User user)
     {
-        var (file, response) = await _fileService.AddFileFromForm(addTabDto.File,2);
+        var (file, response) = await _fileService.AddFileFromForm(addTabDto.File, 2);
         if (response != null || file == null)
             return (null, response);
 
@@ -32,17 +32,19 @@ public class TabService
         return (tab, null);
     }
 
-    public async Task<PagedResponse<TabListDto>> GetTabs(TabFilter tabFilter)
+    public async Task<PagedResponse<TabListDto>> GetTabs(HttpRequest request, TabFilter tabFilter)
     {
         IQueryable<Tab> tabs = _dbContext.Tabs
-            .Include(x => x.Author);
+            .Include(x => x.Author)
+            .Include(x => x.TabFile);
 
-        if (tabFilter.UserIds != null) 
+        if (tabFilter.UserIds != null)
             tabs = tabs.Where(x => tabFilter.UserIds.Contains(x.Author.Id));
 
         var mapped = tabs
-            .Select(x => new TabListDto(x.Id, x.Name, x.Author.Id, x.LoadDateTime));
-        
+            .Select(x => new TabListDto(x.Id, x.Name, _fileService.GetUrlByFileId(request, x.TabFile.Id), 
+                x.Author.Id, x.Author.UserName!, x.LoadDateTime));
+
         return mapped.PagedResponse(tabFilter.Page ?? 1, tabFilter.PageSize ?? 10);
     }
 }
