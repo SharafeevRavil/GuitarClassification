@@ -8,3 +8,7 @@ change_email_path = '/Profile/ChangeEmail'
 change_password_path = '/Profile/ChangePassword'
 change_avatar_path = '/Profile/ChangeAvatar'
 user_info_path = '/Profile/GetUserInfo'
+tab_path = '/Tab'
+
+blank_file = './blank.gp5'
+tab_file = './tabs.gp5'

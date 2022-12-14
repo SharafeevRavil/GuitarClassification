@@ -33,7 +33,7 @@ class ChangePassword(QDialog):
             'newPassword': self.ui.field_new.text()
         }
 
-        response = Requests.post(url, json=data, headers={'Authorization': 'Bearer ' + keyring.get_password('GuitarCog', 'token')})
+        response = Requests.post(url, json=data, needAuth=True)
         if response.status_code == 200:
             response_json = response.json()
             keyring.set_password('GuitarCog', 'token', response_json['token'])

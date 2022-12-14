@@ -22,4 +22,9 @@ class FromFile(QtWidgets.QWidget):
         self.filename = fname[0]
         self.ui.audio_name.setText(os.path.basename(self.filename))
         self.ui.button_generate.setEnabled(True)
+
+    def clear(self):
+        self.ui.audio_name.setText('')
+        self.ui.button_select.setEnabled(True)
+        self.ui.button_generate.setEnabled(False)
         
