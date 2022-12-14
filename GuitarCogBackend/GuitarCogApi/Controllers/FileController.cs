@@ -1,3 +1,4 @@
+using System.Net;
 using GuitarCogApi.Dtos.General;
 using GuitarCogApi.Dtos.Profile;
 using GuitarCogApi.Services;
@@ -17,10 +18,12 @@ public class FileController : ControllerBase
         _fileService = fileService;
     }
 
-    [HttpGet("{imageId}")]
-    public async Task<IActionResult> GetImage(Guid imageId)
+    [HttpGet("{fileId:guid}")]
+    [ProducesResponseType(typeof(FileStreamResult),StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(Response),StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult> GetImage(Guid fileId)
     {
-        var img = await _fileService.LoadById(imageId);
+        var img = await _fileService.LoadById(fileId);
         if (img == null)
             return BadRequest(new Response("Error", $"Image not found"));
         return File(img.Bytes, img.ContentType, img.FileName);

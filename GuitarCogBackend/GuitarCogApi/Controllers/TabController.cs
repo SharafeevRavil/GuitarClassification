@@ -26,6 +26,8 @@ public class TabController : ControllerBase
 
     [HttpPost]
     [Authorize]
+    [ProducesResponseType(typeof(AddTabRespDto),StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(Response),StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> AddTab([FromForm] AddTabDto addTabDto)
     {
         var username = User.Identity?.Name;
@@ -40,14 +42,13 @@ public class TabController : ControllerBase
         if (response != null || tab == null)
             return BadRequest(response ?? new Response("Error", "Cannot add tab"));
 
-        return Ok(new
-        {
-            tabUrl = _fileService.GetUrlByFileId(Request, tab.TabFile.Id)
-        });
+        return Ok(new AddTabRespDto(_fileService.GetUrlByFileId(Request, tab.TabFile.Id)));
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetTabs([FromQuery] TabFilter tabFilter)
+    [ProducesResponseType(typeof(PagedResponse<TabListDto>),StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(Response),StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<PagedResponse<TabListDto>>> GetTabs([FromQuery] TabFilter tabFilter)
     {
         var tabs = await _tabService.GetTabs(tabFilter);
 

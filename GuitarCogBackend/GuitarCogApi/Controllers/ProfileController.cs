@@ -31,6 +31,8 @@ public class ProfileController : ControllerBase
     
     [Authorize]
     [HttpPost("ChangePassword")]
+    [ProducesResponseType(typeof(TokenDto),StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(Response),StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> ChangePassword(ChangePasswordDto dto)
     {
         var username = User.Identity?.Name;
@@ -59,6 +61,8 @@ public class ProfileController : ControllerBase
 
     [Authorize]
     [HttpPost("ChangeEmail")]
+    [ProducesResponseType(typeof(TokenDto),StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(Response),StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> ChangeEmail(ChangeEmailDto dto)
     {
         var username = User.Identity?.Name;
@@ -93,6 +97,8 @@ public class ProfileController : ControllerBase
 
     [Authorize]
     [HttpPost("ChangeUsername")]
+    [ProducesResponseType(typeof(TokenDto),StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(Response),StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> ChangeUsername(ChangeUsernameDto dto)
     {
         var username = User.Identity?.Name;
@@ -125,6 +131,8 @@ public class ProfileController : ControllerBase
 
     [Authorize]
     [HttpGet("GetUserInfo")]
+    [ProducesResponseType(typeof(ProfileDto),StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(Response),StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> GetUserInfo()
     {
         var username = User.Identity?.Name;
@@ -148,6 +156,8 @@ public class ProfileController : ControllerBase
 
     [Authorize]
     [HttpPost("ChangeAvatar")]
+    [ProducesResponseType(typeof(AvatarDto),StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(Response),StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> ChangeAvatar(IFormFile image)
     {
         var username = User.Identity?.Name;
@@ -166,6 +176,6 @@ public class ProfileController : ControllerBase
         await _userManager.UpdateAsync(user);
         var avatarUrl = _fileService.GetUrlByFileId(Request, img.Id);
         
-        return Ok(new {AvatarUrl = avatarUrl});
+        return Ok(new AvatarDto(avatarUrl));
     }
 }

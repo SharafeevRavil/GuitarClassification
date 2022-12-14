@@ -26,7 +26,9 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("SignIn")]
-    public async Task<IActionResult> SignIn([FromBody] SignInDto model)
+    [ProducesResponseType(typeof(TokenDto),StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(Response),StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<TokenDto>> SignIn([FromBody] SignInDto model)
     {
         var user = await _userManager.FindByNameAsync(model.Username);
         if (user == null || !await _userManager.CheckPasswordAsync(user, model.Password)) return Unauthorized();
@@ -37,7 +39,9 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("SignUp")]
-    public async Task<IActionResult> SignUp([FromBody] SignUpDto model)
+    [ProducesResponseType(typeof(TokenDto),StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(Response),StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<TokenDto>> SignUp([FromBody] SignUpDto model)
     {
         var userExists = await _userManager.FindByNameAsync(model.Username);
         if (userExists != null)
@@ -65,7 +69,9 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("RefreshToken")]
-    public async Task<IActionResult> RefreshToken([FromBody] TokenPairDto tokenModel)
+    [ProducesResponseType(typeof(TokenDto),StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(Response),StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<TokenDto>> RefreshToken([FromBody] TokenPairDto tokenModel)
     {
         var accessToken = tokenModel.AccessToken;
         var refreshToken = tokenModel.RefreshToken;
@@ -86,9 +92,17 @@ public class AuthController : ControllerBase
 
     [Authorize]
     [HttpGet("CheckAuthorized")]
-    public async Task<IActionResult> CheckAuthorized()
+    [ProducesResponseType(typeof(AuthorizedDto),StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(Response),StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<AuthorizedDto>> CheckAuthorized()
     {
-        var username = User.Identity!.Name;
-        return Ok(new { Username = username });
+        var username = User.Identity?.Name;
+        if (username == null)
+            return BadRequest(new Response("Error", "User not found"));
+        
+        var user = await _userManager.FindByNameAsync(username);
+        if (user == null)
+            return BadRequest(new Response("Error", "User not found"));
+        return Ok(new AuthorizedDto(username));
     }
 }
