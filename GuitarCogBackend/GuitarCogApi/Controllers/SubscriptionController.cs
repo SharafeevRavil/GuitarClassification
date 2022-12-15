@@ -53,4 +53,24 @@ public class SubscriptionController : ControllerBase
         
         return Ok(resultDto);
     }
+
+    [Authorize]
+    [HttpGet("CheckSubscribed")]
+    [ProducesResponseType(typeof(SubscriptionInfoDto),StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(Response),StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> CheckSubscribed(DateTimeOffset? date)
+    {
+        var username = User.Identity?.Name;
+        if (username == null)
+            return BadRequest(new Response("Error", "User not found"));
+        
+        var user = await _userManager.FindByNameAsync(username);
+        if (user == null)
+            return BadRequest(new Response("Error", "User not found"));
+        
+        date ??= DateTimeOffset.UtcNow;
+        var subscribed = _subscriptionService.CheckSubscribed(user, date.Value, date.Value);
+                
+        return Ok(subscribed);
+    }
 }
