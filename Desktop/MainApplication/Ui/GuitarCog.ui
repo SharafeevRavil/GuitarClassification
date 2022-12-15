@@ -100,6 +100,8 @@
     </property>
     <addaction name="action_new_from_file"/>
     <addaction name="action_new_from_realtime"/>
+    <addaction name="separator"/>
+    <addaction name="action_settings"/>
    </widget>
    <widget class="QMenu" name="menu_view">
     <property name="title">
@@ -107,11 +109,6 @@
     </property>
     <addaction name="action_view_owned"/>
     <addaction name="action_view_global"/>
-   </widget>
-   <widget class="QMenu" name="menu_options">
-    <property name="title">
-     <string>Options</string>
-    </property>
    </widget>
    <widget class="QMenu" name="menu_profile">
     <property name="title">
@@ -124,7 +121,6 @@
    </widget>
    <addaction name="menu_file"/>
    <addaction name="menu_view"/>
-   <addaction name="menu_options"/>
    <addaction name="menu_profile"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
@@ -171,6 +167,11 @@
   <action name="action_logout">
    <property name="text">
     <string>Logout</string>
+   </property>
+  </action>
+  <action name="action_settings">
+   <property name="text">
+    <string>Preferences</string>
    </property>
   </action>
  </widget>

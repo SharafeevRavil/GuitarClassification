@@ -72,6 +72,17 @@ class Ui_Profile(object):
         self.container_subscription.setObjectName(u"container_subscription")
         self.gridLayout_6 = QGridLayout(self.container_subscription)
         self.gridLayout_6.setObjectName(u"gridLayout_6")
+        self.button_subscribe = QPushButton(self.container_subscription)
+        self.button_subscribe.setObjectName(u"button_subscribe")
+
+        self.gridLayout_6.addWidget(self.button_subscribe, 3, 0, 1, 1)
+
+        self.label_subscribed_until = QLabel(self.container_subscription)
+        self.label_subscribed_until.setObjectName(u"label_subscribed_until")
+        self.label_subscribed_until.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout_6.addWidget(self.label_subscribed_until, 1, 0, 1, 1)
+
         self.label_subscription = QLabel(self.container_subscription)
         self.label_subscription.setObjectName(u"label_subscription")
         font = QFont()
@@ -81,10 +92,9 @@ class Ui_Profile(object):
 
         self.gridLayout_6.addWidget(self.label_subscription, 0, 0, 1, 1)
 
-        self.button_subscribe = QPushButton(self.container_subscription)
-        self.button_subscribe.setObjectName(u"button_subscribe")
+        self.verticalSpacer_3 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
-        self.gridLayout_6.addWidget(self.button_subscribe, 1, 0, 1, 1)
+        self.gridLayout_6.addItem(self.verticalSpacer_3, 2, 0, 1, 1)
 
 
         self.gridLayout.addWidget(self.container_subscription, 0, 4, 5, 1)
@@ -134,8 +144,9 @@ class Ui_Profile(object):
         self.label_image.setText("")
         self.button_change_login.setText(QCoreApplication.translate("Profile", u"Change Login", None))
         self.container_subscription.setTitle(QCoreApplication.translate("Profile", u"Subscription", None))
-        self.label_subscription.setText(QCoreApplication.translate("Profile", u"No subscription", None))
         self.button_subscribe.setText(QCoreApplication.translate("Profile", u"Subscribe", None))
+        self.label_subscribed_until.setText("")
+        self.label_subscription.setText(QCoreApplication.translate("Profile", u"No subscription", None))
         self.button_change_avatar.setText(QCoreApplication.translate("Profile", u"Change Avatar", None))
         self.button_change_password.setText(QCoreApplication.translate("Profile", u"Change Password", None))
         self.label_email.setText(QCoreApplication.translate("Profile", u"Email:", None))

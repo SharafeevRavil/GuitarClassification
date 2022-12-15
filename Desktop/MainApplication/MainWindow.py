@@ -17,9 +17,11 @@ from FromFile import FromFile
 from SaveTab import SaveTab
 from TabList import TabList
 from ViewTab import ViewTab
+from SettingsDialog import SettingsDialog
 import settings
 import keyring
 import Requests
+from dateutil import parser
 import jwt
 
 class MainWindow(QMainWindow):
@@ -41,12 +43,13 @@ class MainWindow(QMainWindow):
         self.ui.action_new_from_file.triggered.connect(self.open_from_file)
         self.ui.action_view_global.triggered.connect(self.view_global)
         self.ui.action_view_owned.triggered.connect(self.view_owned)
+        self.ui.action_settings.triggered.connect(self.open_settings)
 
         self.profile = Profile()
         self.ui.stackedWidget.addWidget(self.profile)
         self.from_file = FromFile()
         self.ui.stackedWidget.addWidget(self.from_file)
-        self.save_tab = SaveTab()
+        self.save_tab = SaveTab(self)
         self.ui.stackedWidget.addWidget(self.save_tab)
         self.tab_list = TabList(self)
         self.ui.stackedWidget.addWidget(self.tab_list)
@@ -54,14 +57,12 @@ class MainWindow(QMainWindow):
         self.ui.stackedWidget.addWidget(self.view_tab)
 
         self.from_file.ui.button_generate.clicked.connect(self.generate_gp)
-        self.save_tab.ui.button_save_file.clicked.connect(self.open_welcome)
-        self.save_tab.ui.button_upload.clicked.connect(self.open_welcome)
         self.view_tab.ui.button_return.clicked.connect(self.return_to_list)
 
     def check_authorized(self):
         self.isAuthed = False
         if keyring.get_password('GuitarCog', 'token') != None and keyring.get_password('GuitarCog', 'refreshToken') != None:
-            if datetime.strptime(keyring.get_password('GuitarCog', 'expiration'), '%Y-%m-%dT%H:%M:%SZ') <= datetime.utcnow():
+            if parser.parse(keyring.get_password('GuitarCog', 'expiration')) <= datetime.utcnow():
                 Requests.refresh_token()
             response = Requests.get(settings.api_path + settings.checkauth_path, needAuth=True)            
 
@@ -116,6 +117,10 @@ class MainWindow(QMainWindow):
         self.check_authorized()
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_welcome)
 
+    def open_settings(self):
+        dlg = SettingsDialog()
+        dlg.exec()
+
     def open_profile(self):
         self.ui.stackedWidget.setCurrentWidget(self.profile)
         self.profile.load_profile()
@@ -133,9 +138,6 @@ class MainWindow(QMainWindow):
         if self.isAuthed:
             self.tab_list.load_user(self.user_id)
             self.ui.stackedWidget.setCurrentWidget(self.tab_list)
-
-    def open_welcome(self):
-        self.ui.stackedWidget.setCurrentWidget(self.ui.page_welcome)
 
     def return_to_list(self):
         self.ui.stackedWidget.setCurrentWidget(self.tab_list)

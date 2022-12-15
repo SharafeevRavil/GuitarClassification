@@ -4,12 +4,15 @@ from PySide6.QtWidgets import QFileDialog
 from PySide6.QtGui import QPixmap, QImage
 from Ui.ui_Profile import Ui_Profile
 from ChangePassword import ChangePassword
+from Subscribe import Subscribe
+from datetime import datetime
 import settings
 import Requests
 import keyring
 import magic
 import os
 import time
+from dateutil import parser
 
 class Profile(QtWidgets.QWidget):
 
@@ -23,6 +26,7 @@ class Profile(QtWidgets.QWidget):
         self.ui.button_change_email.clicked.connect(self.change_email)
         self.ui.button_change_password.clicked.connect(self.change_password)
         self.ui.button_change_avatar.clicked.connect(self.change_avatar)
+        self.ui.button_subscribe.clicked.connect(self.open_subscribe)
 
     def load_profile(self):
         response = Requests.get(settings.api_path + settings.user_info_path, needAuth=True)            
@@ -34,6 +38,7 @@ class Profile(QtWidgets.QWidget):
             self.ui.field_login.setText(self.username)
             self.ui.field_email.setText(self.email)
 
+            self.load_subscription_status()
             self.load_avatar(response_json['imageUrl'])
 
     def change_nickname(self):
@@ -91,8 +96,34 @@ class Profile(QtWidgets.QWidget):
 
     def load_avatar(self, url):
         image_response = Requests.get(url)
-        self.image = QPixmap()
-        self.image.loadFromData(image_response.content)
-        image_width = self.ui.label_image.height() * self.image.width() / self.image.height()
-        self.ui.label_image.setPixmap(self.image.scaled(image_width, self.ui.label_image.height(), aspectMode=Qt.KeepAspectRatio))
-        self.ui.label_image.setFixedWidth(image_width)
+        if image_response.status_code == 200:
+            self.image = QPixmap()
+            self.image.loadFromData(image_response.content)
+            image_width = self.ui.label_image.height() * self.image.width() / self.image.height()
+            self.ui.label_image.setPixmap(self.image.scaled(image_width, self.ui.label_image.height(), aspectMode=Qt.KeepAspectRatio))
+            self.ui.label_image.setFixedWidth(image_width)
+        else:
+            self.image.load('./Ui/no-image-icon.png')
+
+    def open_subscribe(self):
+        dlg = Subscribe(self.ui.field_login.text())
+        if dlg.exec():
+            self.load_subscription_status()
+
+    def load_subscription_status(self):
+        response = Requests.get(settings.api_path + settings.subscription_status_path, needAuth=True)
+        if response.status_code == 200:
+            response_json = response.json()
+            if response_json['isSubscribed']:
+                self.ui.label_subscription.setText('Subscribed')
+                self.ui.label_subscribed_until.setText('until ' + parser.parse(response_json['end']).strftime("%m/%d/%Y, %H:%M:%S"))
+                self.ui.button_subscribe.setVisible(False)
+            else:
+                self.ui.label_subscription.setText('No subscription')
+                self.ui.label_subscribed_until.setText('')
+                self.ui.button_subscribe.setVisible(True)
+        elif response.headers.get('content-type') == 'application/json':
+            response_json = response.json()
+            if 'status' in response_json and response_json['status'] == 'Error':
+                self.ui.label_error.setText(response_json['message'])
+
