@@ -1,4 +1,5 @@
 using System.Text;
+using System.Text.Json.Serialization;
 using GuitarCogApi.Controllers;
 using GuitarCogApi.Initializers;
 using GuitarCogApi.Services;
@@ -66,7 +67,8 @@ builder.Services.AddIdentityCore<User>(o =>
     .AddDefaultTokenProviders();
 
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(opts => { opts.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()); });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(option =>
@@ -103,6 +105,7 @@ builder.Services.AddSwaggerGen(option =>
 builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<FileService>();
 builder.Services.AddScoped<TabService>();
+builder.Services.AddScoped<SubscriptionService>();
 //SERVICES
 //SERVICES
 //SERVICES
