@@ -3,6 +3,7 @@ using GuitarCogApi.Dtos.Subscription;
 using GuitarCogData;
 using GuitarCogData.Models;
 using GuitarCogData.Models.Subscription;
+using Microsoft.EntityFrameworkCore;
 
 namespace GuitarCogApi.Services;
 
@@ -37,18 +38,12 @@ public class SubscriptionService
 
     public async Task<(SubscribeResultDto?, Response?)> Subscribe(User user, SubscribeDto subscribeDto)
     {
-        var startDate = subscribeDto.StartDate!.Value.ToUniversalTime();
+        var inputStartDate = subscribeDto.StartDate!.Value.ToUniversalTime();
         var period = subscribeDto.Period;
         var currency = subscribeDto.Currency;
 
-        var ordered = PricesByDate(startDate);
-        var sp = ordered
-            .FirstOrDefault(sp => sp.MoneyCurrency == currency && sp.SubscriptionPeriod == period);
-        if (sp == null)
-            return (null,
-                new Response("Error", "subscription price was not found for specified currency, period and date"));
-
-        var start = new DateTimeOffset(startDate.Date, TimeSpan.Zero).ToUniversalTime();
+        
+        var start = new DateTimeOffset(inputStartDate.Date, TimeSpan.Zero).ToUniversalTime();
         var end = period switch
         {
             SubscriptionPeriod.Month => start.AddMonths(1).AddSeconds(-1),
@@ -56,6 +51,18 @@ public class SubscriptionService
             SubscriptionPeriod.Year => start.AddMonths(12).AddSeconds(-1),
             _ => throw new ArgumentOutOfRangeException(nameof(period), period, null)
         };
+
+        var isSubscribedForPeriod = CheckSubscribed(user, start, end);
+        if (isSubscribedForPeriod.IsSubscribed)
+            return (null, new Response("Error", "multiple subscription for a period is not allowed"));
+        
+        var ordered = PricesByDate(start);
+        var sp = ordered
+            .FirstOrDefault(sp => sp.MoneyCurrency == currency && sp.SubscriptionPeriod == period);
+        if (sp == null)
+            return (null,
+                new Response("Error", "subscription price was not found for specified currency, period and date"));
+
         var payment = new Payment(DateTimeOffset.UtcNow, new Money(sp.MoneyAmount, sp.MoneyCurrency));
         var subscriptionEntry = _dbContext.Subscriptions.Add(new Subscription(user, start, end, payment));
         //автооплата
@@ -63,5 +70,24 @@ public class SubscriptionService
         await _dbContext.SaveChangesAsync();
 
         return (new SubscribeResultDto(subscriptionEntry.Entity.Start, subscriptionEntry.Entity.End), null);
+    }
+
+    public SubscriptionInfoDto CheckSubscribed(User user, DateTimeOffset start, DateTimeOffset end)
+    {
+        start = start.ToUniversalTime();
+        end = end.ToUniversalTime();
+        var subscription = _dbContext.Subscriptions
+            .Include(x => x.Payment)
+            .Include(x => x.User)
+            .OrderByDescending(x => x.End)
+            .FirstOrDefault(x => x.User.Id == user.Id && x.Payment.PayDate != null &&
+                                 //чек на пересечение отрезка
+                                 (x.Start <= start && start <= x.End || //наш старт в промежутке
+                                  x.Start <= end && end <= x.End || //наш конец в промежутке
+                                  start <= x.Start && x.End <= end) //промежуток между стартом и концом
+            );
+        return subscription != null
+            ? new SubscriptionInfoDto(true, subscription.Start, subscription.End)
+            : new SubscriptionInfoDto(false);
     }
 }
