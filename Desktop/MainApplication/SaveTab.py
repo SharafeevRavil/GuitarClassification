@@ -12,14 +12,16 @@ import magic
 
 class SaveTab(QtWidgets.QWidget):
 
-    def __init__(self):
+    def __init__(self, main_window):
         super().__init__()
+        self.main_window = main_window
 
         self.ui = Ui_SaveTab()
         self.ui.setupUi(self)
 
         self.ui.button_save_file.clicked.connect(self.save_file)
         self.ui.button_upload.clicked.connect(self.upload)
+        self.ui.button_return.clicked.connect(self.return_button)
         self.ui.button_upload.setDisabled(True)
         self.ui.field_tab_name.textChanged.connect(self.disable_upload)
 
@@ -63,3 +65,6 @@ class SaveTab(QtWidgets.QWidget):
     def clear(self):
         self.ui.field_tab_name.setText('')
         self.ui.label_error.setText('')
+
+    def return_button(self):
+        self.main_window.ui.stackedWidget.setCurrentWidget(self.ui.page_welcome)

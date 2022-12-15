@@ -38,17 +38,7 @@ class Ui_ViewTab(object):
         self.button_return = QPushButton(ViewTab)
         self.button_return.setObjectName(u"button_return")
 
-        self.gridLayout.addWidget(self.button_return, 3, 0, 1, 1)
-
-        self.label_tab_name = QLabel(ViewTab)
-        self.label_tab_name.setObjectName(u"label_tab_name")
-        font = QFont()
-        font.setPointSize(12)
-        font.setBold(True)
-        self.label_tab_name.setFont(font)
-        self.label_tab_name.setAlignment(Qt.AlignCenter)
-
-        self.gridLayout.addWidget(self.label_tab_name, 0, 0, 1, 2)
+        self.gridLayout.addWidget(self.button_return, 3, 2, 1, 1)
 
         self.webEngineView = QWebEngineView(ViewTab)
         self.webEngineView.setObjectName(u"webEngineView")
@@ -59,13 +49,23 @@ class Ui_ViewTab(object):
         self.webEngineView.setSizePolicy(sizePolicy1)
         self.webEngineView.setUrl(QUrl(u"about:blank"))
 
-        self.gridLayout.addWidget(self.webEngineView, 2, 0, 1, 2)
+        self.gridLayout.addWidget(self.webEngineView, 2, 0, 1, 3)
+
+        self.label_tab_name = QLabel(ViewTab)
+        self.label_tab_name.setObjectName(u"label_tab_name")
+        font = QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        self.label_tab_name.setFont(font)
+        self.label_tab_name.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout.addWidget(self.label_tab_name, 0, 0, 1, 3)
 
         self.label_author_name = QLabel(ViewTab)
         self.label_author_name.setObjectName(u"label_author_name")
         self.label_author_name.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout.addWidget(self.label_author_name, 1, 0, 1, 2)
+        self.gridLayout.addWidget(self.label_author_name, 1, 0, 1, 3)
 
 
         self.retranslateUi(ViewTab)

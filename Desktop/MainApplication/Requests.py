@@ -2,11 +2,12 @@ import requests
 import keyring
 import settings
 from datetime import datetime
+from dateutil import parser
 
 def get(url, params=None, needAuth=False):
     if needAuth:
         if keyring.get_password('GuitarCog', 'token') != None and keyring.get_password('GuitarCog', 'refreshToken') != None:
-            if datetime.strptime(keyring.get_password('GuitarCog', 'expiration'), '%Y-%m-%dT%H:%M:%SZ') <= datetime.utcnow():
+            if parser.parse(keyring.get_password('GuitarCog', 'expiration')) <= datetime.utcnow():
                 refresh_token()
             return requests.get(url, params=params, headers={'Authorization': 'Bearer ' + keyring.get_password('GuitarCog', 'token')})
     else:
@@ -15,7 +16,7 @@ def get(url, params=None, needAuth=False):
 def post(url, json=None, files=None, data=None, needAuth=False):
     if needAuth:
         if keyring.get_password('GuitarCog', 'token') != None and keyring.get_password('GuitarCog', 'refreshToken') != None:
-            if datetime.strptime(keyring.get_password('GuitarCog', 'expiration'), '%Y-%m-%dT%H:%M:%SZ') <= datetime.utcnow():
+            if parser.parse(keyring.get_password('GuitarCog', 'expiration')) <= datetime.utcnow():
                 refresh_token()
             return requests.post(url, json=json, files=files, data=data, headers={'Authorization': 'Bearer ' + keyring.get_password('GuitarCog', 'token')})
     else:

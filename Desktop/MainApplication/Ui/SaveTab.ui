@@ -14,18 +14,12 @@
    <string>Form</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="2" column="3">
-    <spacer name="horizontalSpacer">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
+   <item row="3" column="1">
+    <widget class="QLabel" name="label_error">
+     <property name="text">
+      <string/>
      </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>298</width>
-       <height>20</height>
-      </size>
-     </property>
-    </spacer>
+    </widget>
    </item>
    <item row="2" column="0">
     <widget class="QPushButton" name="button_upload">
@@ -34,7 +28,7 @@
      </property>
     </widget>
    </item>
-   <item row="0" column="0" colspan="4">
+   <item row="0" column="0" colspan="5">
     <widget class="QWebEngineView" name="webEngineView">
      <property name="url">
       <url>
@@ -42,9 +36,6 @@
       </url>
      </property>
     </widget>
-   </item>
-   <item row="2" column="2">
-    <widget class="QLineEdit" name="field_tab_name"/>
    </item>
    <item row="3" column="0">
     <widget class="QPushButton" name="button_save_file">
@@ -60,12 +51,41 @@
      </property>
     </widget>
    </item>
-   <item row="3" column="1">
-    <widget class="QLabel" name="label_error">
+   <item row="3" column="4">
+    <widget class="QPushButton" name="button_return">
      <property name="text">
-      <string/>
+      <string>Return</string>
      </property>
     </widget>
+   </item>
+   <item row="3" column="3">
+    <spacer name="horizontalSpacer_2">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>40</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="2" column="2">
+    <widget class="QLineEdit" name="field_tab_name"/>
+   </item>
+   <item row="2" column="3" colspan="2">
+    <spacer name="horizontalSpacer">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>298</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
    </item>
   </layout>
  </widget>
