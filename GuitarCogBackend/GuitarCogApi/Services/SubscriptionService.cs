@@ -52,7 +52,7 @@ public class SubscriptionService
             _ => throw new ArgumentOutOfRangeException(nameof(period), period, null)
         };
 
-        var isSubscribedForPeriod = CheckSubscribed(user, start, end);
+        var isSubscribedForPeriod = await CheckSubscribed(user, start, end);
         if (isSubscribedForPeriod.IsSubscribed)
             return (null, new Response("Error", "multiple subscription for a period is not allowed"));
         
@@ -72,15 +72,15 @@ public class SubscriptionService
         return (new SubscribeResultDto(subscriptionEntry.Entity.Start, subscriptionEntry.Entity.End), null);
     }
 
-    public SubscriptionInfoDto CheckSubscribed(User user, DateTimeOffset start, DateTimeOffset end)
+    public async Task<SubscriptionInfoDto> CheckSubscribed(User user, DateTimeOffset start, DateTimeOffset end)
     {
         start = start.ToUniversalTime();
         end = end.ToUniversalTime();
-        var subscription = _dbContext.Subscriptions
+        var subscription = await _dbContext.Subscriptions
             .Include(x => x.Payment)
             .Include(x => x.User)
             .OrderByDescending(x => x.End)
-            .FirstOrDefault(x => x.User.Id == user.Id && x.Payment.PayDate != null &&
+            .FirstOrDefaultAsync(x => x.User.Id == user.Id && x.Payment.PayDate != null &&
                                  //чек на пересечение отрезка
                                  (x.Start <= start && start <= x.End || //наш старт в промежутке
                                   x.Start <= end && end <= x.End || //наш конец в промежутке
@@ -90,4 +90,8 @@ public class SubscriptionService
             ? new SubscriptionInfoDto(true, subscription.Start, subscription.End)
             : new SubscriptionInfoDto(false);
     }
+
+    public async Task<SubscriptionInfoDto> CheckSubscribed(User user, DateTimeOffset startAndEnd) => await CheckSubscribed(user, startAndEnd, startAndEnd);
+
+    public async Task<SubscriptionInfoDto> CheckSubscribed(User user) => await CheckSubscribed(user, DateTimeOffset.UtcNow);
 }

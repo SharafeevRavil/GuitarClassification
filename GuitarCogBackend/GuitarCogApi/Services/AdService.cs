@@ -25,9 +25,5 @@ public class AdService
             .ToList();
     }
 
-    public bool CheckNeedToShowAds(User user)
-    {
-        var now = DateTimeOffset.UtcNow;
-        return !_subscriptionService.CheckSubscribed(user, now, now).IsSubscribed;
-    }
+    public async Task<bool> CheckNeedToShowAds(User user) => !(await _subscriptionService.CheckSubscribed(user)).IsSubscribed;
 }

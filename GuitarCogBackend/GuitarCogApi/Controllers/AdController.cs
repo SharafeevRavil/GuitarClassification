@@ -36,7 +36,7 @@ public class AdController : ControllerBase
             if (user == null)
                 return BadRequest(new Response("Error", "User not found"));
 
-            var needToShow = _adService.CheckNeedToShowAds(user);
+            var needToShow = await _adService.CheckNeedToShowAds(user);
             if (!needToShow)
                 return Ok(new AdDto(false, null));
         }

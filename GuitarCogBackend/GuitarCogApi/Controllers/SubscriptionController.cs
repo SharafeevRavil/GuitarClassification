@@ -69,7 +69,7 @@ public class SubscriptionController : ControllerBase
             return BadRequest(new Response("Error", "User not found"));
         
         date ??= DateTimeOffset.UtcNow;
-        var subscribed = _subscriptionService.CheckSubscribed(user, date.Value, date.Value);
+        var subscribed = await _subscriptionService.CheckSubscribed(user, date.Value);
                 
         return Ok(subscribed);
     }
