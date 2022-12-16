@@ -22,6 +22,12 @@
       <ProjectReference Include="..\GuitarCogData\GuitarCogData.csproj" />
     </ItemGroup>
     
+    <ItemGroup>
+        <Content Include="StaticFiles\**">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
+    
     <PropertyGroup>
         <GenerateDocumentationFile>True</GenerateDocumentationFile>
         <NoWarn>$(NoWarn);1591</NoWarn>

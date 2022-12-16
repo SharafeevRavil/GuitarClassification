@@ -148,8 +148,8 @@ foreach (var entry in entries)
 
 app.UseFileServer(new FileServerOptions
 {
-    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "staticfiles")),
-    RequestPath = "/staticfiles",
+    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "StaticFiles")),
+    RequestPath = "/StaticFiles",
     EnableDefaultFiles = true
 });
 
