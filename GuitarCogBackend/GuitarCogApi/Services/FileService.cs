@@ -1,4 +1,5 @@
 using GuitarCogApi.Dtos.General;
+using GuitarCogApi.Helpers;
 using GuitarCogData;
 using GuitarCogData.Models;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -15,11 +16,7 @@ public class FileService
         _dbContext = dbContext;
     }
 
-    public string GetUrlByFileId(HttpRequest httpRequest, Guid imageId)
-    {
-        var baseUri = $"{httpRequest.Scheme}://{httpRequest.Host}";
-        return $"{baseUri}/file/{imageId}";
-    }
+    public string GetUrlByFileId(HttpRequest httpRequest, Guid imageId) => httpRequest.UriWithBase($"/file/{imageId}");
 
     public async Task<(File?, Response?)> AddFileFromForm(IFormFile form, int limitInMb)
     {
@@ -38,7 +35,7 @@ public class FileService
 
     public async Task<File?> LoadById(Guid imageId)
     {
-        var file = _dbContext.Files.Find(imageId);
+        var file = await _dbContext.Files.FindAsync(imageId);
         return file;
     }
 }

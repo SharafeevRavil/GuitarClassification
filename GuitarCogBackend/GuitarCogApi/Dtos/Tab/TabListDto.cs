@@ -2,12 +2,6 @@ namespace GuitarCogApi.Dtos.Tab;
 
 public class TabListDto
 {
-    public TabListDto(string fileUrl, string authorName)
-    {
-        FileUrl = fileUrl;
-        AuthorName = authorName;
-    }
-
     public TabListDto(long id, string name, string fileUrl, string authorId, string authorName, DateTimeOffset loadDateTime)
     {
         Id = id;
