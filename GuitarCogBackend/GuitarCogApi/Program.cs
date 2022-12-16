@@ -140,8 +140,8 @@ if (!app.Environment.IsProduction())
 app.UseHttpsRedirection();
 app.UseFileServer(new FileServerOptions
 {
-    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "StaticFiles")),
-    RequestPath = "/StaticFiles",
+    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "staticfiles")),
+    RequestPath = "/staticfiles",
     EnableDefaultFiles = true
 });
 
