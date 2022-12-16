@@ -26,18 +26,18 @@ public class TabController : ControllerBase
 
     [HttpPost]
     [Authorize]
-    [ProducesResponseType(typeof(AddTabRespDto),StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(Response),StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(AddTabRespDto), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(Response), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> AddTab([FromForm] AddTabDto addTabDto)
     {
         var username = User.Identity?.Name;
         if (username == null)
             return BadRequest(new Response("Error", "User not found"));
-        
+
         var user = await _userManager.FindByNameAsync(username);
         if (user == null)
             return BadRequest(new Response("Error", "User not found"));
-        
+
         var (tab, response) = await _tabService.AddTab(addTabDto, user);
         if (response != null || tab == null)
             return BadRequest(response ?? new Response("Error", "Cannot add tab"));
@@ -46,11 +46,26 @@ public class TabController : ControllerBase
     }
 
     [HttpGet]
-    [ProducesResponseType(typeof(PagedResponse<TabListDto>),StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(Response),StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<PagedResponse<TabListDto>>> GetTabs([FromQuery] TabFilter tabFilter)
+    [ProducesResponseType(typeof(PagedResponse<TabListDto>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(Response), StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<PagedResponse<TabListDto>>> GetTabs([FromQuery] TabFilter tabFilter) =>
+        Ok(await _tabService.GetTabs(Request, tabFilter));
+
+    [HttpGet("GetTabLimit")]
+    [Authorize]
+    [ProducesResponseType(typeof(PagedResponse<TabListDto>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(Response), StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> GetTabLimit()
     {
-        var tabs = await _tabService.GetTabs(Request, tabFilter);
+        var username = User.Identity?.Name;
+        if (username == null)
+            return BadRequest(new Response("Error", "User not found"));
+
+        var user = await _userManager.FindByNameAsync(username);
+        if (user == null)
+            return BadRequest(new Response("Error", "User not found"));
+
+        var tabs = await _tabService.GetTabLimit(user);
 
         return Ok(tabs);
     }
