@@ -138,6 +138,14 @@ if (!app.Environment.IsProduction())
 }
 
 app.UseHttpsRedirection();
+
+var entries = Directory.GetFileSystemEntries(Directory.GetCurrentDirectory(), "*", SearchOption.AllDirectories);
+Console.WriteLine($"All files in {Directory.GetCurrentDirectory()}:");
+foreach (var entry in entries)
+{
+    Console.WriteLine(entry);
+}
+
 app.UseFileServer(new FileServerOptions
 {
     FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "staticfiles")),
