@@ -45,6 +45,6 @@ public class TabService
             .Select(x => new TabListDto(x.Id, x.Name, _fileService.GetUrlByFileId(request, x.TabFile.Id), 
                 x.Author.Id, x.Author.UserName!, x.LoadDateTime));
 
-        return mapped.PagedResponse(tabFilter.Page ?? 1, tabFilter.PageSize ?? 10);
+        return await mapped.PagedResponse(tabFilter.Page ?? 1, tabFilter.PageSize ?? 10);
     }
 }

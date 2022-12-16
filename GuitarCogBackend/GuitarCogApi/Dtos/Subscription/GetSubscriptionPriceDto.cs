@@ -16,7 +16,7 @@ public class GetSubscriptionPriceDto
         
     }
 
-    public List<Currency> Currencies { get; set; }
-    public List<SubscriptionPeriod> Periods { get; set; }
+    public List<Currency> Currencies { get; set; } = null!;
+    public List<SubscriptionPeriod> Periods { get; set; } = null!;
     public DateTimeOffset? StartDate { get; set; }
 }

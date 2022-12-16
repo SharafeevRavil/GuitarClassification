@@ -150,7 +150,7 @@ public class ProfileController : ControllerBase
             ? _fileService.GetUrlByFileId(Request, user.AvatarImage!.Id) 
             : "";
 
-        var dto = new ProfileDto(user.Id, user.UserName, user.Email, avatarUrl);
+        var dto = new ProfileDto(user.Id, user.UserName!, user.Email!, avatarUrl);
         return Ok(dto);
     }
 
