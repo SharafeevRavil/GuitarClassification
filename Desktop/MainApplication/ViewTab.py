@@ -25,6 +25,6 @@ class ViewTab(QtWidgets.QWidget):
         with open(settings.tab_file, 'w+b') as file:
             file.write(file_responce.content)
 
-        url = QUrl.fromLocalFile(os.path.realpath('.\\tab.html'))
+        url = QUrl.fromLocalFile(os.path.realpath(os.path.join(os.path.dirname(os.path.realpath(__file__)), '.\\tab.html')))
         self.ui.webEngineView.settings().setAttribute(QWebEngineSettings.WebAttribute.LocalContentCanAccessRemoteUrls, True)
         self.ui.webEngineView.load(url)

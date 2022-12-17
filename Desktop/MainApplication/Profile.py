@@ -95,6 +95,8 @@ class Profile(QtWidgets.QWidget):
                     self.ui.label_error.setText(response_json['message'])
 
     def load_avatar(self, url):
+        if(url == None or url == ''):
+            self.image.load('./Ui/no-image-icon.png')
         image_response = Requests.get(url)
         if image_response.status_code == 200:
             self.image = QPixmap()

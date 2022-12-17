@@ -2,17 +2,19 @@ import guitarpro
 from AIModule.Predictor import Predictor
 import AIModule.Settings as AISettings
 import settings
+import os
+import FileHelper as fh
 
 def create(filename, toConcat = False):
     p = Predictor()
-    beats = p.predict(filename, './AIModule')
+    beats = p.predict(filename, fh.getPathInRoot('./AIModule'))
 
     if toConcat:
-        template = guitarpro.parse(settings.tab_file)
+        template = guitarpro.parse(fh.getPathInRoot(settings.tab_file))
         beat_list = template.tracks[0].measures[0].voices[0].beats
         prev = [-1,-1,-1,-1,-1,-1]
     else:
-        template = guitarpro.parse(settings.blank_file)
+        template = guitarpro.parse(fh.getPathInRoot(settings.blank_file))
         template.tracks[0].name='Guitar'
         beat_list = template.tracks[0].measures[0].voices[0].beats
         beat_list.clear()
@@ -28,4 +30,5 @@ def create(filename, toConcat = False):
         if new_beat.notes:
             beat_list.append(new_beat)
 
-    guitarpro.write(template, settings.tab_file)
+    print(os.path.realpath(settings.tab_file))
+    guitarpro.write(template, fh.getPathInRoot(settings.tab_file))
