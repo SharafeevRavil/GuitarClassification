@@ -24,6 +24,7 @@ import keyring
 import Requests
 from dateutil import parser
 import jwt
+import GPCreator
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -60,9 +61,11 @@ class MainWindow(QMainWindow):
         self.from_real_time = FromRealTime(self)
         self.ui.stackedWidget.addWidget(self.from_real_time)
 
-        self.from_file.ui.button_generate.clicked.connect(self.generate_gp)
+        self.from_file.ui.button_generate.clicked.connect(lambda: self.generate_gp(self.from_file.filename))
         self.from_real_time.ui.button_submit.clicked.connect(self.generate_gp)
         self.view_tab.ui.button_return.clicked.connect(self.return_to_list)
+
+        GPCreator.create(settings.preload_file)
 
     def check_authorized(self):
         self.isAuthed = False
@@ -95,10 +98,10 @@ class MainWindow(QMainWindow):
         else:
             self.ui.label_welcome.setText(f'Welcome, {self.username}!')
   
-    def generate_gp(self):
+    def generate_gp(self, filename = None):
         self.check_authorized()
         self.save_tab.clear()
-        self.save_tab.generate(self.from_file.filename, self.isAuthed)
+        self.save_tab.generate(filename, self.isAuthed)
         self.ui.stackedWidget.setCurrentWidget(self.save_tab)
 
     def open_register(self):

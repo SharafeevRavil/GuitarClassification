@@ -10,10 +10,12 @@ def create(filename, toConcat = False):
     beats = p.predict(filename, fh.getPathInRoot('./AIModule'))
 
     if toConcat:
+        print('concat')
         template = guitarpro.parse(fh.getPathInRoot(settings.tab_file))
         beat_list = template.tracks[0].measures[0].voices[0].beats
         prev = [-1,-1,-1,-1,-1,-1]
     else:
+        print('start new')
         template = guitarpro.parse(fh.getPathInRoot(settings.blank_file))
         template.tracks[0].name='Guitar'
         beat_list = template.tracks[0].measures[0].voices[0].beats

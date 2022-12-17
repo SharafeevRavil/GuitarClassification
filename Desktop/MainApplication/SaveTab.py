@@ -32,7 +32,8 @@ class SaveTab(QtWidgets.QWidget):
         self.ui.button_upload.setDisabled(True)
         self.ui.field_tab_name.setDisabled(not isAuthed)
 
-        GPCreator.create(filename)
+        if (filename != None):
+            GPCreator.create(filename)
         url = QUrl.fromLocalFile(fh.getPathInRoot('.\\tab.html'))
         self.ui.webEngineView.settings().setAttribute(QWebEngineSettings.WebAttribute.LocalContentCanAccessRemoteUrls, True)
         self.ui.webEngineView.load(url)

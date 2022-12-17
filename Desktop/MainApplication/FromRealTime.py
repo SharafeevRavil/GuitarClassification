@@ -52,7 +52,7 @@ class FromRealTime(QtWidgets.QWidget):
         print("Multithreading with maximum %d threads" % self.threadpool.maxThreadCount())
 
         self.timer = QTimer()
-        self.timer.setInterval(5000)
+        self.timer.setInterval(settings.record_duration * 1000)
         self.timer.timeout.connect(self.record_chunk)
 
     def clear(self):
@@ -76,12 +76,15 @@ class FromRealTime(QtWidgets.QWidget):
         self.timer.stop() 
 
     def record_chunk(self):
+        print(f'record chunk. first record = {self.isFirstRun}')
         worker = RecordWorker(self.isFirstRun)
-        worker.signals.finished.connect(lambda : self.load_tab(worker.filename, self.isFirstRun))
+        closure = self.isFirstRun
+        worker.signals.finished.connect(lambda : self.load_tab(worker.filename, closure))
         self.threadpool.start(worker)
         self.isFirstRun = False
             
     def load_tab(self, filename, isFirstRun):
+        print(f'load tab. filename = {filename}, first run = {isFirstRun}')
         GPCreator.create(filename, not isFirstRun)
         url = QUrl.fromLocalFile(fh.getPathInRoot('.\\tab.html'))
         self.ui.webEngineView.settings().setAttribute(QWebEngineSettings.WebAttribute.LocalContentCanAccessRemoteUrls, True)
