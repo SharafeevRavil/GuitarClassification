@@ -3,15 +3,20 @@ from AIModule.Predictor import Predictor
 import AIModule.Settings as AISettings
 import settings
 
-def create(filename):
+def create(filename, toConcat = False):
     p = Predictor()
     beats = p.predict(filename, './AIModule')
 
-    template = guitarpro.parse(settings.blank_file)
-    template.tracks[0].name='Guitar'
-    beat_list = template.tracks[0].measures[0].voices[0].beats
-    beat_list.clear()
-    prev = [-1,-1,-1,-1,-1,-1]
+    if toConcat:
+        template = guitarpro.parse(settings.tab_file)
+        beat_list = template.tracks[0].measures[0].voices[0].beats
+        prev = [-1,-1,-1,-1,-1,-1]
+    else:
+        template = guitarpro.parse(settings.blank_file)
+        template.tracks[0].name='Guitar'
+        beat_list = template.tracks[0].measures[0].voices[0].beats
+        beat_list.clear()
+        prev = [-1,-1,-1,-1,-1,-1]
 
     for beat in beats:
         new_beat = guitarpro.Beat(template.tracks[0].measures[0].voices[0], duration=guitarpro.Duration(value=8))

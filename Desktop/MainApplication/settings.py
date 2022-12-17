@@ -15,3 +15,8 @@ subscription_status_path = '/Subscription/CheckSubscribed'
 
 blank_file = './blank.gp5'
 tab_file = './tabs.gp5'
+real_time_file = './recording.wav'
+
+record_frequency = 44100
+record_duration = 5
+record_channels = 2

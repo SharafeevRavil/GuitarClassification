@@ -18,6 +18,7 @@ from SaveTab import SaveTab
 from TabList import TabList
 from ViewTab import ViewTab
 from SettingsDialog import SettingsDialog
+from FromRealTime import FromRealTime
 import settings
 import keyring
 import Requests
@@ -44,10 +45,11 @@ class MainWindow(QMainWindow):
         self.ui.action_view_global.triggered.connect(self.view_global)
         self.ui.action_view_owned.triggered.connect(self.view_owned)
         self.ui.action_settings.triggered.connect(self.open_settings)
+        self.ui.action_new_from_realtime.triggered.connect(self.open_from_real_time)
 
         self.profile = Profile()
         self.ui.stackedWidget.addWidget(self.profile)
-        self.from_file = FromFile()
+        self.from_file = FromFile(self)
         self.ui.stackedWidget.addWidget(self.from_file)
         self.save_tab = SaveTab(self)
         self.ui.stackedWidget.addWidget(self.save_tab)
@@ -55,14 +57,17 @@ class MainWindow(QMainWindow):
         self.ui.stackedWidget.addWidget(self.tab_list)
         self.view_tab = ViewTab()
         self.ui.stackedWidget.addWidget(self.view_tab)
+        self.from_real_time = FromRealTime(self)
+        self.ui.stackedWidget.addWidget(self.from_real_time)
 
         self.from_file.ui.button_generate.clicked.connect(self.generate_gp)
+        self.from_real_time.ui.button_submit.clicked.connect(self.generate_gp)
         self.view_tab.ui.button_return.clicked.connect(self.return_to_list)
 
     def check_authorized(self):
         self.isAuthed = False
         if keyring.get_password('GuitarCog', 'token') != None and keyring.get_password('GuitarCog', 'refreshToken') != None:
-            if parser.parse(keyring.get_password('GuitarCog', 'expiration')) <= datetime.utcnow():
+            if parser.parse(keyring.get_password('GuitarCog', 'expiration'), ignoretz=True) <= datetime.utcnow():
                 Requests.refresh_token()
             response = Requests.get(settings.api_path + settings.checkauth_path, needAuth=True)            
 
@@ -91,14 +96,10 @@ class MainWindow(QMainWindow):
             self.ui.label_welcome.setText(f'Welcome, {self.username}!')
   
     def generate_gp(self):
-        self.from_file.ui.button_select.setEnabled(False)
-        self.from_file.ui.button_generate.setEnabled(False)
-
         self.check_authorized()
-        if self.isAuthed:
-            self.save_tab.clear()
-            self.save_tab.generate(self.from_file.filename, self.isAuthed)
-            self.ui.stackedWidget.setCurrentWidget(self.save_tab)
+        self.save_tab.clear()
+        self.save_tab.generate(self.from_file.filename, self.isAuthed)
+        self.ui.stackedWidget.setCurrentWidget(self.save_tab)
 
     def open_register(self):
         dlg = Register()
@@ -128,6 +129,10 @@ class MainWindow(QMainWindow):
     def open_from_file(self):
         self.from_file.clear()
         self.ui.stackedWidget.setCurrentWidget(self.from_file)
+
+    def open_from_real_time(self):
+        self.from_real_time.clear()
+        self.ui.stackedWidget.setCurrentWidget(self.from_real_time)
 
     def view_global(self):
         self.tab_list.load_global()

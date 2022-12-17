@@ -31,6 +31,12 @@ class Ui_FromFile(object):
 
         self.gridLayout.addWidget(self.button_select, 1, 0, 1, 1)
 
+        self.webEngineView_tabs = QWebEngineView(FromFile)
+        self.webEngineView_tabs.setObjectName(u"webEngineView_tabs")
+        self.webEngineView_tabs.setUrl(QUrl(u"about:blank"))
+
+        self.gridLayout.addWidget(self.webEngineView_tabs, 0, 0, 1, 5)
+
         self.button_generate = QPushButton(FromFile)
         self.button_generate.setObjectName(u"button_generate")
         self.button_generate.setEnabled(False)
@@ -39,20 +45,23 @@ class Ui_FromFile(object):
 
         self.gridLayout.addWidget(self.button_generate, 3, 0, 1, 1)
 
-        self.webEngineView_tabs = QWebEngineView(FromFile)
-        self.webEngineView_tabs.setObjectName(u"webEngineView_tabs")
-        self.webEngineView_tabs.setUrl(QUrl(u"about:blank"))
-
-        self.gridLayout.addWidget(self.webEngineView_tabs, 0, 0, 1, 4)
-
-        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.gridLayout.addItem(self.horizontalSpacer, 1, 2, 1, 1)
-
         self.audio_name = QLabel(FromFile)
         self.audio_name.setObjectName(u"audio_name")
 
         self.gridLayout.addWidget(self.audio_name, 1, 1, 1, 1)
+
+        self.button_return = QPushButton(FromFile)
+        self.button_return.setObjectName(u"button_return")
+
+        self.gridLayout.addWidget(self.button_return, 3, 3, 1, 1)
+
+        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.gridLayout.addItem(self.horizontalSpacer_2, 3, 2, 1, 1)
+
+        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.gridLayout.addItem(self.horizontalSpacer, 1, 2, 1, 2)
 
 
         self.retranslateUi(FromFile)
@@ -68,5 +77,6 @@ class Ui_FromFile(object):
         self.button_select.setText(QCoreApplication.translate("FromFile", u"Select audio file", None))
         self.button_generate.setText(QCoreApplication.translate("FromFile", u"Generate tabs", None))
         self.audio_name.setText("")
+        self.button_return.setText(QCoreApplication.translate("FromFile", u"Return", None))
     # retranslateUi
 

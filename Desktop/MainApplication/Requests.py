@@ -7,7 +7,7 @@ from dateutil import parser
 def get(url, params=None, needAuth=False):
     if needAuth:
         if keyring.get_password('GuitarCog', 'token') != None and keyring.get_password('GuitarCog', 'refreshToken') != None:
-            if parser.parse(keyring.get_password('GuitarCog', 'expiration')) <= datetime.utcnow():
+            if parser.parse(keyring.get_password('GuitarCog', 'expiration'), ignoretz=True) <= datetime.utcnow():
                 refresh_token()
             return requests.get(url, params=params, headers={'Authorization': 'Bearer ' + keyring.get_password('GuitarCog', 'token')})
     else:
