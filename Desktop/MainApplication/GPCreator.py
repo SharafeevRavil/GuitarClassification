@@ -30,5 +30,4 @@ def create(filename, toConcat = False):
         if new_beat.notes:
             beat_list.append(new_beat)
 
-    print(os.path.realpath(settings.tab_file))
     guitarpro.write(template, fh.getPathInRoot(settings.tab_file))
