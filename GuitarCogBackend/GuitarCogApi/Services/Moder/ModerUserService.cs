@@ -27,11 +27,6 @@ public class ModerUserService
         _subscriptionService = subscriptionService;
     }
 
-    public async Task<PagedResponse<ModerUserListDto>> GetUsers(PagedFilter pagedFilter) =>
-        await _dbContext.Users
-            .Select(x => new ModerUserListDto(x.Id, x.UserName!, x.Email!))
-            .PagedResponse(pagedFilter.Page ?? 1, pagedFilter.PageSize ?? 10);
-
     public async Task<(User?, Response?)> CreateModer(CreateModerDto dto)
     {
         var (user, response) = await _userService.CreateUser(dto.Username, dto.Email, dto.Password);
@@ -41,6 +36,12 @@ public class ModerUserService
         await _userManager.AddToRoleAsync(user, $"{Role.Moderator}");
         return (user, null);
     }
+
+    public async Task<PagedResponse<ModerUserListDto>> GetUsers(PagedFilter pagedFilter) =>
+        await _dbContext.Users
+            .OrderBy(x => x.UserName)
+            .Select(x => new ModerUserListDto(x.Id, x.UserName!, x.Email!))
+            .PagedResponse(pagedFilter.Page ?? 1, pagedFilter.PageSize ?? 10);
 
     public async Task<(ModerUserDto?, Response?)> GetUser(HttpRequest request, string userId)
     {

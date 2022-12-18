@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace GuitarCogApi.Controllers.Moder;
 
 [ApiController]
-[Route("Moder/[controller]")]
+[Route("Moder/User")]
 public class ModerUserController : ControllerBase
 {
     private readonly ModerUserService _moderUserService;

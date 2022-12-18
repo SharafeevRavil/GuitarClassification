@@ -50,7 +50,9 @@ public class TabService
             tabs = tabs.Where(x => tabFilter.UserIds.Contains(x.Author.Id));
 
         
-        var mapped = tabs.Select(x => new TabListDto(x.Id, x.Name, _fileService.GetUrlByFileId(request, x.TabFile.Id), 
+        var mapped = tabs
+            .OrderByDescending(x => x.LoadDateTime)
+            .Select(x => new TabListDto(x.Id, x.Name, _fileService.GetUrlByFileId(request, x.TabFile.Id), 
                 x.Author.Id, x.Author.UserName!, x.LoadDateTime));
 
         var paged = await mapped.PagedResponse(tabFilter.Page ?? 1, tabFilter.PageSize ?? 10);

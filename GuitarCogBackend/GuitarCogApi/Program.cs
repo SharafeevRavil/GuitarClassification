@@ -9,6 +9,7 @@ using GuitarCogData;
 using GuitarCogData.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
@@ -106,6 +107,22 @@ builder.Services.AddSwaggerGen(options =>
     //    <NoWarn>$(NoWarn);1591</NoWarn>
     var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
+    
+    options.TagActionsBy(api =>
+    {
+        if (api.GroupName != null)
+        {
+            return new[] { api.GroupName };
+        }
+
+        if (api.ActionDescriptor is ControllerActionDescriptor controllerActionDescriptor)
+        {
+            return new[] { controllerActionDescriptor.ControllerName };
+        }
+
+        throw new InvalidOperationException("Unable to determine tag for endpoint.");
+    });
+    options.DocInclusionPredicate((_, _) => true);
 });
 
 //SERVICES
