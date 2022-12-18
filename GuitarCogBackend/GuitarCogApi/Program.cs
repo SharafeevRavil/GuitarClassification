@@ -116,6 +116,7 @@ builder.Services.AddScoped<FileService>();
 builder.Services.AddScoped<TabService>();
 builder.Services.AddScoped<SubscriptionService>();
 builder.Services.AddScoped<AdService>();
+builder.Services.AddScoped<UserService>();
 
 builder.Services.AddScoped<ModerUserService>();
 //SERVICES

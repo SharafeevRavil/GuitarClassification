@@ -4,6 +4,7 @@ using System.Security.Cryptography;
 using System.Text;
 using GuitarCogApi.Dtos.Auth;
 using GuitarCogApi.Dtos.General;
+using GuitarCogApi.Services;
 using GuitarCogData.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -18,11 +19,13 @@ public class AuthController : ControllerBase
 {
     private readonly UserManager<User> _userManager;
     private readonly AuthService _authService;
+    private readonly UserService _userService;
 
-    public AuthController(UserManager<User> userManager, AuthService authService)
+    public AuthController(UserManager<User> userManager, AuthService authService, UserService userService)
     {
         _userManager = userManager;
         _authService = authService;
+        _userService = userService;
     }
 
     [HttpPost("SignIn")]
@@ -43,25 +46,9 @@ public class AuthController : ControllerBase
     [ProducesResponseType(typeof(Response),StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<TokenDto>> SignUp([FromBody] SignUpDto model)
     {
-        var userExists = await _userManager.FindByNameAsync(model.Username);
-        if (userExists != null)
-            return BadRequest(new Response("Error", "User already exists!"));
-
-        User user = new()
-        {
-            Email = model.Email,
-            SecurityStamp = Guid.NewGuid().ToString(),
-            UserName = model.Username
-        };
-        var result = await _userManager.CreateAsync(user, model.Password);
-        if (!result.Succeeded)
-        {
-            var errors = result.Errors
-                .Select(x => $"[{x.Code}] {x.Description}")
-                .Aggregate((a, b) => $"{a}\n{b}");
-            return StatusCode(StatusCodes.Status500InternalServerError,
-                new Response("Error", $"User creation failed! Errors:\n{errors}"));
-        }
+        var (user, response) = await _userService.CreateUser(model.Username, model.Email, model.Password);
+        if (response != null || user == null)
+            return BadRequest(response ?? new Response("Error", "Cannot sign up. Try later."));
 
         var (token, refreshToken) = await _authService.GenerateTokensPair(user);
 
