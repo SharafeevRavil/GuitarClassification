@@ -97,6 +97,8 @@ class MainWindow(QMainWindow):
             self.ui.label_welcome.setText('Welcome!')
         else:
             self.ui.label_welcome.setText(f'Welcome, {self.username}!')
+        
+        self.load_ads()
   
     def generate_gp(self, filename = None):
         self.check_authorized()
@@ -149,6 +151,33 @@ class MainWindow(QMainWindow):
 
     def return_to_list(self):
         self.ui.stackedWidget.setCurrentWidget(self.tab_list)
+
+    def load_ads(self):
+        response = Requests.get(settings.api_path + settings.ads_path, params={'count': 3}, needAuth=self.isAuthed)
+        if response.status_code == 200:
+            response_json = response.json()
+            if response_json['needToShowAds']:
+                self.ui.ad1.setVisible(True)
+                self.ui.ad1.setFixedHeight(response_json['ads'][0]['height'])
+                self.ui.ad1.setFixedWidth(response_json['ads'][0]['width'])
+                self.ui.ad1.setUrl(response_json['ads'][0]['url'])
+                self.ui.ad2.setVisible(True)
+                self.ui.ad2.setFixedHeight(response_json['ads'][1]['height'])
+                self.ui.ad2.setFixedWidth(response_json['ads'][1]['width'])
+                self.ui.ad2.setUrl(response_json['ads'][1]['url'])
+                self.ui.ad3.setVisible(True)
+                self.ui.ad3.setFixedHeight(response_json['ads'][2]['height'])
+                self.ui.ad3.setFixedWidth(response_json['ads'][2]['width'])
+                self.ui.ad3.setUrl(response_json['ads'][2]['url'])
+            else:
+                self.ui.ad1.setVisible(False)
+                self.ui.ad2.setVisible(False)
+                self.ui.ad3.setVisible(False)
+
+        elif response.headers.get('content-type') == 'application/json':
+            response_json = response.json()
+            if 'status' in response_json and response_json['status'] == 'Error':
+                self.ui.label_error.setText(response_json['message'])
 
 if __name__ == '__main__':
     app = QApplication()

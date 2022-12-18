@@ -31,5 +31,5 @@ class FromFile(QtWidgets.QWidget):
         self.ui.button_generate.setEnabled(False)
 
     def return_button(self):
-        self.main_window.ui.stackedWidget.setCurrentWidget(self.ui.page_welcome)
+        self.main_window.ui.stackedWidget.setCurrentWidget(self.main_window.ui.page_welcome)
         
