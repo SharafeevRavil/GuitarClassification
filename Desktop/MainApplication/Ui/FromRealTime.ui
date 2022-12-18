@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>FromFile</class>
- <widget class="QWidget" name="FromFile">
+ <class>FromRealTime</class>
+ <widget class="QWidget" name="FromRealTime">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>667</width>
-    <height>517</height>
+    <width>638</width>
+    <height>498</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,14 +15,28 @@
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="1" column="0">
-    <widget class="QPushButton" name="button_select">
+    <widget class="QPushButton" name="button_play">
      <property name="text">
-      <string>Select audio file</string>
+      <string>Play</string>
      </property>
     </widget>
    </item>
-   <item row="0" column="0" colspan="5">
-    <widget class="QWebEngineView" name="webEngineView_tabs">
+   <item row="2" column="3">
+    <widget class="QPushButton" name="button_return">
+     <property name="text">
+      <string>Return</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QPushButton" name="button_stop">
+     <property name="text">
+      <string>Stop</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0" colspan="4">
+    <widget class="QWebEngineView" name="webEngineView">
      <property name="url">
       <url>
        <string>about:blank</string>
@@ -30,40 +44,14 @@
      </property>
     </widget>
    </item>
-   <item row="3" column="0">
-    <widget class="QPushButton" name="button_generate">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
+   <item row="2" column="0">
+    <widget class="QPushButton" name="button_submit">
      <property name="text">
-      <string>Generate tabs</string>
-     </property>
-     <property name="autoDefault">
-      <bool>false</bool>
-     </property>
-     <property name="default">
-      <bool>false</bool>
-     </property>
-     <property name="flat">
-      <bool>false</bool>
+      <string>Submit</string>
      </property>
     </widget>
    </item>
-   <item row="1" column="1">
-    <widget class="QLabel" name="audio_name">
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="3">
-    <widget class="QPushButton" name="button_return">
-     <property name="text">
-      <string>Return</string>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="2">
+   <item row="2" column="2">
     <spacer name="horizontalSpacer_2">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>

@@ -14,8 +14,18 @@
 ## Установка необходимых библиотек Python
 Используемые библиотеки:</br>
 * PySide6 - библиотека для реализации пользовательского интерфейса на платформе QT с помощью Python.</br>
+* keyring - The Python keyring library provides an easy way to access the system keyring service from python. It can be used in any application that needs safe password storage.</br>
+* pyjwt - Python library which allows you to encode and decode JSON Web Tokens (JWT).</br>
+* python-magic is a Python interface to the libmagic file type identification library. libmagic identifies file types by checking their headers according to a predefined list of file types. This functionality is exposed to the command line by the Unix command file.</br>
+* PyGuitarPro is a package to read, write and manipulate GP3, GP4 and GP5 files.</br>
+* sounddevice provides bindings for the PortAudio library and a few convenience functions to play and record NumPy arrays containing audio signals.</br>
 ```bash
 pip install pyside6
+pip install keyring
+pip install pyjwt
+pip install python-magic-bin
+pip install PyGuitarPro
+pip install sounddevice
 ```
 
 ## Преднастройка расширения Qt for Python

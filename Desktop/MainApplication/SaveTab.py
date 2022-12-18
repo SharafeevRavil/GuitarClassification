@@ -8,7 +8,9 @@ import GPCreator
 import Requests
 import settings
 import os
+import sys
 import magic
+import FileHelper as fh
 
 class SaveTab(QtWidgets.QWidget):
 
@@ -30,8 +32,9 @@ class SaveTab(QtWidgets.QWidget):
         self.ui.button_upload.setDisabled(True)
         self.ui.field_tab_name.setDisabled(not isAuthed)
 
-        GPCreator.create(filename)
-        url = QUrl.fromLocalFile(os.path.realpath('.\\tab.html'))
+        if (filename != None):
+            GPCreator.create(filename)
+        url = QUrl.fromLocalFile(fh.getPathInRoot('.\\tab.html'))
         self.ui.webEngineView.settings().setAttribute(QWebEngineSettings.WebAttribute.LocalContentCanAccessRemoteUrls, True)
         self.ui.webEngineView.load(url)
 
@@ -42,11 +45,11 @@ class SaveTab(QtWidgets.QWidget):
             tab_file.close()
 
     def upload(self):
-        content_type = magic.Magic(mime=True).from_file(settings.tab_file)
+        content_type = magic.Magic(mime=True).from_file(fh.getPathInRoot(settings.tab_file))
 
         data = {'Name': self.ui.field_tab_name.text()}
 
-        files = {'File': (self.ui.field_tab_name.text() + '.gp5', open(settings.tab_file, 'rb'), content_type)}
+        files = {'File': (self.ui.field_tab_name.text() + '.gp5', open(fh.getPathInRoot(settings.tab_file), 'rb'), content_type)}
 
         response = Requests.post(settings.api_path + settings.tab_path, files=files, data=data, needAuth=True)
         if response.status_code == 200:
