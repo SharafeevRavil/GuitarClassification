@@ -39,7 +39,7 @@ public class ModerUserController : ControllerBase
 
     [HttpGet("{id}")]
     [Authorize(Roles = $"{nameof(Role.SuperAdmin)},{nameof(Role.Moderator)}")]
-    [ProducesResponseType(typeof(PagedResponse<ModerUserDto>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ModerUserDto), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(Response), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> GetUser(string id)
     {
