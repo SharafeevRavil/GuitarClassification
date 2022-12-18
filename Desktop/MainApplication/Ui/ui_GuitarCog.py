@@ -16,6 +16,7 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
     QIcon, QImage, QKeySequence, QLinearGradient,
     QPainter, QPalette, QPixmap, QRadialGradient,
     QTransform)
+from PySide6.QtWebEngineWidgets import QWebEngineView
 from PySide6.QtWidgets import (QApplication, QGridLayout, QLabel, QMainWindow,
     QMenu, QMenuBar, QSizePolicy, QSpacerItem,
     QStackedWidget, QStatusBar, QWidget)
@@ -50,6 +51,29 @@ class Ui_MainWindow(object):
         self.centralwidget.setObjectName(u"centralwidget")
         self.gridLayout_2 = QGridLayout(self.centralwidget)
         self.gridLayout_2.setObjectName(u"gridLayout_2")
+        self.ad1 = QWebEngineView(self.centralwidget)
+        self.ad1.setObjectName(u"ad1")
+        self.ad1.setUrl(QUrl(u"about:blank"))
+
+        self.gridLayout_2.addWidget(self.ad1, 1, 0, 1, 1)
+
+        self.ad2 = QWebEngineView(self.centralwidget)
+        self.ad2.setObjectName(u"ad2")
+        sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.ad2.sizePolicy().hasHeightForWidth())
+        self.ad2.setSizePolicy(sizePolicy)
+        self.ad2.setUrl(QUrl(u"about:blank"))
+
+        self.gridLayout_2.addWidget(self.ad2, 1, 1, 1, 1)
+
+        self.ad3 = QWebEngineView(self.centralwidget)
+        self.ad3.setObjectName(u"ad3")
+        self.ad3.setUrl(QUrl(u"about:blank"))
+
+        self.gridLayout_2.addWidget(self.ad3, 1, 2, 1, 1)
+
         self.stackedWidget = QStackedWidget(self.centralwidget)
         self.stackedWidget.setObjectName(u"stackedWidget")
         self.stackedWidget.setAutoFillBackground(False)
@@ -83,7 +107,7 @@ class Ui_MainWindow(object):
 
         self.stackedWidget.addWidget(self.page_welcome)
 
-        self.gridLayout_2.addWidget(self.stackedWidget, 0, 0, 1, 1)
+        self.gridLayout_2.addWidget(self.stackedWidget, 0, 0, 1, 3)
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
