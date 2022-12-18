@@ -49,7 +49,7 @@ public static class DatabaseInitializer
             var createPowerUser = await userManager.CreateAsync(admin, "Admin123!");
             if (createPowerUser.Succeeded)
             {
-                await userManager.AddToRoleAsync(admin, "SuperAdmin");
+                await userManager.AddToRoleAsync(admin, $"{Role.SuperAdmin}");
                 var token = await userManager.GenerateEmailConfirmationTokenAsync(admin);
                 await userManager.ConfirmEmailAsync(admin, token);
             }
@@ -60,7 +60,7 @@ public static class DatabaseInitializer
     {
         var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
-        string[] roleNames = { "SuperAdmin", "Moderator" };
+        string[] roleNames = { $"{Role.SuperAdmin}", $"{Role.Moderator}" };
         foreach (var roleName in roleNames)
         {
             if (!await roleManager.RoleExistsAsync(roleName))

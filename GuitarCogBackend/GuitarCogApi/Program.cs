@@ -4,6 +4,7 @@ using System.Text.Json.Serialization;
 using GuitarCogApi.Controllers;
 using GuitarCogApi.Initializers;
 using GuitarCogApi.Services;
+using GuitarCogApi.Services.Moder;
 using GuitarCogData;
 using GuitarCogData.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -115,6 +116,8 @@ builder.Services.AddScoped<FileService>();
 builder.Services.AddScoped<TabService>();
 builder.Services.AddScoped<SubscriptionService>();
 builder.Services.AddScoped<AdService>();
+
+builder.Services.AddScoped<ModerUserService>();
 //SERVICES
 //SERVICES
 //SERVICES
