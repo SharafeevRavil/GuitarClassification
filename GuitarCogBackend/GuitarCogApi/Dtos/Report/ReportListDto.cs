@@ -2,7 +2,8 @@
 
 public class ReportListDto
 {
-    public ReportListDto(long id, string fromUserId, string fromUserName, long tabId, string reportedUserId, bool isReportMarkedAsViewed, DateTimeOffset reportedDate)
+    public ReportListDto(long id, string fromUserId, string fromUserName, long tabId, string reportedUserId,
+        string reportedUserName, bool isReportMarkedAsViewed, DateTimeOffset reportedDate)
     {
         Id = id;
         FromUserId = fromUserId;
@@ -11,11 +12,12 @@ public class ReportListDto
         ReportedUserId = reportedUserId;
         IsReportMarkedAsViewed = isReportMarkedAsViewed;
         ReportedDate = reportedDate;
+        ReportedUserName = reportedUserName;
     }
 
-    public ReportListDto()
+    public ReportListDto(string reportedUserName)
     {
-        
+        ReportedUserName = reportedUserName;
     }
 
     public long Id { get; set; }
@@ -23,6 +25,7 @@ public class ReportListDto
     public string FromUserName { get; set; }
     public long TabId { get; set; }
     public string ReportedUserId { get; set; }
+    public string ReportedUserName { get; set; }
     public bool IsReportMarkedAsViewed { get; set; }
     public DateTimeOffset ReportedDate { get; set; }
 }

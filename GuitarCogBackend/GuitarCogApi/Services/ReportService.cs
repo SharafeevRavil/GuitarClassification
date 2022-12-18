@@ -54,8 +54,8 @@ public class ReportService
             reports = reports.Where(x => !x.MarkedAsViewed);
 
         return await reports
-            .Select(x => new ReportListDto(x.Id, x.FromUser.Id, x.FromUser.UserName!, x.Tab.Id, x.Tab.Author.Id,
-                x.MarkedAsViewed, x.ReportedDate))
+            .Select(x => new ReportListDto(x.Id, x.FromUser.Id, x.FromUser.UserName!, x.Tab.Id, 
+                x.Tab.Author.Id,x.Tab.Author.UserName!, x.MarkedAsViewed, x.ReportedDate))
             .PagedResponse(filter.Page ?? 1, filter.PageSize ?? 10);
     }
 
