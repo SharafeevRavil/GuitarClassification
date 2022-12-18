@@ -95,17 +95,17 @@ class Profile(QtWidgets.QWidget):
                     self.ui.label_error.setText(response_json['message'])
 
     def load_avatar(self, url):
+        self.image = QPixmap()
         if(url == None or url == ''):
             self.image.load('./Ui/no-image-icon.png')
         image_response = Requests.get(url)
         if image_response.status_code == 200:
-            self.image = QPixmap()
             self.image.loadFromData(image_response.content)
-            image_width = self.ui.label_image.height() * self.image.width() / self.image.height()
-            self.ui.label_image.setPixmap(self.image.scaled(image_width, self.ui.label_image.height(), aspectMode=Qt.KeepAspectRatio))
-            self.ui.label_image.setFixedWidth(image_width)
         else:
             self.image.load('./Ui/no-image-icon.png')
+        image_width = self.ui.label_image.height() * self.image.width() / self.image.height()
+        self.ui.label_image.setPixmap(self.image.scaled(image_width, self.ui.label_image.height(), aspectMode=Qt.KeepAspectRatio))
+        self.ui.label_image.setFixedWidth(image_width)
 
     def open_subscribe(self):
         dlg = Subscribe(self.ui.field_login.text())

@@ -13,6 +13,7 @@ subscription_price_path = '/Subscription/Price'
 subscribe_path = '/Subscription/Subscribe'
 subscription_status_path = '/Subscription/CheckSubscribed'
 ads_path = '/Ad/GetAds'
+report_path = '/Report/'
 
 blank_file = './blank.gp5'
 tab_file = './tabs.gp5'
