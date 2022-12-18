@@ -10,10 +10,12 @@ namespace GuitarCogApi.Services;
 public class ReportService
 {
     private readonly ApplicationDbContext _dbContext;
+    private readonly FileService _fileService;
 
-    public ReportService(ApplicationDbContext dbContext)
+    public ReportService(ApplicationDbContext dbContext, FileService fileService)
     {
         _dbContext = dbContext;
+        _fileService = fileService;
     }
 
     public async Task<(Report?, Response?)> ReportTab(User user, long tabId)
@@ -41,11 +43,13 @@ public class ReportService
             .Include(x => x.FromUser)
             .AnyAsync(x => x.FromUser.Id == userId && x.Tab.Id == tabId);
 
-    public async Task<PagedResponse<ReportListDto>> GetReports(ReportPagedFilter filter)
+    public async Task<PagedResponse<ReportListDto>> GetReports(HttpRequest request, ReportPagedFilter filter)
     {
         IQueryable<Report> reports = _dbContext.Report
             .Include(x => x.Tab)
             .ThenInclude(x => x.Author)
+            .Include(x => x.Tab)
+            .ThenInclude(x => x.TabFile)
             .Include(x => x.FromUser)
             .OrderBy(x => x.MarkedAsViewed)
             .ThenBy(x => x.ReportedDate);
@@ -53,10 +57,18 @@ public class ReportService
         if (!filter.ShowViewedReports) 
             reports = reports.Where(x => !x.MarkedAsViewed);
 
-        return await reports
-            .Select(x => new ReportListDto(x.Id, x.FromUser.Id, x.FromUser.UserName!, x.Tab.Id, 
-                x.Tab.Author.Id,x.Tab.Author.UserName!, x.MarkedAsViewed, x.ReportedDate))
+        var paged = await reports
+            .Select(x => new ReportListDto(x.Id, 
+                x.FromUser.Id, x.FromUser.UserName!, 
+                x.Tab.Id, x.Tab.Name, x.Tab.TabFile.Id.ToString(),
+                x.Tab.Author.Id,x.Tab.Author.UserName!, 
+                x.MarkedAsViewed, x.ReportedDate))
             .PagedResponse(filter.Page ?? 1, filter.PageSize ?? 10);
+
+        foreach (var dto in paged.Data) 
+            dto.TabUrl = _fileService.GetUrlByFileId(request, Guid.Parse(dto.TabUrl));
+
+        return paged;
     }
 
     public async Task<Response?> MarkAsViewed(long reportId)

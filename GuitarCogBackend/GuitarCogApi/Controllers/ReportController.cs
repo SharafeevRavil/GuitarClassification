@@ -49,7 +49,7 @@ public class ReportController : ControllerBase
     [ProducesResponseType(typeof(Response), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> GetReports([FromQuery] ReportPagedFilter filter)
     {
-        return Ok(await _reportService.GetReports(filter));
+        return Ok(await _reportService.GetReports(Request, filter));
     }
 
     [HttpPost("/Moder/Report/MarkAsViewed")]
