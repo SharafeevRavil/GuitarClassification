@@ -11,14 +11,16 @@ namespace GuitarCogApi.Services;
 
 public class TabService
 {
-    private ApplicationDbContext _dbContext;
-    private SubscriptionService _subscriptionService;
-    private FileService _fileService;
+    private readonly ApplicationDbContext _dbContext;
+    private readonly SubscriptionService _subscriptionService;
+    private readonly FileService _fileService;
+    private readonly ReportService _reportService;
 
-    public TabService(ApplicationDbContext dbContext, SubscriptionService subscriptionService, FileService fileService)
+    public TabService(ApplicationDbContext dbContext, SubscriptionService subscriptionService, FileService fileService, ReportService reportService)
     {
         _dbContext = dbContext;
         _fileService = fileService;
+        _reportService = reportService;
         _subscriptionService = subscriptionService;
     }
 
@@ -38,7 +40,7 @@ public class TabService
         return (tab, null);
     }
 
-    public async Task<PagedResponse<TabListDto>> GetTabs(HttpRequest request, TabFilter tabFilter)
+    public async Task<PagedResponse<TabListDto>> GetTabs(HttpRequest request, TabFilter tabFilter, User? user = null)
     {
         IQueryable<Tab> tabs = _dbContext.Tabs
             .Include(x => x.Author)
@@ -47,11 +49,17 @@ public class TabService
         if (tabFilter.UserIds != null)
             tabs = tabs.Where(x => tabFilter.UserIds.Contains(x.Author.Id));
 
-        var mapped = tabs
-            .Select(x => new TabListDto(x.Id, x.Name, _fileService.GetUrlByFileId(request, x.TabFile.Id), 
+        
+        var mapped = tabs.Select(x => new TabListDto(x.Id, x.Name, _fileService.GetUrlByFileId(request, x.TabFile.Id), 
                 x.Author.Id, x.Author.UserName!, x.LoadDateTime));
 
-        return await mapped.PagedResponse(tabFilter.Page ?? 1, tabFilter.PageSize ?? 10);
+        var paged = await mapped.PagedResponse(tabFilter.Page ?? 1, tabFilter.PageSize ?? 10);
+
+        if (user == null) return paged;
+        
+        foreach (var tabListDto in paged.Data)
+            tabListDto.IsReported = await _reportService.CheckReported(user.Id, tabListDto.Id);
+        return paged;
     }
 
     public async Task<TabLimitDto> GetTabLimit(User user)

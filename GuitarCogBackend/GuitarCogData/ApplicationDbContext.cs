@@ -20,6 +20,7 @@ public class ApplicationDbContext : IdentityDbContext<User>
 
     public DbSet<File> Files { get; set; }
     public DbSet<Tab> Tabs { get; set; }
+    public DbSet<Report> Report { get; set; }
     
     //Subscription
     public DbSet<SubscriptionPrice> SubscriptionPrices { get; set; }

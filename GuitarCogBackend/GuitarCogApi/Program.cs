@@ -118,6 +118,7 @@ builder.Services.AddScoped<SubscriptionService>();
 builder.Services.AddScoped<AdService>();
 builder.Services.AddScoped<UserService>();
 
+builder.Services.AddScoped<ReportService>();
 builder.Services.AddScoped<ModerUserService>();
 //SERVICES
 //SERVICES
