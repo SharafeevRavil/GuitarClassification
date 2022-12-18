@@ -24,4 +24,16 @@ public class ModerUserController : ControllerBase
     [ProducesResponseType(typeof(Response), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> GetUsers([FromQuery] PagedFilter pagedFilter) =>
         Ok(await _moderUserService.GetUsers(pagedFilter));
+
+    [HttpPost]
+    [Authorize(Roles = $"{nameof(Role.SuperAdmin)}")]
+    [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(Response), StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> CreateModer(CreateModerDto createModerDto)
+    {
+        var (user, response) = await _moderUserService.CreateModer(createModerDto);
+        if (response != null || user == null)
+            return BadRequest(response ?? new Response("Error", "Cannot create moder. Try later."));
+        return Ok(user.Id);
+    }
 }
