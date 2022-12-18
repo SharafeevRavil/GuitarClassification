@@ -36,4 +36,16 @@ public class ModerUserController : ControllerBase
             return BadRequest(response ?? new Response("Error", "Cannot create moder. Try later."));
         return Ok(user.Id);
     }
+
+    [HttpGet("{id}")]
+    [Authorize(Roles = $"{nameof(Role.SuperAdmin)},{nameof(Role.Moderator)}")]
+    [ProducesResponseType(typeof(PagedResponse<ModerUserDto>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(Response), StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> GetUser(string id)
+    {
+        var (user, response) = await _moderUserService.GetUser(Request, id);
+        if (response != null || user == null)
+            return BadRequest(response ?? new Response("Error", "Cannot get user. Try later."));
+        return Ok(user);
+    }
 }
