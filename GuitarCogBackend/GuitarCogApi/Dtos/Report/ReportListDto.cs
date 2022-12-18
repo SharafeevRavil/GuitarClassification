@@ -15,9 +15,8 @@ public class ReportListDto
         ReportedUserName = reportedUserName;
     }
 
-    public ReportListDto(string reportedUserName)
+    public ReportListDto()
     {
-        ReportedUserName = reportedUserName;
     }
 
     public long Id { get; set; }
