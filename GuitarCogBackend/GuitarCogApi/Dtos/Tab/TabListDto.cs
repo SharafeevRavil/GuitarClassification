@@ -18,4 +18,5 @@ public class TabListDto
     public string AuthorId { get; set; }
     public string AuthorName { get; set; }
     public DateTimeOffset LoadDateTime { get; set; }
+    public bool IsReported { get; set; }
 }

@@ -48,8 +48,20 @@ public class TabController : ControllerBase
     [HttpGet]
     [ProducesResponseType(typeof(PagedResponse<TabListDto>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(Response), StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<PagedResponse<TabListDto>>> GetTabs([FromQuery] TabFilter tabFilter) =>
-        Ok(await _tabService.GetTabs(Request, tabFilter));
+    public async Task<ActionResult<PagedResponse<TabListDto>>> GetTabs([FromQuery] TabFilter tabFilter)
+    {
+        var username = User.Identity?.Name;
+        
+        var isAuthenticated = username != null;
+        if (!isAuthenticated) 
+            return Ok(await _tabService.GetTabs(Request, tabFilter));
+        
+        var user = await _userManager.FindByNameAsync(username!);
+        if (user == null)
+            return BadRequest(new Response("Error", "User not found"));
+
+        return Ok(await _tabService.GetTabs(Request, tabFilter, user));
+    }
 
     [HttpGet("GetTabLimit")]
     [Authorize]
