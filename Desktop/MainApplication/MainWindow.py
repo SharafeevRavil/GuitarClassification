@@ -48,7 +48,7 @@ class MainWindow(QMainWindow):
         self.ui.action_settings.triggered.connect(self.open_settings)
         self.ui.action_new_from_realtime.triggered.connect(self.open_from_real_time)
 
-        self.profile = Profile()
+        self.profile = Profile(self)
         self.ui.stackedWidget.addWidget(self.profile)
         self.from_file = FromFile(self)
         self.ui.stackedWidget.addWidget(self.from_file)
@@ -80,7 +80,6 @@ class MainWindow(QMainWindow):
                 self.username = response_json['username']
                 decoded = jwt.decode(keyring.get_password('GuitarCog', 'token'), options={"verify_signature": False})
                 self.user_id = decoded['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier']
-
 
         if not self.isAuthed:
             self.username = ''

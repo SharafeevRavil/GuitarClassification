@@ -16,11 +16,12 @@ from dateutil import parser
 
 class Profile(QtWidgets.QWidget):
 
-    def __init__(self):
+    def __init__(self, main_window):
         super().__init__()
 
         self.ui = Ui_Profile()
         self.ui.setupUi(self)
+        self.main_window = main_window
 
         self.ui.button_change_login.clicked.connect(self.change_nickname)
         self.ui.button_change_email.clicked.connect(self.change_email)
@@ -98,11 +99,12 @@ class Profile(QtWidgets.QWidget):
         self.image = QPixmap()
         if(url == None or url == ''):
             self.image.load('./Ui/no-image-icon.png')
-        image_response = Requests.get(url)
-        if image_response.status_code == 200:
-            self.image.loadFromData(image_response.content)
         else:
-            self.image.load('./Ui/no-image-icon.png')
+            image_response = Requests.get(url)
+            if image_response.status_code == 200:   
+                self.image.loadFromData(image_response.content)
+            else:
+                self.image.load('./Ui/no-image-icon.png')
         image_width = self.ui.label_image.height() * self.image.width() / self.image.height()
         self.ui.label_image.setPixmap(self.image.scaled(image_width, self.ui.label_image.height(), aspectMode=Qt.KeepAspectRatio))
         self.ui.label_image.setFixedWidth(image_width)
@@ -111,6 +113,7 @@ class Profile(QtWidgets.QWidget):
         dlg = Subscribe(self.ui.field_login.text())
         if dlg.exec():
             self.load_subscription_status()
+            self.main_window.load_ads()
 
     def load_subscription_status(self):
         response = Requests.get(settings.api_path + settings.subscription_status_path, needAuth=True)
