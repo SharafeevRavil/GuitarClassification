@@ -34,6 +34,9 @@ public class AuthController : CheckAuthControllerBase
         var user = await UserManager.FindByNameAsync(model.Username);
         if (user == null || !await UserManager.CheckPasswordAsync(user, model.Password)) return Unauthorized();
 
+        if (user.IsBanned)
+            return BadRequest(new Response("Error", "Your account was banned"));
+        
         var (token, refreshToken) = await _authService.GenerateTokensPair(user);
 
         return Ok(new TokenDto(new JwtSecurityTokenHandler().WriteToken(token), token.ValidTo, refreshToken));
