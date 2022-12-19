@@ -3,35 +3,34 @@
 * GuitarCogApi - проект с ASP.NET API
 * GuitarCogData - проект с ApplicationDbContext и сущностями
 
-## Установка .NET и среды разработки
+## Установка .NET SDK и среды разработки
 Для разработки рекомендуется использовать Rider или подходящую IDE, поддерживающую работу с C# и .NET.
 
 Необходимо установить .NET SDK 7.
 
+## Начало работы:
+При разработке использовать конфигурацию `GuitarCogApi: https`, настраивать в `appsettings.json` или `appsettings.Development.json`
+
+При деплое:
+1) Указать среду `ASPNETCORE_ENVIRONMENT` = `Development`/`Staging`/`Production`
+2) Указать connection string для бд - переменные среды `PGDATABASE`, `PGHOST`, `PGPASSWORD`, `PGPORT`, `PGUSER`
+3) Указать, нужно ли накатывать миграции при запуске приложения `NEED_MIGRATIONS` = `true`/`false`
+4) Запускать / следовать инструкциям из `Dockerfile`
+
 ## Миграции
-Connection String базы данных при разработке берется из файла appsettings.json.
-При деплое сохранять продовую/стейджовую стрингу в переменных среды.
+Для миграций с помощью следующих команд будет использоваться конфигурация бд из `Program.cs`
 
 Для создания миграции:
 1) перейти в корневую папку решения (папку с файлом GuitarCogBackend.sln)
-2) dotnet ef migrations add "НАЗВАНИЕ МИГРАЦИИ" -s .\GuitarCogApi\ -p .\GuitarCogData\
+2) `dotnet ef migrations add "НАЗВАНИЕ МИГРАЦИИ" -s .\GuitarCogApi\ -p .\GuitarCogData\ `
 
 Для обновления базы данных:
 1) перейти в корневую папку решения (папку с файлом GuitarCogBackend.sln)
-2) dotnet ef database update -s .\GuitarCogApi\ -p .\GuitarCogData\
+2) `dotnet ef database update -s .\GuitarCogApi\ -p .\GuitarCogData\ `
 
-## База данных Fly.io
-WSL:
-```
-curl -L https://fly.io/install.sh | sh
-```
+## Путь до сваггера: `[HOST]/swagger/index.html`
 
-Прописать пути, которые скрипт выпишет в конце установки, в моем случае:
-```
-export FLYCTL_INSTALL="/home/ravil/.fly"
-export PATH="$FLYCTL_INSTALL/bin:$PATH"
-```
-
-```
-fly auth login
-```
+## Аутентификация/Авторизация
+Аутентификация с помощью JWT токенов, срок жизни - 30 минут<br>
+Обновление токена - с помощью Refresh токена, хранится в бд в юзере<br>
+Соответствующие эндпоинты по пути `[HOST]/Auth/*`

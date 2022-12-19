@@ -22,6 +22,173 @@ namespace GuitarCogData.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("GuitarCogData.Models.File", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<byte[]>("Bytes")
+                        .IsRequired()
+                        .HasColumnType("bytea");
+
+                    b.Property<string>("ContentType")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("FileName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Files");
+                });
+
+            modelBuilder.Entity("GuitarCogData.Models.Report", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<string>("FromUserId")
+                        .HasColumnType("text");
+
+                    b.Property<bool>("MarkedAsViewed")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTimeOffset>("ReportedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<long>("TabId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FromUserId");
+
+                    b.HasIndex("TabId");
+
+                    b.ToTable("Report");
+                });
+
+            modelBuilder.Entity("GuitarCogData.Models.Subscription.Payment", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<DateTimeOffset>("CreateDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<decimal>("MoneyAmount")
+                        .HasColumnType("numeric");
+
+                    b.Property<int>("MoneyCurrency")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTimeOffset?>("PayDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Payments");
+                });
+
+            modelBuilder.Entity("GuitarCogData.Models.Subscription.Subscription", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<DateTimeOffset>("End")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<long>("PaymentId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTimeOffset>("Start")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PaymentId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Subscriptions");
+                });
+
+            modelBuilder.Entity("GuitarCogData.Models.Subscription.SubscriptionPrice", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<DateTimeOffset>("CreateDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTimeOffset>("End")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<decimal>("MoneyAmount")
+                        .HasColumnType("numeric");
+
+                    b.Property<int>("MoneyCurrency")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTimeOffset>("Start")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("SubscriptionPeriod")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SubscriptionPrices");
+                });
+
+            modelBuilder.Entity("GuitarCogData.Models.Tab", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<string>("AuthorId")
+                        .HasColumnType("text");
+
+                    b.Property<DateTimeOffset>("LoadDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("TabFileId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AuthorId");
+
+                    b.HasIndex("TabFileId");
+
+                    b.ToTable("Tabs");
+                });
+
             modelBuilder.Entity("GuitarCogData.Models.User", b =>
                 {
                     b.Property<string>("Id")
@@ -29,6 +196,15 @@ namespace GuitarCogData.Migrations
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("integer");
+
+                    b.Property<Guid?>("AvatarImageId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("BannedById")
+                        .HasColumnType("text");
+
+                    b.Property<DateTimeOffset?>("BannedDate")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -39,6 +215,9 @@ namespace GuitarCogData.Migrations
                         .HasColumnType("character varying(256)");
 
                     b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsBanned")
                         .HasColumnType("boolean");
 
                     b.Property<bool>("LockoutEnabled")
@@ -64,6 +243,12 @@ namespace GuitarCogData.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("boolean");
 
+                    b.Property<string>("RefreshToken")
+                        .HasColumnType("text");
+
+                    b.Property<DateTimeOffset?>("RefreshTokenExpiryTime")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("text");
 
@@ -75,6 +260,10 @@ namespace GuitarCogData.Migrations
                         .HasColumnType("character varying(256)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AvatarImageId");
+
+                    b.HasIndex("BannedById");
 
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
@@ -216,6 +405,72 @@ namespace GuitarCogData.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("GuitarCogData.Models.Report", b =>
+                {
+                    b.HasOne("GuitarCogData.Models.User", "FromUser")
+                        .WithMany()
+                        .HasForeignKey("FromUserId");
+
+                    b.HasOne("GuitarCogData.Models.Tab", "Tab")
+                        .WithMany()
+                        .HasForeignKey("TabId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("FromUser");
+
+                    b.Navigation("Tab");
+                });
+
+            modelBuilder.Entity("GuitarCogData.Models.Subscription.Subscription", b =>
+                {
+                    b.HasOne("GuitarCogData.Models.Subscription.Payment", "Payment")
+                        .WithMany()
+                        .HasForeignKey("PaymentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("GuitarCogData.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Payment");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("GuitarCogData.Models.Tab", b =>
+                {
+                    b.HasOne("GuitarCogData.Models.User", "Author")
+                        .WithMany()
+                        .HasForeignKey("AuthorId");
+
+                    b.HasOne("GuitarCogData.Models.File", "TabFile")
+                        .WithMany()
+                        .HasForeignKey("TabFileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Author");
+
+                    b.Navigation("TabFile");
+                });
+
+            modelBuilder.Entity("GuitarCogData.Models.User", b =>
+                {
+                    b.HasOne("GuitarCogData.Models.File", "AvatarImage")
+                        .WithMany()
+                        .HasForeignKey("AvatarImageId");
+
+                    b.HasOne("GuitarCogData.Models.User", "BannedBy")
+                        .WithMany()
+                        .HasForeignKey("BannedById");
+
+                    b.Navigation("AvatarImage");
+
+                    b.Navigation("BannedBy");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

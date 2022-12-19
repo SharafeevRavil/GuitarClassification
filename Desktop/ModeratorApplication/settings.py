@@ -1,0 +1,20 @@
+api_path = 'https://guitarclassification-production.up.railway.app'
+signin_path = '/Auth/SignIn'
+checkauth_path = '/Auth/CheckAuthorized'
+refresh_path = '/Auth/RefreshToken'
+change_nickname_path = '/Profile/ChangeUsername'
+change_email_path = '/Profile/ChangeEmail'
+change_password_path = '/Profile/ChangePassword'
+change_avatar_path = '/Profile/ChangeAvatar'
+user_info_path = '/Profile/GetUserInfo'
+tab_path = '/Tab'
+
+moder_user_path = '/Moder/User'
+moder_report_path = '/Moder/Report'
+mark_report_as_viewed_path = '/Moder/Report/MarkAsViewed'
+ban_path = '/Moder/User/BanUser'
+unban_path = '/Moder/User/UnbanUser'
+delete_tab_path = '/Moder/Tab/'
+
+
+tab_file = './tabs.gp5'
