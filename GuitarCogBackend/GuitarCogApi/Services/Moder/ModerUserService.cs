@@ -69,7 +69,7 @@ public class ModerUserService
         var subscription = await _subscriptionService.CheckSubscribed(user);
         var roles = await _userManager.GetRolesAsync(user);
         
-        var dto = new ModerUserDto(user.Id, user.UserName!, user.Email!, avatarUrl, subscription, roles);
+        var dto = new ModerUserDto(user.Id, user.UserName!, user.Email!, avatarUrl, subscription, roles, user.IsBanned);
         return (dto, null);
     }
 
