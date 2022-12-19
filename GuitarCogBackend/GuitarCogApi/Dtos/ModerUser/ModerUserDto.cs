@@ -4,7 +4,7 @@ namespace GuitarCogApi.Dtos.Moder.ModerUser;
 
 public class ModerUserDto
 {
-    public ModerUserDto(string id, string username, string email, string imageSrc, SubscriptionInfoDto subscription, IList<string> roles)
+    public ModerUserDto(string id, string username, string email, string imageSrc, SubscriptionInfoDto subscription, IList<string> roles, bool isBanned)
     {
         Id = id;
         Username = username;
@@ -12,6 +12,7 @@ public class ModerUserDto
         Subscription = subscription;
         ImageSrc = imageSrc;
         Roles = roles;
+        IsBanned = isBanned;
     }
 
     public string Id { get; set; }
@@ -20,4 +21,5 @@ public class ModerUserDto
     public IList<string> Roles { get; set; }
     public string ImageSrc { get; set; }
     public SubscriptionInfoDto Subscription { get; set; }
+    public bool IsBanned { get; set; }
 }
