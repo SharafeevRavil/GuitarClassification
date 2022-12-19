@@ -54,10 +54,10 @@ class Ui_TabListItem(object):
 
         self.gridLayout_2.addWidget(self.button_open, 2, 2, 1, 1)
 
-        self.button_report = QPushButton(self.frame)
-        self.button_report.setObjectName(u"button_report")
+        self.button_report_delete = QPushButton(self.frame)
+        self.button_report_delete.setObjectName(u"button_report_delete")
 
-        self.gridLayout_2.addWidget(self.button_report, 2, 3, 1, 1)
+        self.gridLayout_2.addWidget(self.button_report_delete, 2, 3, 1, 1)
 
 
         self.gridLayout.addWidget(self.frame, 0, 0, 1, 1)
@@ -73,6 +73,6 @@ class Ui_TabListItem(object):
         self.tab_name.setText(QCoreApplication.translate("TabListItem", u"TextLabel", None))
         self.author_name.setText(QCoreApplication.translate("TabListItem", u"TextLabel", None))
         self.button_open.setText(QCoreApplication.translate("TabListItem", u"Open", None))
-        self.button_report.setText(QCoreApplication.translate("TabListItem", u"Report", None))
+        self.button_report_delete.setText(QCoreApplication.translate("TabListItem", u"Report", None))
     # retranslateUi
 
