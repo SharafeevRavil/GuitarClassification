@@ -40,6 +40,22 @@ public class TabService
         return (tab, null);
     }
 
+    public async Task<(long?, Response?)> DeleteTab(long tabId, User? authUser = null)
+    {
+        var tab = await _dbContext.Tabs
+            .Include(x => x.Author)
+            .FirstOrDefaultAsync(x => x.Id == tabId);
+        if(tab == null)
+            return (null, new Response("Error", $"Tab with id {tabId} not found."));
+        
+        if(authUser != null && tab.Author.Id != authUser.Id)
+            return (null, new Response("Error", $"Tab with id {tabId} does not belong to you."));
+
+        _dbContext.Tabs.Remove(tab);
+        await _dbContext.SaveChangesAsync();
+        return (tab.Id, null);
+    }
+
     public async Task<PagedResponse<TabListDto>> GetTabs(HttpRequest request, TabFilter tabFilter, User? user = null)
     {
         IQueryable<Tab> tabs = _dbContext.Tabs
