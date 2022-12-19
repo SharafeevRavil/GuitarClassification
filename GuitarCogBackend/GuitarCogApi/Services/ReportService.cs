@@ -57,6 +57,11 @@ public class ReportService
         if (!filter.ShowViewedReports) 
             reports = reports.Where(x => !x.MarkedAsViewed);
 
+        //забаненных убирать
+        if (filter.HideBannedUserTabsReports)
+            reports = reports.Where(x => !x.Tab.Author.IsBanned);
+        
+        
         var paged = await reports
             .Select(x => new ReportListDto(x.Id, 
                 x.FromUser.Id, x.FromUser.UserName!, 
