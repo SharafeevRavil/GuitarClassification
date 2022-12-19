@@ -14,6 +14,7 @@ subscribe_path = '/Subscription/Subscribe'
 subscription_status_path = '/Subscription/CheckSubscribed'
 ads_path = '/Ad/GetAds'
 report_path = '/Report/'
+delete_tab_path = '/Tab/'
 
 blank_file = './blank.gp5'
 tab_file = './tabs.gp5'
