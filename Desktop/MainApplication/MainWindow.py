@@ -25,6 +25,7 @@ import Requests
 from dateutil import parser
 import jwt
 import GPCreator
+from PySide6.QtCore import Qt, QUrl, QRunnable, Slot, QThreadPool, QTimer, QObject, Signal
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -98,6 +99,10 @@ class MainWindow(QMainWindow):
             self.ui.label_welcome.setText(f'Welcome, {self.username}!')
         
         self.load_ads()
+        self.adTimer = QTimer()
+        self.adTimer.setInterval(60 * 1000)
+        self.adTimer.timeout.connect(self.load_ads)
+        self.adTimer.start()
   
     def generate_gp(self, filename = None):
         self.check_authorized()
