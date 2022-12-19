@@ -14,8 +14,22 @@
 ## Установка необходимых библиотек Python
 Используемые библиотеки:</br>
 * PySide6 - библиотека для реализации пользовательского интерфейса на платформе QT с помощью Python.</br>
+* keyring - библиотека для безопасного хранения ключей на устройсстве пользователя.</br>
+* requests - библиотека для отправки http-запросов.</br>
+* dateutil - библиотека для работы с датами.</br>
+* pyjwt - библиотека для работы с jwt токенами.</br>
+* python-magic - библиотека для определения типа файлов.</br>
+* PyGuitarPro - библиотека для создания и редактирования .gp5 файлов.</br>
+* sounddevice - библиотека для записи аудио.</br>
 ```bash
 pip install pyside6
+pip install keyring
+pip install requests
+pip install dateutil
+pip install pyjwt
+pip install python-magic
+pip install PyGuitarPro
+pip install sounddevice
 ```
 
 ## Преднастройка расширения Qt for Python
