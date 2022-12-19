@@ -61,13 +61,13 @@ class UserProfile(QtWidgets.QWidget):
 
     def ban_unban(self):
         if self.isBanned:
-            response = Requests.get(settings.api_path + settings.unban_path, params=self.id, needAuth=True)            
+            response = Requests.post(settings.api_path + settings.unban_path, params={'userId': self.id}, needAuth=True)            
             if response.status_code == 200:
-                self.load_profile()
-        if not self.isBanned:
-            response = Requests.get(settings.api_path + settings.ban_path, params=self.id, needAuth=True)            
+                self.load_profile(self.id)
+        else:
+            response = Requests.post(settings.api_path + settings.ban_path, params={'userId': self.id}, needAuth=True)            
             if response.status_code == 200:
-                self.load_profile()
+                self.load_profile(self.id)
 
     def return_button(self):
         self.main_window.list.reload()
