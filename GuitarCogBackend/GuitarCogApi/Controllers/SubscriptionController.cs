@@ -10,15 +10,13 @@ namespace GuitarCogApi.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class SubscriptionController : ControllerBase
+public class SubscriptionController : CheckAuthControllerBase
 {
     private readonly SubscriptionService _subscriptionService;
-    private readonly UserManager<User> _userManager;
 
-    public SubscriptionController(SubscriptionService subscriptionService, UserManager<User> userManager)
+    public SubscriptionController(SubscriptionService subscriptionService, UserManager<User> userManager) : base(userManager)
     {
         _subscriptionService = subscriptionService;
-        _userManager = userManager;
     }
 
     [HttpGet("Price")]
@@ -37,15 +35,10 @@ public class SubscriptionController : ControllerBase
     [ProducesResponseType(typeof(Response),StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> Subscribe(SubscribeDto subscribeDto)
     {
-        var username = User.Identity?.Name;
-        if (username == null)
-            return BadRequest(new Response("Error", "User not found"));
-        
-        var user = await _userManager.FindByNameAsync(username);
-        if (user == null)
-            return BadRequest(new Response("Error", "User not found"));
-        
-        
+        var (user, errorResponse) = await CheckAuth();
+        if (errorResponse != null || user == null)
+            return BadRequest(errorResponse ?? new Response("Error", "User not found. Try later."));
+
         subscribeDto.StartDate ??= DateTimeOffset.UtcNow;
         var (resultDto, response) = await _subscriptionService.Subscribe(user, subscribeDto);
         if (response != null || resultDto == null)
@@ -60,13 +53,9 @@ public class SubscriptionController : ControllerBase
     [ProducesResponseType(typeof(Response),StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> CheckSubscribed(DateTimeOffset? date)
     {
-        var username = User.Identity?.Name;
-        if (username == null)
-            return BadRequest(new Response("Error", "User not found"));
-        
-        var user = await _userManager.FindByNameAsync(username);
-        if (user == null)
-            return BadRequest(new Response("Error", "User not found"));
+        var (user, errorResponse) = await CheckAuth();
+        if (errorResponse != null || user == null)
+            return BadRequest(errorResponse ?? new Response("Error", "User not found. Try later."));
         
         date ??= DateTimeOffset.UtcNow;
         var subscribed = await _subscriptionService.CheckSubscribed(user, date.Value);

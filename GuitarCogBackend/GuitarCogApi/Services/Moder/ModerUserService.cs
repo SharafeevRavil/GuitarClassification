@@ -1,5 +1,6 @@
 ﻿using GuitarCogApi.Dtos.General;
 using GuitarCogApi.Dtos.Moder.ModerUser;
+using GuitarCogApi.Dtos.ModerUser;
 using GuitarCogApi.Dtos.Subscription;
 using GuitarCogApi.Helpers;
 using GuitarCogData;
@@ -37,11 +38,20 @@ public class ModerUserService
         return (user, null);
     }
 
-    public async Task<PagedResponse<ModerUserListDto>> GetUsers(PagedFilter pagedFilter) =>
-        await _dbContext.Users
-            .OrderBy(x => x.UserName)
-            .Select(x => new ModerUserListDto(x.Id, x.UserName!, x.Email!))
+    public async Task<PagedResponse<ModerUserListDto>> GetUsers(ModerUserPagedFilter pagedFilter)
+    {
+        IQueryable<User> users = _dbContext.Users
+            .OrderBy(x => x.UserName);
+
+        if (pagedFilter.HideBannedUsers)
+            users = users.Where(x => !x.IsBanned);
+        if (pagedFilter.HideUnbannedUsers)
+            users = users.Where(x => x.IsBanned);
+        
+        return await users
+            .Select(x => new ModerUserListDto(x.Id, x.UserName!, x.Email!, x.IsBanned))
             .PagedResponse(pagedFilter.Page ?? 1, pagedFilter.PageSize ?? 10);
+    }
 
     public async Task<(ModerUserDto?, Response?)> GetUser(HttpRequest request, string userId)
     {
@@ -61,5 +71,41 @@ public class ModerUserService
         
         var dto = new ModerUserDto(user.Id, user.UserName!, user.Email!, avatarUrl, subscription, roles);
         return (dto, null);
+    }
+
+    public async Task<Response?> BanUser(User moder, string userId)
+    {
+        var user = await _dbContext.Users
+            .Include(x => x.BannedBy)
+            .FirstOrDefaultAsync(x => x.Id == userId);
+        if (user == null)
+            return new Response("Error", $"Cannot find user with id {userId}");
+        if(user.IsBanned)
+            return new Response("Error", $"Cannot ban banned user with id {userId}. " +
+                                         $"Ban date: {user.BannedDate} by {user.BannedBy!.UserName}");
+
+        user.IsBanned = true;
+        user.BannedBy = moder;
+        user.BannedDate = DateTimeOffset.UtcNow;
+        await _dbContext.SaveChangesAsync();
+        return null;
+    }
+
+    public async Task<Response?> UnbanUser(User moder, string userId)
+    {
+        var user = await _dbContext.Users
+            .Include(x => x.BannedBy)
+            .FirstOrDefaultAsync(x => x.Id == userId);
+        if (user == null)
+            return new Response("Error", $"Cannot find user with id {userId}");
+        if(!user.IsBanned)
+            return new Response("Error", $"Cannot unban unbanned user with id {userId}. " +
+                                         $"Unban date: {user.BannedDate} by {user.BannedBy!.UserName}");
+
+        user.IsBanned = false;
+        user.BannedBy = moder;
+        user.BannedDate = DateTimeOffset.UtcNow;
+        await _dbContext.SaveChangesAsync();
+        return null;
     }
 }

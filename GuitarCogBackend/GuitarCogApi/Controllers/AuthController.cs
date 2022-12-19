@@ -15,15 +15,13 @@ namespace GuitarCogApi.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class AuthController : ControllerBase
+public class AuthController : CheckAuthControllerBase
 {
-    private readonly UserManager<User> _userManager;
     private readonly AuthService _authService;
     private readonly UserService _userService;
 
-    public AuthController(UserManager<User> userManager, AuthService authService, UserService userService)
+    public AuthController(UserManager<User> userManager, AuthService authService, UserService userService) : base(userManager)
     {
-        _userManager = userManager;
         _authService = authService;
         _userService = userService;
     }
@@ -33,8 +31,8 @@ public class AuthController : ControllerBase
     [ProducesResponseType(typeof(Response),StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<TokenDto>> SignIn([FromBody] SignInDto model)
     {
-        var user = await _userManager.FindByNameAsync(model.Username);
-        if (user == null || !await _userManager.CheckPasswordAsync(user, model.Password)) return Unauthorized();
+        var user = await UserManager.FindByNameAsync(model.Username);
+        if (user == null || !await UserManager.CheckPasswordAsync(user, model.Password)) return Unauthorized();
 
         var (token, refreshToken) = await _authService.GenerateTokensPair(user);
 
@@ -68,7 +66,7 @@ public class AuthController : ControllerBase
             return BadRequest(new Response("Error", "Invalid access token or refresh token"));
 
         var username = principal.Identity!.Name;
-        var user = await _userManager.FindByNameAsync(username!);
+        var user = await UserManager.FindByNameAsync(username!);
 
         if (user == null || user.RefreshToken != refreshToken || user.RefreshTokenExpiryTime <= DateTimeOffset.UtcNow)
             return BadRequest(new Response("Error", "Invalid access token or refresh token"));
@@ -83,13 +81,10 @@ public class AuthController : ControllerBase
     [ProducesResponseType(typeof(Response),StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<AuthorizedDto>> CheckAuthorized()
     {
-        var username = User.Identity?.Name;
-        if (username == null)
-            return BadRequest(new Response("Error", "User not found"));
-        
-        var user = await _userManager.FindByNameAsync(username);
-        if (user == null)
-            return BadRequest(new Response("Error", "User not found"));
-        return Ok(new AuthorizedDto(username));
+        var (user, errorResponse) = await CheckAuth();
+        if (errorResponse != null || user == null)
+            return BadRequest(errorResponse ?? new Response("Error", "User not found. Try later."));
+
+        return Ok(new AuthorizedDto(user.UserName!));
     }
 }

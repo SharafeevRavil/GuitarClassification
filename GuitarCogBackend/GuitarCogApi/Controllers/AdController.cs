@@ -9,15 +9,13 @@ namespace GuitarCogApi.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class AdController : ControllerBase
+public class AdController : CheckAuthControllerBase
 {
-    private readonly UserManager<User> _userManager;
     private readonly AdService _adService;
 
-    public AdController(UserManager<User> userManager, AdService adService)
+    public AdController(UserManager<User> userManager, AdService adService) : base(userManager)
     {
         _adService = adService;
-        _userManager = userManager;
     }
 
     /// <remarks> Этот метод может не работать в сваггере, если включен адблок - тупо запросы блочит нахуй </remarks>
@@ -27,15 +25,9 @@ public class AdController : ControllerBase
     [ProducesResponseType(typeof(Response),StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> GetAds([FromQuery] int count = 10)
     {
-        var username = User.Identity?.Name;
-        
-        var isAuthenticated = username != null;
-        if (isAuthenticated)
+        var (user, _) = await CheckAuth();
+        if (user != null)
         {
-            var user = await _userManager.FindByNameAsync(username!);
-            if (user == null)
-                return BadRequest(new Response("Error", "User not found"));
-
             var needToShow = await _adService.CheckNeedToShowAds(user);
             if (!needToShow)
                 return Ok(new AdDto(false, null));

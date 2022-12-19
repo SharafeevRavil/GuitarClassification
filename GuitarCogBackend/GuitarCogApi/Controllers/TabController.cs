@@ -1,4 +1,3 @@
-using GuitarCogApi.Dtos;
 using GuitarCogApi.Dtos.General;
 using GuitarCogApi.Dtos.Tab;
 using GuitarCogApi.Services;
@@ -11,16 +10,15 @@ namespace GuitarCogApi.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class TabController : ControllerBase
+public class TabController : CheckAuthControllerBase
 {
-    private TabService _tabService;
-    private UserManager<User> _userManager;
-    private FileService _fileService;
+    private readonly TabService _tabService;
+    private readonly FileService _fileService;
 
-    public TabController(TabService tabService, UserManager<User> userManager, FileService fileService)
+    public TabController(TabService tabService, UserManager<User> userManager, FileService fileService) :
+        base(userManager)
     {
         _tabService = tabService;
-        _userManager = userManager;
         _fileService = fileService;
     }
 
@@ -30,13 +28,9 @@ public class TabController : ControllerBase
     [ProducesResponseType(typeof(Response), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> AddTab([FromForm] AddTabDto addTabDto)
     {
-        var username = User.Identity?.Name;
-        if (username == null)
-            return BadRequest(new Response("Error", "User not found"));
-
-        var user = await _userManager.FindByNameAsync(username);
-        if (user == null)
-            return BadRequest(new Response("Error", "User not found"));
+        var (user, errorResponse) = await CheckAuth();
+        if (errorResponse != null || user == null)
+            return BadRequest(errorResponse ?? new Response("Error", "User not found. Try later."));
 
         var (tab, response) = await _tabService.AddTab(addTabDto, user);
         if (response != null || tab == null)
@@ -50,16 +44,7 @@ public class TabController : ControllerBase
     [ProducesResponseType(typeof(Response), StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<PagedResponse<TabListDto>>> GetTabs([FromQuery] TabFilter tabFilter)
     {
-        var username = User.Identity?.Name;
-        
-        var isAuthenticated = username != null;
-        if (!isAuthenticated) 
-            return Ok(await _tabService.GetTabs(Request, tabFilter));
-        
-        var user = await _userManager.FindByNameAsync(username!);
-        if (user == null)
-            return BadRequest(new Response("Error", "User not found"));
-
+        var (user, _) = await CheckAuth();
         return Ok(await _tabService.GetTabs(Request, tabFilter, user));
     }
 
@@ -69,13 +54,9 @@ public class TabController : ControllerBase
     [ProducesResponseType(typeof(Response), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> GetTabLimit()
     {
-        var username = User.Identity?.Name;
-        if (username == null)
-            return BadRequest(new Response("Error", "User not found"));
-
-        var user = await _userManager.FindByNameAsync(username);
-        if (user == null)
-            return BadRequest(new Response("Error", "User not found"));
+        var (user, errorResponse) = await CheckAuth();
+        if (errorResponse != null || user == null)
+            return BadRequest(errorResponse ?? new Response("Error", "User not found. Try later."));
 
         var tabs = await _tabService.GetTabLimit(user);
 
