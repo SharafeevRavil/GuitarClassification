@@ -10,14 +10,12 @@ namespace GuitarCogApi.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class ReportController : ControllerBase
+public class ReportController : CheckAuthControllerBase
 {
-    private readonly UserManager<User> _userManager;
     private readonly ReportService _reportService;
 
-    public ReportController(UserManager<User> userManager, ReportService reportService)
+    public ReportController(UserManager<User> userManager, ReportService reportService) : base(userManager)
     {
-        _userManager = userManager;
         _reportService = reportService;
     }
 
@@ -27,13 +25,9 @@ public class ReportController : ControllerBase
     [ProducesResponseType(typeof(Response), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> ReportTab(long tabId)
     {
-        var username = User.Identity?.Name;
-        if (username == null)
-            return BadRequest(new Response("Error", "User not found"));
-
-        var user = await _userManager.FindByNameAsync(username);
-        if (user == null)
-            return BadRequest(new Response("Error", "User not found"));
+        var (user, errorResponse) = await CheckAuth();
+        if (errorResponse != null || user == null)
+            return BadRequest(errorResponse ?? new Response("Error", "User not found. Try later."));
 
         var (report, response) = await _reportService.ReportTab(user, tabId);
         if (response != null || report == null)
@@ -49,6 +43,10 @@ public class ReportController : ControllerBase
     [ProducesResponseType(typeof(Response), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> GetReports([FromQuery] ReportPagedFilter filter)
     {
+        var (user, errorResponse) = await CheckAuth();
+        if (errorResponse != null || user == null)
+            return BadRequest(errorResponse ?? new Response("Error", "User not found. Try later."));
+        
         return Ok(await _reportService.GetReports(Request, filter));
     }
 
@@ -59,6 +57,10 @@ public class ReportController : ControllerBase
     [ProducesResponseType(typeof(Response), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> MarkAsViewed([FromQuery] long reportId)
     {
+        var (user, errorResponse) = await CheckAuth();
+        if (errorResponse != null || user == null)
+            return BadRequest(errorResponse ?? new Response("Error", "User not found. Try later."));
+        
         var response = await _reportService.MarkAsViewed(reportId);
         if (response != null) return BadRequest(response);
         return Ok();
