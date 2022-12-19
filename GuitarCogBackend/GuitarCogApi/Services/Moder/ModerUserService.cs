@@ -16,7 +16,7 @@ public class ModerUserService
     private readonly UserService _userService;
     private readonly UserManager<User> _userManager;
     private readonly FileService _fileService;
-    private SubscriptionService _subscriptionService;
+    private readonly SubscriptionService _subscriptionService;
 
     public ModerUserService(ApplicationDbContext dbContext, UserService userService, UserManager<User> userManager,
         FileService fileService, SubscriptionService subscriptionService)
@@ -87,6 +87,8 @@ public class ModerUserService
         user.IsBanned = true;
         user.BannedBy = moder;
         user.BannedDate = DateTimeOffset.UtcNow;
+        user.RefreshToken = null;
+        user.RefreshTokenExpiryTime = null;
         await _dbContext.SaveChangesAsync();
         return null;
     }
