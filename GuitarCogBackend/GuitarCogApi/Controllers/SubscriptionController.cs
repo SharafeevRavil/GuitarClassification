@@ -8,6 +8,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GuitarCogApi.Controllers;
 
+/// <summary>
+/// Контроллер подписок
+/// </summary>
 [ApiController]
 [Route("[controller]")]
 public class SubscriptionController : CheckAuthControllerBase
@@ -19,6 +22,11 @@ public class SubscriptionController : CheckAuthControllerBase
         _subscriptionService = subscriptionService;
     }
 
+    /// <summary>
+    /// Эндпонт получения стоимости подписки с указанными параметрами
+    /// </summary>
+    /// <param name="getSubscriptionPriceDto">dto параметров подписки</param>
+    /// <returns>Список цен</returns>
     [HttpGet("Price")]
     [ProducesResponseType(typeof(List<SubscriptionPriceDto>),StatusCodes.Status200OK)]
     public Task<IActionResult> GetPrice([FromQuery] GetSubscriptionPriceDto getSubscriptionPriceDto)
@@ -29,6 +37,11 @@ public class SubscriptionController : CheckAuthControllerBase
         return Task.FromResult<IActionResult>(Ok(list));
     }
 
+    /// <summary>
+    /// Эндпоинт подписки пользователем на сервис
+    /// </summary>
+    /// <param name="subscribeDto">информация о подписке</param>
+    /// <returns>информация о подписке</returns>
     [Authorize]
     [HttpPost("Subscribe")]
     [ProducesResponseType(typeof(List<SubscriptionPriceDto>),StatusCodes.Status200OK)]
@@ -47,6 +60,11 @@ public class SubscriptionController : CheckAuthControllerBase
         return Ok(resultDto);
     }
 
+    /// <summary>
+    /// Эндпоинт получения статуса подипски пользователя
+    /// </summary>
+    /// <param name="date">дата проверки (опционально)</param>
+    /// <returns>Статус подписки</returns>
     [Authorize]
     [HttpGet("CheckSubscribed")]
     [ProducesResponseType(typeof(SubscriptionInfoDto),StatusCodes.Status200OK)]

@@ -1,5 +1,8 @@
 namespace GuitarCogData.Models.Subscription;
 
+/// <summary>
+/// Период подписки
+/// </summary>
 public enum SubscriptionPeriod
 {
     Month = 0,

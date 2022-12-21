@@ -16,8 +16,20 @@ public class FileService
         _dbContext = dbContext;
     }
 
+    /// <summary>
+    /// Получение ссылки на файл по его Id
+    /// </summary>
+    /// <param name="httpRequest">HttpRequest текущего контекста</param>
+    /// <param name="imageId">Id файла</param>
+    /// <returns>Ссылка на файл</returns>
     public string GetUrlByFileId(HttpRequest httpRequest, Guid imageId) => httpRequest.UriWithBase($"/file/{imageId}");
 
+    /// <summary>
+    /// Добавление файла
+    /// </summary>
+    /// <param name="form">Форма файла</param>
+    /// <param name="limitInMb">Лимит файла в МБ</param>
+    /// <returns>Файл/ошибка</returns>
     public async Task<(File?, Response?)> AddFileFromForm(IFormFile form, int limitInMb)
     {
         using var memoryStream = new MemoryStream();
@@ -33,6 +45,11 @@ public class FileService
         return (file, null);
     }
 
+    /// <summary>
+    /// Получение файла по Id
+    /// </summary>
+    /// <param name="imageId">Id файла</param>
+    /// <returns>Файл</returns>
     public async Task<File?> LoadById(Guid imageId)
     {
         var file = await _dbContext.Files.FindAsync(imageId);

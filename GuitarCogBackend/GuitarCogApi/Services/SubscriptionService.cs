@@ -16,6 +16,11 @@ public class SubscriptionService
         _dbContext = dbContext;
     }
 
+    /// <summary>
+    /// Получение цены за подписку
+    /// </summary>
+    /// <param name="getSubscriptionPriceDto">dto запроса</param>
+    /// <returns>Цена за подписку</returns>
     public List<SubscriptionPriceDto> GetPriceForPeriod(GetSubscriptionPriceDto getSubscriptionPriceDto)
     {
         var startDate = getSubscriptionPriceDto.StartDate!.Value.ToUniversalTime();
@@ -29,6 +34,11 @@ public class SubscriptionService
             .ToList();
     }
 
+    /// <summary>
+    /// Получение и сортировка цен для даты
+    /// </summary>
+    /// <param name="startDate">Дата, для которой получаются цены</param>
+    /// <returns>Цена за подписку</returns>
     //берем последнюю актуальную (*.Start < startDate < *.End) или просроченную (*.Start < startDate)
     //UPD: не, это хуйня, лучше не выдавать просроченные
     private IOrderedQueryable<SubscriptionPrice> PricesByDate(DateTimeOffset startDate) =>
@@ -36,6 +46,13 @@ public class SubscriptionService
             .Where(x => x.Start <= startDate && startDate <= x.End)
             .OrderByDescending(x => x.Start);
 
+    /// <summary>
+    /// Подписка пользователя на сервис
+    /// </summary>
+    /// <param name="user">Пользователь</param>
+    /// <param name="subscribeDto">Дто запроса подписки</param>
+    /// <returns>Информация о подписке/ошибка</returns>
+    /// <exception cref="ArgumentOutOfRangeException">Некорректный период</exception>
     public async Task<(SubscribeResultDto?, Response?)> Subscribe(User user, SubscribeDto subscribeDto)
     {
         var inputStartDate = subscribeDto.StartDate!.Value.ToUniversalTime();
@@ -72,6 +89,13 @@ public class SubscriptionService
         return (new SubscribeResultDto(subscriptionEntry.Entity.Start, subscriptionEntry.Entity.End), null);
     }
 
+    /// <summary>
+    /// Проверка статуса подписки
+    /// </summary>
+    /// <param name="user">Пользователь</param>
+    /// <param name="start">Начала периода проверки</param>
+    /// <param name="end">Конец периода проверки</param>
+    /// <returns>Информация о подписке</returns>
     public async Task<SubscriptionInfoDto> CheckSubscribed(User user, DateTimeOffset start, DateTimeOffset end)
     {
         start = start.ToUniversalTime();
@@ -91,7 +115,18 @@ public class SubscriptionService
             : new SubscriptionInfoDto(false);
     }
 
+    /// <summary>
+    /// Проверка статуса подписки в определённный момент
+    /// </summary>
+    /// <param name="user">Пользователь</param>
+    /// <param name="startAndEnd">Момент проверки</param>
+    /// <returns>Информация о подписке</returns>
     public async Task<SubscriptionInfoDto> CheckSubscribed(User user, DateTimeOffset startAndEnd) => await CheckSubscribed(user, startAndEnd, startAndEnd);
 
+    /// <summary>
+    /// Проверка статуса подписки в данный момент
+    /// </summary>
+    /// <param name="user">Пользователь</param>
+    /// <returns>Информация о подписке</returns>
     public async Task<SubscriptionInfoDto> CheckSubscribed(User user) => await CheckSubscribed(user, DateTimeOffset.UtcNow);
 }
