@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GuitarCogApi.Controllers;
 
+/// <summary>
+/// Контроллер для получения рекламы
+/// </summary>
 [ApiController]
 [Route("[controller]")]
 public class AdController : CheckAuthControllerBase
@@ -18,6 +21,10 @@ public class AdController : CheckAuthControllerBase
         _adService = adService;
     }
 
+    /// <summary>
+    /// Эндпоинт получения объявлений
+    /// </summary>
+    /// <returns>Список объявлений</returns>
     /// <remarks> Этот метод может не работать в сваггере, если включен адблок - тупо запросы блочит нахуй </remarks>
     /// <remarks> И сами странички тоже с адблоком не работают 😜 </remarks>
     [HttpGet("GetAds")]

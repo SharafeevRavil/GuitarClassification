@@ -8,6 +8,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GuitarCogApi.Controllers;
 
+/// <summary>
+/// Контроллер жалоб, как отправки, так и работы с ними модераторами
+/// </summary>
 [ApiController]
 [Route("[controller]")]
 public class ReportController : CheckAuthControllerBase

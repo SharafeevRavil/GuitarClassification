@@ -8,6 +8,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GuitarCogApi.Controllers;
 
+/// <summary>
+/// Контроллер табулатур
+/// </summary>
 [ApiController]
 [Route("[controller]")]
 public class TabController : CheckAuthControllerBase

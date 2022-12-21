@@ -8,6 +8,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GuitarCogApi.Controllers;
 
+/// <summary>
+/// Контроллер подписок
+/// </summary>
 [ApiController]
 [Route("[controller]")]
 public class SubscriptionController : CheckAuthControllerBase

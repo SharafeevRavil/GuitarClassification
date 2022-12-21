@@ -12,6 +12,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GuitarCogApi.Controllers;
 
+/// <summary>
+/// Контроллер действий с профилем
+/// </summary>
 [ApiController]
 [Route("[controller]")]
 public class ProfileController : CheckAuthControllerBase

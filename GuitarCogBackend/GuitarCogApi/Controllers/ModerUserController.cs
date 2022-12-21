@@ -9,6 +9,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GuitarCogApi.Controllers;
 
+/// <summary>
+/// Контроллер для управления пользователями модератором
+/// </summary>
 [ApiController]
 [Route("Moder/User")]
 public class ModerUserController : CheckAuthControllerBase
@@ -20,6 +23,11 @@ public class ModerUserController : CheckAuthControllerBase
         _moderUserService = moderUserService;
     }
 
+    /// <summary>
+    /// Эндпоинт получения списка пользователей
+    /// </summary>
+    /// <param name="pagedFilter"></param>
+    /// <returns></returns>
     [HttpGet]
     [Authorize(Roles = $"{nameof(Role.SuperAdmin)},{nameof(Role.Moderator)}")]
     [ProducesResponseType(typeof(PagedResponse<ModerUserListDto>), StatusCodes.Status200OK)]
@@ -33,6 +41,11 @@ public class ModerUserController : CheckAuthControllerBase
         return Ok(await _moderUserService.GetUsers(pagedFilter));
     }
 
+    /// <summary>
+    /// Эндпоинт создания модератора главным админом
+    /// </summary>
+    /// <param name="createModerDto"></param>
+    /// <returns>ID модера</returns>
     [HttpPost]
     [Authorize(Roles = $"{nameof(Role.SuperAdmin)}")]
     [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
@@ -46,6 +59,11 @@ public class ModerUserController : CheckAuthControllerBase
         return Ok(user.Id);
     }
 
+    /// <summary>
+    /// Эндпоинт получения информации о пользователе
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
     [HttpGet("{id}")]
     [Authorize(Roles = $"{nameof(Role.SuperAdmin)},{nameof(Role.Moderator)}")]
     [ProducesResponseType(typeof(ModerUserDto), StatusCodes.Status200OK)]
