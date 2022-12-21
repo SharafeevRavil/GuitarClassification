@@ -22,9 +22,10 @@ jobs:
         with:
           args: install docfx
       - name: Install dependencies
+        working-directory: ./GuitarCogBackend
         run: dotnet restore
       - name: DocFX Build
-        working-directory: docs
+        working-directory: ./GuitarCogBackend/docs
         run: docfx docfx.json
         continue-on-error: false
       - name: Publish
@@ -32,5 +33,5 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: docs/_site
+          publish_dir: ./GuitarCogBackend/docs/_site
           force_orphan: true
