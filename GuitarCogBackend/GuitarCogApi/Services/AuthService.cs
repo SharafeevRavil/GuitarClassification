@@ -6,7 +6,7 @@ using GuitarCogData.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 
-namespace GuitarCogApi.Controllers;
+namespace GuitarCogApi.Services;
 
 public class AuthService
 {
@@ -19,6 +19,11 @@ public class AuthService
         _userManager = userManager;
     }
 
+    /// <summary>
+    /// Генерация токенов
+    /// </summary>
+    /// <param name="user">Пользователь для которого генерируются токены</param>
+    /// <returns>Пара access и refresh токенов</returns>
     public async Task<(JwtSecurityToken token, string refreshToken)> GenerateTokensPair(User user)
     {
         var token = await GetToken(user);
@@ -31,6 +36,11 @@ public class AuthService
         return (token, refreshToken);
     }
 
+    /// <summary>
+    /// Генерация access токена для пользователя
+    /// </summary>
+    /// <param name="user">Пользователь</param>
+    /// <returns>Access токен</returns>
     private async Task<JwtSecurityToken> GetToken(User user)
     {
         var userRoles = await _userManager.GetRolesAsync(user);
@@ -57,6 +67,10 @@ public class AuthService
         return token;
     }
 
+    /// <summary>
+    /// Генерация refresh токена
+    /// </summary>
+    /// <returns>refresh токен</returns>
     private static string GenerateRefreshToken()
     {
         var randomNumber = new byte[64];
@@ -65,6 +79,12 @@ public class AuthService
         return Convert.ToBase64String(randomNumber);
     }
 
+    /// <summary>
+    /// Получение информации из просроченного токена
+    /// </summary>
+    /// <param name="token">access token</param>
+    /// <returns>Claims из токена</returns>
+    /// <exception cref="SecurityTokenException"></exception>
     public ClaimsPrincipal? GetPrincipalFromExpiredToken(string? token)
     {
         var tokenValidationParameters = new TokenValidationParameters

@@ -1,5 +1,8 @@
 namespace GuitarCogApi.Dtos.Profile;
 
+/// <summary>
+/// Дто аватара
+/// </summary>
 public class AvatarDto
 {
     public AvatarDto(string avatarUrl)
@@ -7,5 +10,8 @@ public class AvatarDto
         AvatarUrl = avatarUrl;
     }
 
+    /// <summary>
+    /// Ссылка
+    /// </summary>
     public string AvatarUrl { get; set; }
 }

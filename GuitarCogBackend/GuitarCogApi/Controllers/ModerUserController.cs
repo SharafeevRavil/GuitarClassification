@@ -1,5 +1,4 @@
 ﻿using GuitarCogApi.Dtos.General;
-using GuitarCogApi.Dtos.Moder.ModerUser;
 using GuitarCogApi.Dtos.ModerUser;
 using GuitarCogApi.Services.Moder;
 using GuitarCogData.Models;
@@ -9,6 +8,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GuitarCogApi.Controllers;
 
+/// <summary>
+/// Контроллер для управления пользователями модератором
+/// </summary>
 [ApiController]
 [Route("Moder/User")]
 public class ModerUserController : CheckAuthControllerBase
@@ -20,6 +22,11 @@ public class ModerUserController : CheckAuthControllerBase
         _moderUserService = moderUserService;
     }
 
+    /// <summary>
+    /// Эндпоинт получения списка пользователей
+    /// </summary>
+    /// <param name="pagedFilter">фильтр пользователей</param>
+    /// <returns>Пагинированный список пользователей</returns>
     [HttpGet]
     [Authorize(Roles = $"{nameof(Role.SuperAdmin)},{nameof(Role.Moderator)}")]
     [ProducesResponseType(typeof(PagedResponse<ModerUserListDto>), StatusCodes.Status200OK)]
@@ -33,6 +40,11 @@ public class ModerUserController : CheckAuthControllerBase
         return Ok(await _moderUserService.GetUsers(pagedFilter));
     }
 
+    /// <summary>
+    /// Эндпоинт создания модератора главным админом
+    /// </summary>
+    /// <param name="createModerDto">dto создания пользователя</param>
+    /// <returns>ID модера</returns>
     [HttpPost]
     [Authorize(Roles = $"{nameof(Role.SuperAdmin)}")]
     [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
@@ -46,6 +58,11 @@ public class ModerUserController : CheckAuthControllerBase
         return Ok(user.Id);
     }
 
+    /// <summary>
+    /// Эндпоинт получения информации о пользователе
+    /// </summary>
+    /// <param name="id">id пользователя</param>
+    /// <returns>Информация о пользователе</returns>
     [HttpGet("{id}")]
     [Authorize(Roles = $"{nameof(Role.SuperAdmin)},{nameof(Role.Moderator)}")]
     [ProducesResponseType(typeof(ModerUserDto), StatusCodes.Status200OK)]
@@ -62,6 +79,11 @@ public class ModerUserController : CheckAuthControllerBase
         return Ok(userDto);
     }
 
+    /// <summary>
+    /// Эндпоинт для бана пользователя
+    /// </summary>
+    /// <param name="userId">id пользователя</param>
+    /// <returns>void</returns>
     [HttpPost("BanUser")]
     [Authorize(Roles = $"{nameof(Role.SuperAdmin)},{nameof(Role.Moderator)}")]
     [ProducesResponseType(typeof(void), StatusCodes.Status200OK)]
@@ -79,6 +101,11 @@ public class ModerUserController : CheckAuthControllerBase
         return Ok();
     }
 
+    /// <summary>
+    /// Эндпоинт разбана забаненного пользователя
+    /// </summary>
+    /// <param name="userId">id пользователя</param>
+    /// <returns>void</returns>
     [HttpPost("UnbanUser")]
     [Authorize(Roles = $"{nameof(Role.SuperAdmin)},{nameof(Role.Moderator)}")]
     [ProducesResponseType(typeof(void), StatusCodes.Status200OK)]

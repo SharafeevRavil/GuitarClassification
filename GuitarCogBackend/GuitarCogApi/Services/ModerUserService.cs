@@ -1,5 +1,4 @@
 ﻿using GuitarCogApi.Dtos.General;
-using GuitarCogApi.Dtos.Moder.ModerUser;
 using GuitarCogApi.Dtos.ModerUser;
 using GuitarCogApi.Dtos.Subscription;
 using GuitarCogApi.Helpers;
@@ -28,6 +27,11 @@ public class ModerUserService
         _subscriptionService = subscriptionService;
     }
 
+    /// <summary>
+    /// Создание модератора
+    /// </summary>
+    /// <param name="dto">dto с данными пользователя</param>
+    /// <returns>Созданный пользователь/ошибка</returns>
     public async Task<(User?, Response?)> CreateModer(CreateModerDto dto)
     {
         var (user, response) = await _userService.CreateUser(dto.Username, dto.Email, dto.Password);
@@ -38,6 +42,11 @@ public class ModerUserService
         return (user, null);
     }
 
+    /// <summary>
+    /// Получение списка пользователей
+    /// </summary>
+    /// <param name="pagedFilter">фильтр</param>
+    /// <returns>Пагинированный список пользователей</returns>
     public async Task<PagedResponse<ModerUserListDto>> GetUsers(ModerUserPagedFilter pagedFilter)
     {
         IQueryable<User> users = _dbContext.Users
@@ -53,6 +62,12 @@ public class ModerUserService
             .PagedResponse(pagedFilter.Page ?? 1, pagedFilter.PageSize ?? 10);
     }
 
+    /// <summary>
+    /// Получение данных о пользователе
+    /// </summary>
+    /// <param name="request">HttpRequest текущего контекста</param>
+    /// <param name="userId">Id пользователя</param>
+    /// <returns>Информация о пользователя/ошибка</returns>
     public async Task<(ModerUserDto?, Response?)> GetUser(HttpRequest request, string userId)
     {
         var user = await _dbContext.Users
@@ -73,6 +88,12 @@ public class ModerUserService
         return (dto, null);
     }
 
+    /// <summary>
+    /// Бан пользователя
+    /// </summary>
+    /// <param name="moder">Модератор, выполняющий действие</param>
+    /// <param name="userId">Id пользователя для бана</param>
+    /// <returns>null или ошибка</returns>
     public async Task<Response?> BanUser(User moder, string userId)
     {
         var user = await _dbContext.Users
@@ -93,6 +114,12 @@ public class ModerUserService
         return null;
     }
 
+    /// <summary>
+    /// Разбан пользователя
+    /// </summary>
+    /// <param name="moder">Модератор, выполняющий действие</param>
+    /// <param name="userId">Id пользователя для бана</param>
+    /// <returns>null или ошибка</returns>
     public async Task<Response?> UnbanUser(User moder, string userId)
     {
         var user = await _dbContext.Users

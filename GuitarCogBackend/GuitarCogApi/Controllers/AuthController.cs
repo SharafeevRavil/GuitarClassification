@@ -13,6 +13,9 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace GuitarCogApi.Controllers;
 
+/// <summary>
+/// Контроллер для аутентификации
+/// </summary>
 [ApiController]
 [Route("[controller]")]
 public class AuthController : CheckAuthControllerBase
@@ -26,6 +29,11 @@ public class AuthController : CheckAuthControllerBase
         _userService = userService;
     }
 
+    /// <summary>
+    /// Эндпоинт входа 
+    /// </summary>
+    /// <param name="model">Dto входа</param>
+    /// <returns>Пара токенов</returns>
     [HttpPost("SignIn")]
     [ProducesResponseType(typeof(TokenDto),StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(Response),StatusCodes.Status400BadRequest)]
@@ -42,6 +50,11 @@ public class AuthController : CheckAuthControllerBase
         return Ok(new TokenDto(new JwtSecurityTokenHandler().WriteToken(token), token.ValidTo, refreshToken));
     }
 
+    /// <summary>
+    /// Эндпоинт регистрации
+    /// </summary>
+    /// <param name="model">dto регистрации</param>
+    /// <returns>Пара токенов</returns>
     [HttpPost("SignUp")]
     [ProducesResponseType(typeof(TokenDto),StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(Response),StatusCodes.Status400BadRequest)]
@@ -56,6 +69,11 @@ public class AuthController : CheckAuthControllerBase
         return Ok(new TokenDto(new JwtSecurityTokenHandler().WriteToken(token), token.ValidTo, refreshToken));
     }
 
+    /// <summary>
+    /// Эндпоинт обновления токена
+    /// </summary>
+    /// <param name="tokenModel">Токены</param>
+    /// <returns>Новая пара токенов</returns>
     [HttpPost("RefreshToken")]
     [ProducesResponseType(typeof(TokenDto),StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(Response),StatusCodes.Status400BadRequest)]
@@ -78,6 +96,10 @@ public class AuthController : CheckAuthControllerBase
         return Ok(new TokenDto(new JwtSecurityTokenHandler().WriteToken(newToken), newToken.ValidTo, newRefreshToken));
     }
 
+    /// <summary>
+    /// Эндпоинт проверки входа
+    /// </summary>
+    /// <returns>Статус авторизации</returns>
     [Authorize]
     [HttpGet("CheckAuthorized")]
     [ProducesResponseType(typeof(AuthorizedDto),StatusCodes.Status200OK)]

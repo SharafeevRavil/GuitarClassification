@@ -12,6 +12,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GuitarCogApi.Controllers;
 
+/// <summary>
+/// Контроллер действий с профилем
+/// </summary>
 [ApiController]
 [Route("[controller]")]
 public class ProfileController : CheckAuthControllerBase
@@ -27,6 +30,11 @@ public class ProfileController : CheckAuthControllerBase
         _fileService = fileService;
     }
     
+    /// <summary>
+    /// Эндпоинт смены пароля пользователя
+    /// </summary>
+    /// <param name="dto">dto смены пароля</param>
+    /// <returns>Пара токенов</returns>
     [Authorize]
     [HttpPost("ChangePassword")]
     [ProducesResponseType(typeof(TokenDto),StatusCodes.Status200OK)]
@@ -53,6 +61,11 @@ public class ProfileController : CheckAuthControllerBase
         return Ok(new TokenDto(new JwtSecurityTokenHandler().WriteToken(token), token.ValidTo, refreshToken));
     }
 
+    /// <summary>
+    /// Эндпоинт смены электронной почты пользователя
+    /// </summary>
+    /// <param name="dto">dto смены почты</param>
+    /// <returns>Пара токенов</returns>
     [Authorize]
     [HttpPost("ChangeEmail")]
     [ProducesResponseType(typeof(TokenDto),StatusCodes.Status200OK)]
@@ -85,6 +98,11 @@ public class ProfileController : CheckAuthControllerBase
         return Ok(new TokenDto(new JwtSecurityTokenHandler().WriteToken(token), token.ValidTo, refreshToken));
     }
 
+    /// <summary>
+    /// Эндпоинт смены именя пользователя
+    /// </summary>
+    /// <param name="dto">dto смены имени</param>
+    /// <returns>пара токенов</returns>
     [Authorize]
     [HttpPost("ChangeUsername")]
     [ProducesResponseType(typeof(TokenDto),StatusCodes.Status200OK)]
@@ -115,6 +133,10 @@ public class ProfileController : CheckAuthControllerBase
         return Ok(new TokenDto(new JwtSecurityTokenHandler().WriteToken(token), token.ValidTo, refreshToken));
     }
 
+    /// <summary>
+    /// Эндпоинт получения информации о текущем пользователе
+    /// </summary>
+    /// <returns>информация о пользователе</returns>
     [Authorize]
     [HttpGet("GetUserInfo")]
     [ProducesResponseType(typeof(ProfileDto),StatusCodes.Status200OK)]
@@ -139,6 +161,11 @@ public class ProfileController : CheckAuthControllerBase
         return Ok(dto);
     }
 
+    /// <summary>
+    /// Эндпоинт смены аватара пользователя
+    /// </summary>
+    /// <param name="image">Файл аватарки</param>
+    /// <returns>Dto результата смены аватарки</returns>
     [Authorize]
     [HttpPost("ChangeAvatar")]
     [ProducesResponseType(typeof(AvatarDto),StatusCodes.Status200OK)]
