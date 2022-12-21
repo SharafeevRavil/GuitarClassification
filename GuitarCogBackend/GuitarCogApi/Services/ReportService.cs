@@ -58,7 +58,7 @@ public class ReportService
             reports = reports.Where(x => !x.MarkedAsViewed);
 
         //убирать без табов
-        reports = reports.Where(x => x.Tab == null);
+        reports = reports.Where(x => x.Tab != null);
         //забаненных убирать
         if (filter.HideBannedUserTabsReports)
             reports = reports.Where(x => !x.Tab.Author.IsBanned);
