@@ -1,5 +1,8 @@
 namespace GuitarCogApi.Dtos.Tab;
 
+/// <summary>
+/// Дто лимита табулатур
+/// </summary>
 public class TabLimitDto
 {
     public TabLimitDto(int tabCount, int tabLimit)
