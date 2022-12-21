@@ -48,13 +48,13 @@ references:
   commentId: T:GuitarCogApi.Controllers.AuthController
   fullName: GuitarCogApi.Controllers.AuthController
   nameWithType: AuthController
-- uid: GuitarCogApi.Controllers.AuthController.#ctor(UserManager{GuitarCogData.Models.User},GuitarCogApi.Controllers.AuthService,GuitarCogApi.Services.UserService)
+- uid: GuitarCogApi.Controllers.AuthController.#ctor(UserManager{GuitarCogData.Models.User},GuitarCogApi.Services.AuthService,GuitarCogApi.Services.UserService)
   name: AuthController(UserManager<User>, AuthService, UserService)
-  href: api/GuitarCogApi.Controllers.AuthController.html#GuitarCogApi_Controllers_AuthController__ctor_UserManager_GuitarCogData_Models_User__GuitarCogApi_Controllers_AuthService_GuitarCogApi_Services_UserService_
-  commentId: M:GuitarCogApi.Controllers.AuthController.#ctor(UserManager{GuitarCogData.Models.User},GuitarCogApi.Controllers.AuthService,GuitarCogApi.Services.UserService)
+  href: api/GuitarCogApi.Controllers.AuthController.html#GuitarCogApi_Controllers_AuthController__ctor_UserManager_GuitarCogData_Models_User__GuitarCogApi_Services_AuthService_GuitarCogApi_Services_UserService_
+  commentId: M:GuitarCogApi.Controllers.AuthController.#ctor(UserManager{GuitarCogData.Models.User},GuitarCogApi.Services.AuthService,GuitarCogApi.Services.UserService)
   name.vb: AuthController(UserManager(Of User), AuthService, UserService)
-  fullName: GuitarCogApi.Controllers.AuthController.AuthController(UserManager<GuitarCogData.Models.User>, GuitarCogApi.Controllers.AuthService, GuitarCogApi.Services.UserService)
-  fullName.vb: GuitarCogApi.Controllers.AuthController.AuthController(UserManager(Of GuitarCogData.Models.User), GuitarCogApi.Controllers.AuthService, GuitarCogApi.Services.UserService)
+  fullName: GuitarCogApi.Controllers.AuthController.AuthController(UserManager<GuitarCogData.Models.User>, GuitarCogApi.Services.AuthService, GuitarCogApi.Services.UserService)
+  fullName.vb: GuitarCogApi.Controllers.AuthController.AuthController(UserManager(Of GuitarCogData.Models.User), GuitarCogApi.Services.AuthService, GuitarCogApi.Services.UserService)
   nameWithType: AuthController.AuthController(UserManager<User>, AuthService, UserService)
   nameWithType.vb: AuthController.AuthController(UserManager(Of User), AuthService, UserService)
 - uid: GuitarCogApi.Controllers.AuthController.#ctor*
@@ -116,41 +116,6 @@ references:
   isSpec: "True"
   fullName: GuitarCogApi.Controllers.AuthController.SignUp
   nameWithType: AuthController.SignUp
-- uid: GuitarCogApi.Controllers.AuthService
-  name: AuthService
-  href: api/GuitarCogApi.Controllers.AuthService.html
-  commentId: T:GuitarCogApi.Controllers.AuthService
-  fullName: GuitarCogApi.Controllers.AuthService
-  nameWithType: AuthService
-- uid: GuitarCogApi.Controllers.AuthService.#ctor(IConfiguration,UserManager{GuitarCogData.Models.User})
-  name: AuthService(IConfiguration, UserManager<User>)
-  href: api/GuitarCogApi.Controllers.AuthService.html#GuitarCogApi_Controllers_AuthService__ctor_IConfiguration_UserManager_GuitarCogData_Models_User__
-  commentId: M:GuitarCogApi.Controllers.AuthService.#ctor(IConfiguration,UserManager{GuitarCogData.Models.User})
-  name.vb: AuthService(IConfiguration, UserManager(Of User))
-  fullName: GuitarCogApi.Controllers.AuthService.AuthService(IConfiguration, UserManager<GuitarCogData.Models.User>)
-  fullName.vb: GuitarCogApi.Controllers.AuthService.AuthService(IConfiguration, UserManager(Of GuitarCogData.Models.User))
-  nameWithType: AuthService.AuthService(IConfiguration, UserManager<User>)
-  nameWithType.vb: AuthService.AuthService(IConfiguration, UserManager(Of User))
-- uid: GuitarCogApi.Controllers.AuthService.#ctor*
-  name: AuthService
-  href: api/GuitarCogApi.Controllers.AuthService.html#GuitarCogApi_Controllers_AuthService__ctor_
-  commentId: Overload:GuitarCogApi.Controllers.AuthService.#ctor
-  isSpec: "True"
-  fullName: GuitarCogApi.Controllers.AuthService.AuthService
-  nameWithType: AuthService.AuthService
-- uid: GuitarCogApi.Controllers.AuthService.GenerateTokensPair(GuitarCogData.Models.User)
-  name: GenerateTokensPair(User)
-  href: api/GuitarCogApi.Controllers.AuthService.html#GuitarCogApi_Controllers_AuthService_GenerateTokensPair_GuitarCogData_Models_User_
-  commentId: M:GuitarCogApi.Controllers.AuthService.GenerateTokensPair(GuitarCogData.Models.User)
-  fullName: GuitarCogApi.Controllers.AuthService.GenerateTokensPair(GuitarCogData.Models.User)
-  nameWithType: AuthService.GenerateTokensPair(User)
-- uid: GuitarCogApi.Controllers.AuthService.GenerateTokensPair*
-  name: GenerateTokensPair
-  href: api/GuitarCogApi.Controllers.AuthService.html#GuitarCogApi_Controllers_AuthService_GenerateTokensPair_
-  commentId: Overload:GuitarCogApi.Controllers.AuthService.GenerateTokensPair
-  isSpec: "True"
-  fullName: GuitarCogApi.Controllers.AuthService.GenerateTokensPair
-  nameWithType: AuthService.GenerateTokensPair
 - uid: GuitarCogApi.Controllers.CheckAuthControllerBase
   name: CheckAuthControllerBase
   href: api/GuitarCogApi.Controllers.CheckAuthControllerBase.html
@@ -259,11 +224,11 @@ references:
   isSpec: "True"
   fullName: GuitarCogApi.Controllers.ModerUserController.BanUser
   nameWithType: ModerUserController.BanUser
-- uid: GuitarCogApi.Controllers.ModerUserController.CreateModer(GuitarCogApi.Dtos.Moder.ModerUser.CreateModerDto)
+- uid: GuitarCogApi.Controllers.ModerUserController.CreateModer(GuitarCogApi.Dtos.ModerUser.CreateModerDto)
   name: CreateModer(CreateModerDto)
-  href: api/GuitarCogApi.Controllers.ModerUserController.html#GuitarCogApi_Controllers_ModerUserController_CreateModer_GuitarCogApi_Dtos_Moder_ModerUser_CreateModerDto_
-  commentId: M:GuitarCogApi.Controllers.ModerUserController.CreateModer(GuitarCogApi.Dtos.Moder.ModerUser.CreateModerDto)
-  fullName: GuitarCogApi.Controllers.ModerUserController.CreateModer(GuitarCogApi.Dtos.Moder.ModerUser.CreateModerDto)
+  href: api/GuitarCogApi.Controllers.ModerUserController.html#GuitarCogApi_Controllers_ModerUserController_CreateModer_GuitarCogApi_Dtos_ModerUser_CreateModerDto_
+  commentId: M:GuitarCogApi.Controllers.ModerUserController.CreateModer(GuitarCogApi.Dtos.ModerUser.CreateModerDto)
+  fullName: GuitarCogApi.Controllers.ModerUserController.CreateModer(GuitarCogApi.Dtos.ModerUser.CreateModerDto)
   nameWithType: ModerUserController.CreateModer(CreateModerDto)
 - uid: GuitarCogApi.Controllers.ModerUserController.CreateModer*
   name: CreateModer
@@ -317,13 +282,13 @@ references:
   commentId: T:GuitarCogApi.Controllers.ProfileController
   fullName: GuitarCogApi.Controllers.ProfileController
   nameWithType: ProfileController
-- uid: GuitarCogApi.Controllers.ProfileController.#ctor(UserManager{GuitarCogData.Models.User},GuitarCogApi.Controllers.AuthService,GuitarCogData.ApplicationDbContext,GuitarCogApi.Services.FileService)
+- uid: GuitarCogApi.Controllers.ProfileController.#ctor(UserManager{GuitarCogData.Models.User},GuitarCogApi.Services.AuthService,GuitarCogData.ApplicationDbContext,GuitarCogApi.Services.FileService)
   name: ProfileController(UserManager<User>, AuthService, ApplicationDbContext, FileService)
-  href: api/GuitarCogApi.Controllers.ProfileController.html#GuitarCogApi_Controllers_ProfileController__ctor_UserManager_GuitarCogData_Models_User__GuitarCogApi_Controllers_AuthService_GuitarCogData_ApplicationDbContext_GuitarCogApi_Services_FileService_
-  commentId: M:GuitarCogApi.Controllers.ProfileController.#ctor(UserManager{GuitarCogData.Models.User},GuitarCogApi.Controllers.AuthService,GuitarCogData.ApplicationDbContext,GuitarCogApi.Services.FileService)
+  href: api/GuitarCogApi.Controllers.ProfileController.html#GuitarCogApi_Controllers_ProfileController__ctor_UserManager_GuitarCogData_Models_User__GuitarCogApi_Services_AuthService_GuitarCogData_ApplicationDbContext_GuitarCogApi_Services_FileService_
+  commentId: M:GuitarCogApi.Controllers.ProfileController.#ctor(UserManager{GuitarCogData.Models.User},GuitarCogApi.Services.AuthService,GuitarCogData.ApplicationDbContext,GuitarCogApi.Services.FileService)
   name.vb: ProfileController(UserManager(Of User), AuthService, ApplicationDbContext, FileService)
-  fullName: GuitarCogApi.Controllers.ProfileController.ProfileController(UserManager<GuitarCogData.Models.User>, GuitarCogApi.Controllers.AuthService, GuitarCogData.ApplicationDbContext, GuitarCogApi.Services.FileService)
-  fullName.vb: GuitarCogApi.Controllers.ProfileController.ProfileController(UserManager(Of GuitarCogData.Models.User), GuitarCogApi.Controllers.AuthService, GuitarCogData.ApplicationDbContext, GuitarCogApi.Services.FileService)
+  fullName: GuitarCogApi.Controllers.ProfileController.ProfileController(UserManager<GuitarCogData.Models.User>, GuitarCogApi.Services.AuthService, GuitarCogData.ApplicationDbContext, GuitarCogApi.Services.FileService)
+  fullName.vb: GuitarCogApi.Controllers.ProfileController.ProfileController(UserManager(Of GuitarCogData.Models.User), GuitarCogApi.Services.AuthService, GuitarCogData.ApplicationDbContext, GuitarCogApi.Services.FileService)
   nameWithType: ProfileController.ProfileController(UserManager<User>, AuthService, ApplicationDbContext, FileService)
   nameWithType.vb: ProfileController.ProfileController(UserManager(Of User), AuthService, ApplicationDbContext, FileService)
 - uid: GuitarCogApi.Controllers.ProfileController.#ctor*
@@ -1144,195 +1109,189 @@ references:
   isSpec: "True"
   fullName: GuitarCogApi.Dtos.General.Response.Status
   nameWithType: Response.Status
-- uid: GuitarCogApi.Dtos.Moder.ModerUser
-  name: GuitarCogApi.Dtos.Moder.ModerUser
-  href: api/GuitarCogApi.Dtos.Moder.ModerUser.html
-  commentId: N:GuitarCogApi.Dtos.Moder.ModerUser
-  fullName: GuitarCogApi.Dtos.Moder.ModerUser
-  nameWithType: GuitarCogApi.Dtos.Moder.ModerUser
-- uid: GuitarCogApi.Dtos.Moder.ModerUser.CreateModerDto
-  name: CreateModerDto
-  href: api/GuitarCogApi.Dtos.Moder.ModerUser.CreateModerDto.html
-  commentId: T:GuitarCogApi.Dtos.Moder.ModerUser.CreateModerDto
-  fullName: GuitarCogApi.Dtos.Moder.ModerUser.CreateModerDto
-  nameWithType: CreateModerDto
-- uid: GuitarCogApi.Dtos.Moder.ModerUser.CreateModerDto.#ctor
-  name: CreateModerDto()
-  href: api/GuitarCogApi.Dtos.Moder.ModerUser.CreateModerDto.html#GuitarCogApi_Dtos_Moder_ModerUser_CreateModerDto__ctor
-  commentId: M:GuitarCogApi.Dtos.Moder.ModerUser.CreateModerDto.#ctor
-  fullName: GuitarCogApi.Dtos.Moder.ModerUser.CreateModerDto.CreateModerDto()
-  nameWithType: CreateModerDto.CreateModerDto()
-- uid: GuitarCogApi.Dtos.Moder.ModerUser.CreateModerDto.#ctor(System.String,System.String,System.String)
-  name: CreateModerDto(String, String, String)
-  href: api/GuitarCogApi.Dtos.Moder.ModerUser.CreateModerDto.html#GuitarCogApi_Dtos_Moder_ModerUser_CreateModerDto__ctor_System_String_System_String_System_String_
-  commentId: M:GuitarCogApi.Dtos.Moder.ModerUser.CreateModerDto.#ctor(System.String,System.String,System.String)
-  fullName: GuitarCogApi.Dtos.Moder.ModerUser.CreateModerDto.CreateModerDto(System.String, System.String, System.String)
-  nameWithType: CreateModerDto.CreateModerDto(String, String, String)
-- uid: GuitarCogApi.Dtos.Moder.ModerUser.CreateModerDto.#ctor*
-  name: CreateModerDto
-  href: api/GuitarCogApi.Dtos.Moder.ModerUser.CreateModerDto.html#GuitarCogApi_Dtos_Moder_ModerUser_CreateModerDto__ctor_
-  commentId: Overload:GuitarCogApi.Dtos.Moder.ModerUser.CreateModerDto.#ctor
-  isSpec: "True"
-  fullName: GuitarCogApi.Dtos.Moder.ModerUser.CreateModerDto.CreateModerDto
-  nameWithType: CreateModerDto.CreateModerDto
-- uid: GuitarCogApi.Dtos.Moder.ModerUser.CreateModerDto.Email
-  name: Email
-  href: api/GuitarCogApi.Dtos.Moder.ModerUser.CreateModerDto.html#GuitarCogApi_Dtos_Moder_ModerUser_CreateModerDto_Email
-  commentId: P:GuitarCogApi.Dtos.Moder.ModerUser.CreateModerDto.Email
-  fullName: GuitarCogApi.Dtos.Moder.ModerUser.CreateModerDto.Email
-  nameWithType: CreateModerDto.Email
-- uid: GuitarCogApi.Dtos.Moder.ModerUser.CreateModerDto.Email*
-  name: Email
-  href: api/GuitarCogApi.Dtos.Moder.ModerUser.CreateModerDto.html#GuitarCogApi_Dtos_Moder_ModerUser_CreateModerDto_Email_
-  commentId: Overload:GuitarCogApi.Dtos.Moder.ModerUser.CreateModerDto.Email
-  isSpec: "True"
-  fullName: GuitarCogApi.Dtos.Moder.ModerUser.CreateModerDto.Email
-  nameWithType: CreateModerDto.Email
-- uid: GuitarCogApi.Dtos.Moder.ModerUser.CreateModerDto.Password
-  name: Password
-  href: api/GuitarCogApi.Dtos.Moder.ModerUser.CreateModerDto.html#GuitarCogApi_Dtos_Moder_ModerUser_CreateModerDto_Password
-  commentId: P:GuitarCogApi.Dtos.Moder.ModerUser.CreateModerDto.Password
-  fullName: GuitarCogApi.Dtos.Moder.ModerUser.CreateModerDto.Password
-  nameWithType: CreateModerDto.Password
-- uid: GuitarCogApi.Dtos.Moder.ModerUser.CreateModerDto.Password*
-  name: Password
-  href: api/GuitarCogApi.Dtos.Moder.ModerUser.CreateModerDto.html#GuitarCogApi_Dtos_Moder_ModerUser_CreateModerDto_Password_
-  commentId: Overload:GuitarCogApi.Dtos.Moder.ModerUser.CreateModerDto.Password
-  isSpec: "True"
-  fullName: GuitarCogApi.Dtos.Moder.ModerUser.CreateModerDto.Password
-  nameWithType: CreateModerDto.Password
-- uid: GuitarCogApi.Dtos.Moder.ModerUser.CreateModerDto.Username
-  name: Username
-  href: api/GuitarCogApi.Dtos.Moder.ModerUser.CreateModerDto.html#GuitarCogApi_Dtos_Moder_ModerUser_CreateModerDto_Username
-  commentId: P:GuitarCogApi.Dtos.Moder.ModerUser.CreateModerDto.Username
-  fullName: GuitarCogApi.Dtos.Moder.ModerUser.CreateModerDto.Username
-  nameWithType: CreateModerDto.Username
-- uid: GuitarCogApi.Dtos.Moder.ModerUser.CreateModerDto.Username*
-  name: Username
-  href: api/GuitarCogApi.Dtos.Moder.ModerUser.CreateModerDto.html#GuitarCogApi_Dtos_Moder_ModerUser_CreateModerDto_Username_
-  commentId: Overload:GuitarCogApi.Dtos.Moder.ModerUser.CreateModerDto.Username
-  isSpec: "True"
-  fullName: GuitarCogApi.Dtos.Moder.ModerUser.CreateModerDto.Username
-  nameWithType: CreateModerDto.Username
-- uid: GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto
-  name: ModerUserDto
-  href: api/GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.html
-  commentId: T:GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto
-  fullName: GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto
-  nameWithType: ModerUserDto
-- uid: GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.#ctor(System.String,System.String,System.String,System.String,GuitarCogApi.Dtos.Subscription.SubscriptionInfoDto,IList{System.String},System.Boolean)
-  name: ModerUserDto(String, String, String, String, SubscriptionInfoDto, IList<String>, Boolean)
-  href: api/GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.html#GuitarCogApi_Dtos_Moder_ModerUser_ModerUserDto__ctor_System_String_System_String_System_String_System_String_GuitarCogApi_Dtos_Subscription_SubscriptionInfoDto_IList_System_String__System_Boolean_
-  commentId: M:GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.#ctor(System.String,System.String,System.String,System.String,GuitarCogApi.Dtos.Subscription.SubscriptionInfoDto,IList{System.String},System.Boolean)
-  name.vb: ModerUserDto(String, String, String, String, SubscriptionInfoDto, IList(Of String), Boolean)
-  fullName: GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.ModerUserDto(System.String, System.String, System.String, System.String, GuitarCogApi.Dtos.Subscription.SubscriptionInfoDto, IList<System.String>, System.Boolean)
-  fullName.vb: GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.ModerUserDto(System.String, System.String, System.String, System.String, GuitarCogApi.Dtos.Subscription.SubscriptionInfoDto, IList(Of System.String), System.Boolean)
-  nameWithType: ModerUserDto.ModerUserDto(String, String, String, String, SubscriptionInfoDto, IList<String>, Boolean)
-  nameWithType.vb: ModerUserDto.ModerUserDto(String, String, String, String, SubscriptionInfoDto, IList(Of String), Boolean)
-- uid: GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.#ctor*
-  name: ModerUserDto
-  href: api/GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.html#GuitarCogApi_Dtos_Moder_ModerUser_ModerUserDto__ctor_
-  commentId: Overload:GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.#ctor
-  isSpec: "True"
-  fullName: GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.ModerUserDto
-  nameWithType: ModerUserDto.ModerUserDto
-- uid: GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.Email
-  name: Email
-  href: api/GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.html#GuitarCogApi_Dtos_Moder_ModerUser_ModerUserDto_Email
-  commentId: P:GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.Email
-  fullName: GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.Email
-  nameWithType: ModerUserDto.Email
-- uid: GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.Email*
-  name: Email
-  href: api/GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.html#GuitarCogApi_Dtos_Moder_ModerUser_ModerUserDto_Email_
-  commentId: Overload:GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.Email
-  isSpec: "True"
-  fullName: GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.Email
-  nameWithType: ModerUserDto.Email
-- uid: GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.Id
-  name: Id
-  href: api/GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.html#GuitarCogApi_Dtos_Moder_ModerUser_ModerUserDto_Id
-  commentId: P:GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.Id
-  fullName: GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.Id
-  nameWithType: ModerUserDto.Id
-- uid: GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.Id*
-  name: Id
-  href: api/GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.html#GuitarCogApi_Dtos_Moder_ModerUser_ModerUserDto_Id_
-  commentId: Overload:GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.Id
-  isSpec: "True"
-  fullName: GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.Id
-  nameWithType: ModerUserDto.Id
-- uid: GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.ImageSrc
-  name: ImageSrc
-  href: api/GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.html#GuitarCogApi_Dtos_Moder_ModerUser_ModerUserDto_ImageSrc
-  commentId: P:GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.ImageSrc
-  fullName: GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.ImageSrc
-  nameWithType: ModerUserDto.ImageSrc
-- uid: GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.ImageSrc*
-  name: ImageSrc
-  href: api/GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.html#GuitarCogApi_Dtos_Moder_ModerUser_ModerUserDto_ImageSrc_
-  commentId: Overload:GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.ImageSrc
-  isSpec: "True"
-  fullName: GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.ImageSrc
-  nameWithType: ModerUserDto.ImageSrc
-- uid: GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.IsBanned
-  name: IsBanned
-  href: api/GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.html#GuitarCogApi_Dtos_Moder_ModerUser_ModerUserDto_IsBanned
-  commentId: P:GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.IsBanned
-  fullName: GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.IsBanned
-  nameWithType: ModerUserDto.IsBanned
-- uid: GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.IsBanned*
-  name: IsBanned
-  href: api/GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.html#GuitarCogApi_Dtos_Moder_ModerUser_ModerUserDto_IsBanned_
-  commentId: Overload:GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.IsBanned
-  isSpec: "True"
-  fullName: GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.IsBanned
-  nameWithType: ModerUserDto.IsBanned
-- uid: GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.Roles
-  name: Roles
-  href: api/GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.html#GuitarCogApi_Dtos_Moder_ModerUser_ModerUserDto_Roles
-  commentId: P:GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.Roles
-  fullName: GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.Roles
-  nameWithType: ModerUserDto.Roles
-- uid: GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.Roles*
-  name: Roles
-  href: api/GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.html#GuitarCogApi_Dtos_Moder_ModerUser_ModerUserDto_Roles_
-  commentId: Overload:GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.Roles
-  isSpec: "True"
-  fullName: GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.Roles
-  nameWithType: ModerUserDto.Roles
-- uid: GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.Subscription
-  name: Subscription
-  href: api/GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.html#GuitarCogApi_Dtos_Moder_ModerUser_ModerUserDto_Subscription
-  commentId: P:GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.Subscription
-  fullName: GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.Subscription
-  nameWithType: ModerUserDto.Subscription
-- uid: GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.Subscription*
-  name: Subscription
-  href: api/GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.html#GuitarCogApi_Dtos_Moder_ModerUser_ModerUserDto_Subscription_
-  commentId: Overload:GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.Subscription
-  isSpec: "True"
-  fullName: GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.Subscription
-  nameWithType: ModerUserDto.Subscription
-- uid: GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.Username
-  name: Username
-  href: api/GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.html#GuitarCogApi_Dtos_Moder_ModerUser_ModerUserDto_Username
-  commentId: P:GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.Username
-  fullName: GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.Username
-  nameWithType: ModerUserDto.Username
-- uid: GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.Username*
-  name: Username
-  href: api/GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.html#GuitarCogApi_Dtos_Moder_ModerUser_ModerUserDto_Username_
-  commentId: Overload:GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.Username
-  isSpec: "True"
-  fullName: GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.Username
-  nameWithType: ModerUserDto.Username
 - uid: GuitarCogApi.Dtos.ModerUser
   name: GuitarCogApi.Dtos.ModerUser
   href: api/GuitarCogApi.Dtos.ModerUser.html
   commentId: N:GuitarCogApi.Dtos.ModerUser
   fullName: GuitarCogApi.Dtos.ModerUser
   nameWithType: GuitarCogApi.Dtos.ModerUser
+- uid: GuitarCogApi.Dtos.ModerUser.CreateModerDto
+  name: CreateModerDto
+  href: api/GuitarCogApi.Dtos.ModerUser.CreateModerDto.html
+  commentId: T:GuitarCogApi.Dtos.ModerUser.CreateModerDto
+  fullName: GuitarCogApi.Dtos.ModerUser.CreateModerDto
+  nameWithType: CreateModerDto
+- uid: GuitarCogApi.Dtos.ModerUser.CreateModerDto.#ctor
+  name: CreateModerDto()
+  href: api/GuitarCogApi.Dtos.ModerUser.CreateModerDto.html#GuitarCogApi_Dtos_ModerUser_CreateModerDto__ctor
+  commentId: M:GuitarCogApi.Dtos.ModerUser.CreateModerDto.#ctor
+  fullName: GuitarCogApi.Dtos.ModerUser.CreateModerDto.CreateModerDto()
+  nameWithType: CreateModerDto.CreateModerDto()
+- uid: GuitarCogApi.Dtos.ModerUser.CreateModerDto.#ctor(System.String,System.String,System.String)
+  name: CreateModerDto(String, String, String)
+  href: api/GuitarCogApi.Dtos.ModerUser.CreateModerDto.html#GuitarCogApi_Dtos_ModerUser_CreateModerDto__ctor_System_String_System_String_System_String_
+  commentId: M:GuitarCogApi.Dtos.ModerUser.CreateModerDto.#ctor(System.String,System.String,System.String)
+  fullName: GuitarCogApi.Dtos.ModerUser.CreateModerDto.CreateModerDto(System.String, System.String, System.String)
+  nameWithType: CreateModerDto.CreateModerDto(String, String, String)
+- uid: GuitarCogApi.Dtos.ModerUser.CreateModerDto.#ctor*
+  name: CreateModerDto
+  href: api/GuitarCogApi.Dtos.ModerUser.CreateModerDto.html#GuitarCogApi_Dtos_ModerUser_CreateModerDto__ctor_
+  commentId: Overload:GuitarCogApi.Dtos.ModerUser.CreateModerDto.#ctor
+  isSpec: "True"
+  fullName: GuitarCogApi.Dtos.ModerUser.CreateModerDto.CreateModerDto
+  nameWithType: CreateModerDto.CreateModerDto
+- uid: GuitarCogApi.Dtos.ModerUser.CreateModerDto.Email
+  name: Email
+  href: api/GuitarCogApi.Dtos.ModerUser.CreateModerDto.html#GuitarCogApi_Dtos_ModerUser_CreateModerDto_Email
+  commentId: P:GuitarCogApi.Dtos.ModerUser.CreateModerDto.Email
+  fullName: GuitarCogApi.Dtos.ModerUser.CreateModerDto.Email
+  nameWithType: CreateModerDto.Email
+- uid: GuitarCogApi.Dtos.ModerUser.CreateModerDto.Email*
+  name: Email
+  href: api/GuitarCogApi.Dtos.ModerUser.CreateModerDto.html#GuitarCogApi_Dtos_ModerUser_CreateModerDto_Email_
+  commentId: Overload:GuitarCogApi.Dtos.ModerUser.CreateModerDto.Email
+  isSpec: "True"
+  fullName: GuitarCogApi.Dtos.ModerUser.CreateModerDto.Email
+  nameWithType: CreateModerDto.Email
+- uid: GuitarCogApi.Dtos.ModerUser.CreateModerDto.Password
+  name: Password
+  href: api/GuitarCogApi.Dtos.ModerUser.CreateModerDto.html#GuitarCogApi_Dtos_ModerUser_CreateModerDto_Password
+  commentId: P:GuitarCogApi.Dtos.ModerUser.CreateModerDto.Password
+  fullName: GuitarCogApi.Dtos.ModerUser.CreateModerDto.Password
+  nameWithType: CreateModerDto.Password
+- uid: GuitarCogApi.Dtos.ModerUser.CreateModerDto.Password*
+  name: Password
+  href: api/GuitarCogApi.Dtos.ModerUser.CreateModerDto.html#GuitarCogApi_Dtos_ModerUser_CreateModerDto_Password_
+  commentId: Overload:GuitarCogApi.Dtos.ModerUser.CreateModerDto.Password
+  isSpec: "True"
+  fullName: GuitarCogApi.Dtos.ModerUser.CreateModerDto.Password
+  nameWithType: CreateModerDto.Password
+- uid: GuitarCogApi.Dtos.ModerUser.CreateModerDto.Username
+  name: Username
+  href: api/GuitarCogApi.Dtos.ModerUser.CreateModerDto.html#GuitarCogApi_Dtos_ModerUser_CreateModerDto_Username
+  commentId: P:GuitarCogApi.Dtos.ModerUser.CreateModerDto.Username
+  fullName: GuitarCogApi.Dtos.ModerUser.CreateModerDto.Username
+  nameWithType: CreateModerDto.Username
+- uid: GuitarCogApi.Dtos.ModerUser.CreateModerDto.Username*
+  name: Username
+  href: api/GuitarCogApi.Dtos.ModerUser.CreateModerDto.html#GuitarCogApi_Dtos_ModerUser_CreateModerDto_Username_
+  commentId: Overload:GuitarCogApi.Dtos.ModerUser.CreateModerDto.Username
+  isSpec: "True"
+  fullName: GuitarCogApi.Dtos.ModerUser.CreateModerDto.Username
+  nameWithType: CreateModerDto.Username
+- uid: GuitarCogApi.Dtos.ModerUser.ModerUserDto
+  name: ModerUserDto
+  href: api/GuitarCogApi.Dtos.ModerUser.ModerUserDto.html
+  commentId: T:GuitarCogApi.Dtos.ModerUser.ModerUserDto
+  fullName: GuitarCogApi.Dtos.ModerUser.ModerUserDto
+  nameWithType: ModerUserDto
+- uid: GuitarCogApi.Dtos.ModerUser.ModerUserDto.#ctor(System.String,System.String,System.String,System.String,GuitarCogApi.Dtos.Subscription.SubscriptionInfoDto,IList{System.String},System.Boolean)
+  name: ModerUserDto(String, String, String, String, SubscriptionInfoDto, IList<String>, Boolean)
+  href: api/GuitarCogApi.Dtos.ModerUser.ModerUserDto.html#GuitarCogApi_Dtos_ModerUser_ModerUserDto__ctor_System_String_System_String_System_String_System_String_GuitarCogApi_Dtos_Subscription_SubscriptionInfoDto_IList_System_String__System_Boolean_
+  commentId: M:GuitarCogApi.Dtos.ModerUser.ModerUserDto.#ctor(System.String,System.String,System.String,System.String,GuitarCogApi.Dtos.Subscription.SubscriptionInfoDto,IList{System.String},System.Boolean)
+  name.vb: ModerUserDto(String, String, String, String, SubscriptionInfoDto, IList(Of String), Boolean)
+  fullName: GuitarCogApi.Dtos.ModerUser.ModerUserDto.ModerUserDto(System.String, System.String, System.String, System.String, GuitarCogApi.Dtos.Subscription.SubscriptionInfoDto, IList<System.String>, System.Boolean)
+  fullName.vb: GuitarCogApi.Dtos.ModerUser.ModerUserDto.ModerUserDto(System.String, System.String, System.String, System.String, GuitarCogApi.Dtos.Subscription.SubscriptionInfoDto, IList(Of System.String), System.Boolean)
+  nameWithType: ModerUserDto.ModerUserDto(String, String, String, String, SubscriptionInfoDto, IList<String>, Boolean)
+  nameWithType.vb: ModerUserDto.ModerUserDto(String, String, String, String, SubscriptionInfoDto, IList(Of String), Boolean)
+- uid: GuitarCogApi.Dtos.ModerUser.ModerUserDto.#ctor*
+  name: ModerUserDto
+  href: api/GuitarCogApi.Dtos.ModerUser.ModerUserDto.html#GuitarCogApi_Dtos_ModerUser_ModerUserDto__ctor_
+  commentId: Overload:GuitarCogApi.Dtos.ModerUser.ModerUserDto.#ctor
+  isSpec: "True"
+  fullName: GuitarCogApi.Dtos.ModerUser.ModerUserDto.ModerUserDto
+  nameWithType: ModerUserDto.ModerUserDto
+- uid: GuitarCogApi.Dtos.ModerUser.ModerUserDto.Email
+  name: Email
+  href: api/GuitarCogApi.Dtos.ModerUser.ModerUserDto.html#GuitarCogApi_Dtos_ModerUser_ModerUserDto_Email
+  commentId: P:GuitarCogApi.Dtos.ModerUser.ModerUserDto.Email
+  fullName: GuitarCogApi.Dtos.ModerUser.ModerUserDto.Email
+  nameWithType: ModerUserDto.Email
+- uid: GuitarCogApi.Dtos.ModerUser.ModerUserDto.Email*
+  name: Email
+  href: api/GuitarCogApi.Dtos.ModerUser.ModerUserDto.html#GuitarCogApi_Dtos_ModerUser_ModerUserDto_Email_
+  commentId: Overload:GuitarCogApi.Dtos.ModerUser.ModerUserDto.Email
+  isSpec: "True"
+  fullName: GuitarCogApi.Dtos.ModerUser.ModerUserDto.Email
+  nameWithType: ModerUserDto.Email
+- uid: GuitarCogApi.Dtos.ModerUser.ModerUserDto.Id
+  name: Id
+  href: api/GuitarCogApi.Dtos.ModerUser.ModerUserDto.html#GuitarCogApi_Dtos_ModerUser_ModerUserDto_Id
+  commentId: P:GuitarCogApi.Dtos.ModerUser.ModerUserDto.Id
+  fullName: GuitarCogApi.Dtos.ModerUser.ModerUserDto.Id
+  nameWithType: ModerUserDto.Id
+- uid: GuitarCogApi.Dtos.ModerUser.ModerUserDto.Id*
+  name: Id
+  href: api/GuitarCogApi.Dtos.ModerUser.ModerUserDto.html#GuitarCogApi_Dtos_ModerUser_ModerUserDto_Id_
+  commentId: Overload:GuitarCogApi.Dtos.ModerUser.ModerUserDto.Id
+  isSpec: "True"
+  fullName: GuitarCogApi.Dtos.ModerUser.ModerUserDto.Id
+  nameWithType: ModerUserDto.Id
+- uid: GuitarCogApi.Dtos.ModerUser.ModerUserDto.ImageSrc
+  name: ImageSrc
+  href: api/GuitarCogApi.Dtos.ModerUser.ModerUserDto.html#GuitarCogApi_Dtos_ModerUser_ModerUserDto_ImageSrc
+  commentId: P:GuitarCogApi.Dtos.ModerUser.ModerUserDto.ImageSrc
+  fullName: GuitarCogApi.Dtos.ModerUser.ModerUserDto.ImageSrc
+  nameWithType: ModerUserDto.ImageSrc
+- uid: GuitarCogApi.Dtos.ModerUser.ModerUserDto.ImageSrc*
+  name: ImageSrc
+  href: api/GuitarCogApi.Dtos.ModerUser.ModerUserDto.html#GuitarCogApi_Dtos_ModerUser_ModerUserDto_ImageSrc_
+  commentId: Overload:GuitarCogApi.Dtos.ModerUser.ModerUserDto.ImageSrc
+  isSpec: "True"
+  fullName: GuitarCogApi.Dtos.ModerUser.ModerUserDto.ImageSrc
+  nameWithType: ModerUserDto.ImageSrc
+- uid: GuitarCogApi.Dtos.ModerUser.ModerUserDto.IsBanned
+  name: IsBanned
+  href: api/GuitarCogApi.Dtos.ModerUser.ModerUserDto.html#GuitarCogApi_Dtos_ModerUser_ModerUserDto_IsBanned
+  commentId: P:GuitarCogApi.Dtos.ModerUser.ModerUserDto.IsBanned
+  fullName: GuitarCogApi.Dtos.ModerUser.ModerUserDto.IsBanned
+  nameWithType: ModerUserDto.IsBanned
+- uid: GuitarCogApi.Dtos.ModerUser.ModerUserDto.IsBanned*
+  name: IsBanned
+  href: api/GuitarCogApi.Dtos.ModerUser.ModerUserDto.html#GuitarCogApi_Dtos_ModerUser_ModerUserDto_IsBanned_
+  commentId: Overload:GuitarCogApi.Dtos.ModerUser.ModerUserDto.IsBanned
+  isSpec: "True"
+  fullName: GuitarCogApi.Dtos.ModerUser.ModerUserDto.IsBanned
+  nameWithType: ModerUserDto.IsBanned
+- uid: GuitarCogApi.Dtos.ModerUser.ModerUserDto.Roles
+  name: Roles
+  href: api/GuitarCogApi.Dtos.ModerUser.ModerUserDto.html#GuitarCogApi_Dtos_ModerUser_ModerUserDto_Roles
+  commentId: P:GuitarCogApi.Dtos.ModerUser.ModerUserDto.Roles
+  fullName: GuitarCogApi.Dtos.ModerUser.ModerUserDto.Roles
+  nameWithType: ModerUserDto.Roles
+- uid: GuitarCogApi.Dtos.ModerUser.ModerUserDto.Roles*
+  name: Roles
+  href: api/GuitarCogApi.Dtos.ModerUser.ModerUserDto.html#GuitarCogApi_Dtos_ModerUser_ModerUserDto_Roles_
+  commentId: Overload:GuitarCogApi.Dtos.ModerUser.ModerUserDto.Roles
+  isSpec: "True"
+  fullName: GuitarCogApi.Dtos.ModerUser.ModerUserDto.Roles
+  nameWithType: ModerUserDto.Roles
+- uid: GuitarCogApi.Dtos.ModerUser.ModerUserDto.Subscription
+  name: Subscription
+  href: api/GuitarCogApi.Dtos.ModerUser.ModerUserDto.html#GuitarCogApi_Dtos_ModerUser_ModerUserDto_Subscription
+  commentId: P:GuitarCogApi.Dtos.ModerUser.ModerUserDto.Subscription
+  fullName: GuitarCogApi.Dtos.ModerUser.ModerUserDto.Subscription
+  nameWithType: ModerUserDto.Subscription
+- uid: GuitarCogApi.Dtos.ModerUser.ModerUserDto.Subscription*
+  name: Subscription
+  href: api/GuitarCogApi.Dtos.ModerUser.ModerUserDto.html#GuitarCogApi_Dtos_ModerUser_ModerUserDto_Subscription_
+  commentId: Overload:GuitarCogApi.Dtos.ModerUser.ModerUserDto.Subscription
+  isSpec: "True"
+  fullName: GuitarCogApi.Dtos.ModerUser.ModerUserDto.Subscription
+  nameWithType: ModerUserDto.Subscription
+- uid: GuitarCogApi.Dtos.ModerUser.ModerUserDto.Username
+  name: Username
+  href: api/GuitarCogApi.Dtos.ModerUser.ModerUserDto.html#GuitarCogApi_Dtos_ModerUser_ModerUserDto_Username
+  commentId: P:GuitarCogApi.Dtos.ModerUser.ModerUserDto.Username
+  fullName: GuitarCogApi.Dtos.ModerUser.ModerUserDto.Username
+  nameWithType: ModerUserDto.Username
+- uid: GuitarCogApi.Dtos.ModerUser.ModerUserDto.Username*
+  name: Username
+  href: api/GuitarCogApi.Dtos.ModerUser.ModerUserDto.html#GuitarCogApi_Dtos_ModerUser_ModerUserDto_Username_
+  commentId: Overload:GuitarCogApi.Dtos.ModerUser.ModerUserDto.Username
+  isSpec: "True"
+  fullName: GuitarCogApi.Dtos.ModerUser.ModerUserDto.Username
+  nameWithType: ModerUserDto.Username
 - uid: GuitarCogApi.Dtos.ModerUser.ModerUserListDto
   name: ModerUserListDto
   href: api/GuitarCogApi.Dtos.ModerUser.ModerUserListDto.html
@@ -1666,18 +1625,18 @@ references:
   commentId: T:GuitarCogApi.Dtos.Report.ReportListDto
   fullName: GuitarCogApi.Dtos.Report.ReportListDto
   nameWithType: ReportListDto
+- uid: GuitarCogApi.Dtos.Report.ReportListDto.#ctor
+  name: ReportListDto()
+  href: api/GuitarCogApi.Dtos.Report.ReportListDto.html#GuitarCogApi_Dtos_Report_ReportListDto__ctor
+  commentId: M:GuitarCogApi.Dtos.Report.ReportListDto.#ctor
+  fullName: GuitarCogApi.Dtos.Report.ReportListDto.ReportListDto()
+  nameWithType: ReportListDto.ReportListDto()
 - uid: GuitarCogApi.Dtos.Report.ReportListDto.#ctor(System.Int64,System.String,System.String,System.Int64,System.String,System.String,System.String,System.String,System.Boolean,DateTimeOffset)
   name: ReportListDto(Int64, String, String, Int64, String, String, String, String, Boolean, DateTimeOffset)
   href: api/GuitarCogApi.Dtos.Report.ReportListDto.html#GuitarCogApi_Dtos_Report_ReportListDto__ctor_System_Int64_System_String_System_String_System_Int64_System_String_System_String_System_String_System_String_System_Boolean_DateTimeOffset_
   commentId: M:GuitarCogApi.Dtos.Report.ReportListDto.#ctor(System.Int64,System.String,System.String,System.Int64,System.String,System.String,System.String,System.String,System.Boolean,DateTimeOffset)
   fullName: GuitarCogApi.Dtos.Report.ReportListDto.ReportListDto(System.Int64, System.String, System.String, System.Int64, System.String, System.String, System.String, System.String, System.Boolean, DateTimeOffset)
   nameWithType: ReportListDto.ReportListDto(Int64, String, String, Int64, String, String, String, String, Boolean, DateTimeOffset)
-- uid: GuitarCogApi.Dtos.Report.ReportListDto.#ctor(System.String)
-  name: ReportListDto(String)
-  href: api/GuitarCogApi.Dtos.Report.ReportListDto.html#GuitarCogApi_Dtos_Report_ReportListDto__ctor_System_String_
-  commentId: M:GuitarCogApi.Dtos.Report.ReportListDto.#ctor(System.String)
-  fullName: GuitarCogApi.Dtos.Report.ReportListDto.ReportListDto(System.String)
-  nameWithType: ReportListDto.ReportListDto(String)
 - uid: GuitarCogApi.Dtos.Report.ReportListDto.#ctor*
   name: ReportListDto
   href: api/GuitarCogApi.Dtos.Report.ReportListDto.html#GuitarCogApi_Dtos_Report_ReportListDto__ctor_
@@ -2547,6 +2506,41 @@ references:
   isSpec: "True"
   fullName: GuitarCogApi.Services.AdService.GetAvailableAds
   nameWithType: AdService.GetAvailableAds
+- uid: GuitarCogApi.Services.AuthService
+  name: AuthService
+  href: api/GuitarCogApi.Services.AuthService.html
+  commentId: T:GuitarCogApi.Services.AuthService
+  fullName: GuitarCogApi.Services.AuthService
+  nameWithType: AuthService
+- uid: GuitarCogApi.Services.AuthService.#ctor(IConfiguration,UserManager{GuitarCogData.Models.User})
+  name: AuthService(IConfiguration, UserManager<User>)
+  href: api/GuitarCogApi.Services.AuthService.html#GuitarCogApi_Services_AuthService__ctor_IConfiguration_UserManager_GuitarCogData_Models_User__
+  commentId: M:GuitarCogApi.Services.AuthService.#ctor(IConfiguration,UserManager{GuitarCogData.Models.User})
+  name.vb: AuthService(IConfiguration, UserManager(Of User))
+  fullName: GuitarCogApi.Services.AuthService.AuthService(IConfiguration, UserManager<GuitarCogData.Models.User>)
+  fullName.vb: GuitarCogApi.Services.AuthService.AuthService(IConfiguration, UserManager(Of GuitarCogData.Models.User))
+  nameWithType: AuthService.AuthService(IConfiguration, UserManager<User>)
+  nameWithType.vb: AuthService.AuthService(IConfiguration, UserManager(Of User))
+- uid: GuitarCogApi.Services.AuthService.#ctor*
+  name: AuthService
+  href: api/GuitarCogApi.Services.AuthService.html#GuitarCogApi_Services_AuthService__ctor_
+  commentId: Overload:GuitarCogApi.Services.AuthService.#ctor
+  isSpec: "True"
+  fullName: GuitarCogApi.Services.AuthService.AuthService
+  nameWithType: AuthService.AuthService
+- uid: GuitarCogApi.Services.AuthService.GenerateTokensPair(GuitarCogData.Models.User)
+  name: GenerateTokensPair(User)
+  href: api/GuitarCogApi.Services.AuthService.html#GuitarCogApi_Services_AuthService_GenerateTokensPair_GuitarCogData_Models_User_
+  commentId: M:GuitarCogApi.Services.AuthService.GenerateTokensPair(GuitarCogData.Models.User)
+  fullName: GuitarCogApi.Services.AuthService.GenerateTokensPair(GuitarCogData.Models.User)
+  nameWithType: AuthService.GenerateTokensPair(User)
+- uid: GuitarCogApi.Services.AuthService.GenerateTokensPair*
+  name: GenerateTokensPair
+  href: api/GuitarCogApi.Services.AuthService.html#GuitarCogApi_Services_AuthService_GenerateTokensPair_
+  commentId: Overload:GuitarCogApi.Services.AuthService.GenerateTokensPair
+  isSpec: "True"
+  fullName: GuitarCogApi.Services.AuthService.GenerateTokensPair
+  nameWithType: AuthService.GenerateTokensPair
 - uid: GuitarCogApi.Services.FileService
   name: FileService
   href: api/GuitarCogApi.Services.FileService.html
@@ -2646,11 +2640,11 @@ references:
   isSpec: "True"
   fullName: GuitarCogApi.Services.Moder.ModerUserService.BanUser
   nameWithType: ModerUserService.BanUser
-- uid: GuitarCogApi.Services.Moder.ModerUserService.CreateModer(GuitarCogApi.Dtos.Moder.ModerUser.CreateModerDto)
+- uid: GuitarCogApi.Services.Moder.ModerUserService.CreateModer(GuitarCogApi.Dtos.ModerUser.CreateModerDto)
   name: CreateModer(CreateModerDto)
-  href: api/GuitarCogApi.Services.Moder.ModerUserService.html#GuitarCogApi_Services_Moder_ModerUserService_CreateModer_GuitarCogApi_Dtos_Moder_ModerUser_CreateModerDto_
-  commentId: M:GuitarCogApi.Services.Moder.ModerUserService.CreateModer(GuitarCogApi.Dtos.Moder.ModerUser.CreateModerDto)
-  fullName: GuitarCogApi.Services.Moder.ModerUserService.CreateModer(GuitarCogApi.Dtos.Moder.ModerUser.CreateModerDto)
+  href: api/GuitarCogApi.Services.Moder.ModerUserService.html#GuitarCogApi_Services_Moder_ModerUserService_CreateModer_GuitarCogApi_Dtos_ModerUser_CreateModerDto_
+  commentId: M:GuitarCogApi.Services.Moder.ModerUserService.CreateModer(GuitarCogApi.Dtos.ModerUser.CreateModerDto)
+  fullName: GuitarCogApi.Services.Moder.ModerUserService.CreateModer(GuitarCogApi.Dtos.ModerUser.CreateModerDto)
   nameWithType: ModerUserService.CreateModer(CreateModerDto)
 - uid: GuitarCogApi.Services.Moder.ModerUserService.CreateModer*
   name: CreateModer

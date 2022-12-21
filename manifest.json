@@ -9,7 +9,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogApi.Controllers.AdController.html",
-          "hash": "G/b5y1+6gFbgtiWBGitnGQ=="
+          "hash": "sLCbtZGrYtsJRyo4atTKCA=="
         }
       },
       "is_incremental": false,
@@ -21,19 +21,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogApi.Controllers.AuthController.html",
-          "hash": "bSuiaCjo2BiqvVF44wTXTA=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GuitarCogApi.Controllers.AuthService.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GuitarCogApi.Controllers.AuthService.html",
-          "hash": "PT1uftEQnMzm4F+z10htHw=="
+          "hash": "nNrZdIRR4l/2XqyXkFDslA=="
         }
       },
       "is_incremental": false,
@@ -45,7 +33,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogApi.Controllers.CheckAuthControllerBase.html",
-          "hash": "LNLXmyIse1xvqUjaZH/d4w=="
+          "hash": "/2TRo1Lacot3rBHwPg2Dag=="
         }
       },
       "is_incremental": false,
@@ -57,7 +45,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogApi.Controllers.FileController.html",
-          "hash": "BSfBV9+0GDVHvdMFZxEpnw=="
+          "hash": "dAMgAFEwVyvBhlzLAUhNjQ=="
         }
       },
       "is_incremental": false,
@@ -69,7 +57,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogApi.Controllers.ModerUserController.html",
-          "hash": "VAH1xQFXc5l8bENk0Dk4pQ=="
+          "hash": "B5GTsonzooCZexP0eQT3fg=="
         }
       },
       "is_incremental": false,
@@ -81,7 +69,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogApi.Controllers.ProfileController.html",
-          "hash": "aG1x6C/kjED5mN2g6Amk4w=="
+          "hash": "SDZknjBWvfS/dWaHFLMSUA=="
         }
       },
       "is_incremental": false,
@@ -93,7 +81,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogApi.Controllers.ReportController.html",
-          "hash": "AyLYfSPuCJ/hYBTce2Umdg=="
+          "hash": "2kj2q+pGH+r0uc6Ie7AqAQ=="
         }
       },
       "is_incremental": false,
@@ -105,7 +93,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogApi.Controllers.SubscriptionController.html",
-          "hash": "Zs+avoBoN8gdWe5fWRQD4w=="
+          "hash": "Ykza8Sud3OBRLVg3g1CmJA=="
         }
       },
       "is_incremental": false,
@@ -117,7 +105,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogApi.Controllers.TabController.html",
-          "hash": "aWlrR0Hmj255Rn/jnMrREA=="
+          "hash": "FEhQzcIovxR+5OT4aMFEhQ=="
         }
       },
       "is_incremental": false,
@@ -129,7 +117,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogApi.Controllers.html",
-          "hash": "CVcPnbt+pHG1nZlkQ5VgUg=="
+          "hash": "TZCUSC/pcLRCYHbg2uBI7w=="
         }
       },
       "is_incremental": false,
@@ -141,7 +129,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogApi.Dtos.Ad.AdDto.html",
-          "hash": "HC59qYiDFjQ9UxOl/pPx2A=="
+          "hash": "ofVakXm7NNvELhYLNdKCPA=="
         }
       },
       "is_incremental": false,
@@ -153,7 +141,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogApi.Dtos.Ad.AdListDto.html",
-          "hash": "2Av49C6y6/szd7y3sR8Hjw=="
+          "hash": "IIvkTWTUsVupMN7ArJkIjQ=="
         }
       },
       "is_incremental": false,
@@ -165,7 +153,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogApi.Dtos.Ad.html",
-          "hash": "QnkFUYaEpJKFln7AicLmbA=="
+          "hash": "bm22WmckgYhR36VNHhkZ8Q=="
         }
       },
       "is_incremental": false,
@@ -177,7 +165,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogApi.Dtos.Auth.AuthorizedDto.html",
-          "hash": "jbZncAyXYPPG8IJHavFN5A=="
+          "hash": "sL3PEMAMyqQSts5XLVYWrA=="
         }
       },
       "is_incremental": false,
@@ -189,7 +177,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogApi.Dtos.Auth.SignInDto.html",
-          "hash": "vvBLaFmu96ySxiHvPUuc7g=="
+          "hash": "r5dPX6QSwcP2JHzs4OFeRw=="
         }
       },
       "is_incremental": false,
@@ -201,7 +189,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogApi.Dtos.Auth.SignUpDto.html",
-          "hash": "AyFV9pZ8SE8xglV/eyhyEA=="
+          "hash": "JP4euNMia3/I2Pk9JOeGsQ=="
         }
       },
       "is_incremental": false,
@@ -213,7 +201,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogApi.Dtos.Auth.TokenDto.html",
-          "hash": "EBTxoz0oJSjjNxUAarcnuA=="
+          "hash": "X57EUVf/usHhJsijYio2oQ=="
         }
       },
       "is_incremental": false,
@@ -225,7 +213,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogApi.Dtos.Auth.TokenPairDto.html",
-          "hash": "IiRpPLnthHpEleGwbxLkLQ=="
+          "hash": "n+KSLnwsA7AmEWXXJNvp4Q=="
         }
       },
       "is_incremental": false,
@@ -237,7 +225,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogApi.Dtos.Auth.html",
-          "hash": "PYG+a876Pk2AhU2+XTyPMw=="
+          "hash": "BnidDgE7FUYF6YJq0fz8aA=="
         }
       },
       "is_incremental": false,
@@ -249,7 +237,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogApi.Dtos.General.PagedFilter.html",
-          "hash": "rdYWoOUHK2jey92oTdC3vg=="
+          "hash": "VvnTW5I4MfkDcO7kMTsaNg=="
         }
       },
       "is_incremental": false,
@@ -261,7 +249,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogApi.Dtos.General.PagedResponse-1.html",
-          "hash": "q5hP1H+L+MbfRP6BkgVPcg=="
+          "hash": "iS5N12L8BsozuCQQjfH2ow=="
         }
       },
       "is_incremental": false,
@@ -273,7 +261,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogApi.Dtos.General.Response.html",
-          "hash": "T6yJqXQzbfUFA2n0mzGANA=="
+          "hash": "NHFo4df8KmRItEZ/hoyWpw=="
         }
       },
       "is_incremental": false,
@@ -285,7 +273,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogApi.Dtos.General.html",
-          "hash": "04ZCYVCWsb8adcQ4zlBusw=="
+          "hash": "JTMptRubHIIzLAxz9BPW7Q=="
         }
       },
       "is_incremental": false,
@@ -293,11 +281,11 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/GuitarCogApi.Dtos.Moder.ModerUser.CreateModerDto.yml",
+      "source_relative_path": "api/GuitarCogApi.Dtos.ModerUser.CreateModerDto.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GuitarCogApi.Dtos.Moder.ModerUser.CreateModerDto.html",
-          "hash": "ZzSSMJSs+hQiL5rMh47kQg=="
+          "relative_path": "api/GuitarCogApi.Dtos.ModerUser.CreateModerDto.html",
+          "hash": "tjdCpVDbNaezOjZgRCOBqA=="
         }
       },
       "is_incremental": false,
@@ -305,23 +293,11 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.yml",
+      "source_relative_path": "api/GuitarCogApi.Dtos.ModerUser.ModerUserDto.yml",
       "output": {
         ".html": {
-          "relative_path": "api/GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.html",
-          "hash": "GHzCWeyIWbws2WZsnXgJBQ=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/GuitarCogApi.Dtos.Moder.ModerUser.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/GuitarCogApi.Dtos.Moder.ModerUser.html",
-          "hash": "ffw6ijz4gdDUoX+loHGuWg=="
+          "relative_path": "api/GuitarCogApi.Dtos.ModerUser.ModerUserDto.html",
+          "hash": "1KflBCyUOeb8WUnRuIUW6Q=="
         }
       },
       "is_incremental": false,
@@ -333,7 +309,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogApi.Dtos.ModerUser.ModerUserListDto.html",
-          "hash": "J8Uw9jj/vncxJTnJzx/8vw=="
+          "hash": "TpYv838U+U757JNdeEXljQ=="
         }
       },
       "is_incremental": false,
@@ -345,7 +321,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogApi.Dtos.ModerUser.ModerUserPagedFilter.html",
-          "hash": "Uh6Bn5DYXTh3Khu0uB85Bw=="
+          "hash": "AUh3r3c5zTmJMZyP6ytKdw=="
         }
       },
       "is_incremental": false,
@@ -357,7 +333,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogApi.Dtos.ModerUser.html",
-          "hash": "yjI/0iZkjn2AgF5Ezckk4g=="
+          "hash": "g1ayCLCG2lo4LUNZ9DGnPA=="
         }
       },
       "is_incremental": false,
@@ -369,7 +345,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogApi.Dtos.Profile.AvatarDto.html",
-          "hash": "r+LIq7SeKZ6RyYJ5+gClsw=="
+          "hash": "SRovSXipko4nYQUm8bVUjQ=="
         }
       },
       "is_incremental": false,
@@ -381,7 +357,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogApi.Dtos.Profile.ChangeEmailDto.html",
-          "hash": "/kGV/2/1C57wAfYy9L0V3g=="
+          "hash": "MeWy5yHmeaBAa7rAgeL0rg=="
         }
       },
       "is_incremental": false,
@@ -393,7 +369,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogApi.Dtos.Profile.ChangePasswordDto.html",
-          "hash": "SGh1wmMgrq3lWzOSJ9qEZA=="
+          "hash": "ojL3U9DobUdquYhaL5xSRA=="
         }
       },
       "is_incremental": false,
@@ -405,7 +381,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogApi.Dtos.Profile.ChangeUsernameDto.html",
-          "hash": "yFGJGJrtsz9Fv4/Q62Gbmw=="
+          "hash": "S1uKIopntVtzFNxSrJBUOA=="
         }
       },
       "is_incremental": false,
@@ -417,7 +393,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogApi.Dtos.Profile.ProfileDto.html",
-          "hash": "eTB+Xvyh5PfjVCaBnCousw=="
+          "hash": "UCRziXrE/WEABLcLHM7xlA=="
         }
       },
       "is_incremental": false,
@@ -429,7 +405,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogApi.Dtos.Profile.html",
-          "hash": "9DSYahNx0bjYXCHtZGIciQ=="
+          "hash": "RCke0Rws4L4WhgR18RTRCw=="
         }
       },
       "is_incremental": false,
@@ -441,7 +417,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogApi.Dtos.Report.ReportListDto.html",
-          "hash": "Jh7z7+MUDrpIZZy7UCdMDw=="
+          "hash": "yN1TKxnojp4Waq7vG6it/w=="
         }
       },
       "is_incremental": false,
@@ -453,7 +429,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogApi.Dtos.Report.ReportPagedFilter.html",
-          "hash": "Qo3W8dxb2ZeJJrr0b3WLww=="
+          "hash": "LT5tyMkzzR3d3Oyw1Lw4yQ=="
         }
       },
       "is_incremental": false,
@@ -465,7 +441,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogApi.Dtos.Report.html",
-          "hash": "gCZkL7iQqg3vC7csS3wepQ=="
+          "hash": "GBdXgucHUs+FpyjezdUbaw=="
         }
       },
       "is_incremental": false,
@@ -477,7 +453,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogApi.Dtos.Subscription.GetSubscriptionPriceDto.html",
-          "hash": "OwrDoKgj0LCYZ4frwj1+rw=="
+          "hash": "keaiiZE5KEbZe7MLCS5cyw=="
         }
       },
       "is_incremental": false,
@@ -489,7 +465,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogApi.Dtos.Subscription.SubscribeDto.html",
-          "hash": "jf/PXyIRAGhHT37fSw2ZcQ=="
+          "hash": "CcqHTpYdHoCqifYlcRoYXA=="
         }
       },
       "is_incremental": false,
@@ -501,7 +477,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogApi.Dtos.Subscription.SubscribeResultDto.html",
-          "hash": "rBpdareuimnRFTL3yWcT9A=="
+          "hash": "bWnJlDI9F+Ir45bTRRpRow=="
         }
       },
       "is_incremental": false,
@@ -513,7 +489,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogApi.Dtos.Subscription.SubscriptionInfoDto.html",
-          "hash": "/slARE+EYzDVrFi73mdaSw=="
+          "hash": "+Wg5JA38mfi5MwST+0D9DQ=="
         }
       },
       "is_incremental": false,
@@ -525,7 +501,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogApi.Dtos.Subscription.SubscriptionPriceDto.html",
-          "hash": "EA/qH0a+KOopcE290bzdSw=="
+          "hash": "XK4DmYWLMuANMjIyDxXWHQ=="
         }
       },
       "is_incremental": false,
@@ -537,7 +513,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogApi.Dtos.Subscription.html",
-          "hash": "LecMcqClL0LFHwfDz3FQ4Q=="
+          "hash": "N4ESEyR+yiWcGYjaUuL4XQ=="
         }
       },
       "is_incremental": false,
@@ -549,7 +525,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogApi.Dtos.Tab.AddTabDto.html",
-          "hash": "vOEsdSWlocYeHH0n16tZnA=="
+          "hash": "KjU098nYrRVW+HmiyZiUpQ=="
         }
       },
       "is_incremental": false,
@@ -561,7 +537,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogApi.Dtos.Tab.AddTabRespDto.html",
-          "hash": "vjwo7D+rr1gLDL000gqskg=="
+          "hash": "Y47lcgGILWlzeOHol1CpyQ=="
         }
       },
       "is_incremental": false,
@@ -573,7 +549,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogApi.Dtos.Tab.TabFilter.html",
-          "hash": "CrptVP3ck2iy9BTYdf1/OA=="
+          "hash": "Hu4AIjWbSjTCAsqBiqMSbA=="
         }
       },
       "is_incremental": false,
@@ -585,7 +561,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogApi.Dtos.Tab.TabLimitDto.html",
-          "hash": "HP0xGu23Cz8fbdRg/qoa3Q=="
+          "hash": "d4IeUiaudlgLBC26wBUS4A=="
         }
       },
       "is_incremental": false,
@@ -597,7 +573,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogApi.Dtos.Tab.TabListDto.html",
-          "hash": "Qr7hEYzhSFObCfzVozqCdw=="
+          "hash": "5TFnQfS02VXMWLhC6IDgMA=="
         }
       },
       "is_incremental": false,
@@ -609,7 +585,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogApi.Dtos.Tab.html",
-          "hash": "JR53a4bhbbZD0zuo1CMeOQ=="
+          "hash": "3Vvgzn1oRZ5AHsrMk+qL+A=="
         }
       },
       "is_incremental": false,
@@ -621,7 +597,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogApi.Helpers.PageHelper.html",
-          "hash": "2CmvoCvpBPHBeHSKrGD4cw=="
+          "hash": "QFFrxxSwsZ0zo9A2fjSzsw=="
         }
       },
       "is_incremental": false,
@@ -633,7 +609,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogApi.Helpers.UriHelper.html",
-          "hash": "N9AMtIYBWNpMOSnVB24y0A=="
+          "hash": "yEhuAdzI7dAPROAwjGEw0w=="
         }
       },
       "is_incremental": false,
@@ -657,7 +633,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogApi.Initializers.DatabaseInitializer.html",
-          "hash": "vg3TWSNN/F2u1ie06oKoWQ=="
+          "hash": "TI5J+LeJ1NTG9IU9mZBXAw=="
         }
       },
       "is_incremental": false,
@@ -681,7 +657,19 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogApi.Services.AdService.html",
-          "hash": "+KijEzQe3zGR2U7tXQtxrA=="
+          "hash": "G637/liBzRpQKhz3oPwCVA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Services.AuthService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Services.AuthService.html",
+          "hash": "TVhCkPg+duZxB4psHfDEew=="
         }
       },
       "is_incremental": false,
@@ -693,7 +681,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogApi.Services.FileService.html",
-          "hash": "fBp8H10ZJxqURkvKqwqg/g=="
+          "hash": "CckB0KVZnCSXZo/azCHVSQ=="
         }
       },
       "is_incremental": false,
@@ -705,7 +693,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogApi.Services.Moder.ModerUserService.html",
-          "hash": "ONNBzNahzlhGzY5a7IzkZA=="
+          "hash": "ADwwGG44v27PGElUApXuIg=="
         }
       },
       "is_incremental": false,
@@ -729,7 +717,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogApi.Services.ReportService.html",
-          "hash": "3An8BZdk57mw9315lvWoIA=="
+          "hash": "XpEZ+xjY5xasJcKqCROtQg=="
         }
       },
       "is_incremental": false,
@@ -741,7 +729,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogApi.Services.SubscriptionService.html",
-          "hash": "TC7Ln9sZSeqzMK+IQBIPig=="
+          "hash": "uLGMsSTm2x8rKqF6pSdynw=="
         }
       },
       "is_incremental": false,
@@ -753,7 +741,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogApi.Services.TabService.html",
-          "hash": "/F6I2ctK6XduxPtQuZ4Kig=="
+          "hash": "krrPovg9yEGrH9wmNdSXYQ=="
         }
       },
       "is_incremental": false,
@@ -765,7 +753,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogApi.Services.UserService.html",
-          "hash": "Up2+mS88d+y4FD/trik4kg=="
+          "hash": "AmG5c3yJMQ0UA+CtOPSGfA=="
         }
       },
       "is_incremental": false,
@@ -777,7 +765,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogApi.Services.html",
-          "hash": "BX7Uck3eIFfyZ5RIm7cqQQ=="
+          "hash": "vhbMtwvBfe5Y21aOMFm/CA=="
         }
       },
       "is_incremental": false,
@@ -789,7 +777,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogData.ApplicationDbContext.html",
-          "hash": "fnMZkxY4CT5BwpOhR/YMUg=="
+          "hash": "NdVxrMeKw9raUkPKYz9/dQ=="
         }
       },
       "is_incremental": false,
@@ -801,7 +789,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogData.Migrations.avatar.html",
-          "hash": "tqhnE7XFoBJ363JAXL+pEQ=="
+          "hash": "ugCD4Srb7lMop0rhQHuWBA=="
         }
       },
       "is_incremental": false,
@@ -813,7 +801,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogData.Migrations.avatarfix.html",
-          "hash": "uP+K7I8LRGhFaprIP7J+KQ=="
+          "hash": "s4WvwgzEcgLWZzoPysqQzA=="
         }
       },
       "is_incremental": false,
@@ -825,7 +813,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogData.Migrations.ban.html",
-          "hash": "ARa2TRwCPRjllX9rrZKr1w=="
+          "hash": "3XcJpkBR+0hCmcHr6qdnjA=="
         }
       },
       "is_incremental": false,
@@ -837,7 +825,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogData.Migrations.init.html",
-          "hash": "7t41M9UU95TQoeLU8MuB4g=="
+          "hash": "UmDhb7ggTYmCFwMX+y3YLQ=="
         }
       },
       "is_incremental": false,
@@ -849,7 +837,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogData.Migrations.refreshtoken.html",
-          "hash": "fj3kPvOQ9P8FQ27D4azcdg=="
+          "hash": "Ck4lpF4rqYlVo2waJm1Wiw=="
         }
       },
       "is_incremental": false,
@@ -861,7 +849,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogData.Migrations.report.html",
-          "hash": "JBV20mMyia14xi7BjEiotQ=="
+          "hash": "gFxzDYdbGDK4bmTYe7HAJA=="
         }
       },
       "is_incremental": false,
@@ -873,7 +861,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogData.Migrations.subscription.html",
-          "hash": "kpNZvkJsNDItzqWxpj/YFQ=="
+          "hash": "h/QmZwSn4mp9JGp9R31eOw=="
         }
       },
       "is_incremental": false,
@@ -885,7 +873,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogData.Migrations.tabandfilefixes.html",
-          "hash": "/hk6l4tAgqfZL1eq89urfg=="
+          "hash": "3HsCVUYh8mzTNhBnOxgm0Q=="
         }
       },
       "is_incremental": false,
@@ -909,7 +897,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogData.Models.File.html",
-          "hash": "Z1UB1530ll8MyR9YcOSb5Q=="
+          "hash": "JqUwF1a0804m+qKbLYdkXQ=="
         }
       },
       "is_incremental": false,
@@ -921,7 +909,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogData.Models.Report.html",
-          "hash": "kwb4jnr/5HDV1P2jmLjkBA=="
+          "hash": "c1QqBsoTygtgxze4bUxkBA=="
         }
       },
       "is_incremental": false,
@@ -933,7 +921,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogData.Models.Role.html",
-          "hash": "ULOFL3iFkQ8Hdjc3LBn54w=="
+          "hash": "qOmQ/AhQLiz6ETFPsIr9sw=="
         }
       },
       "is_incremental": false,
@@ -945,7 +933,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogData.Models.Subscription.Currency.html",
-          "hash": "ej19fR/qsa4xSB5rHp1sNQ=="
+          "hash": "luq4x8JcHIfYa8NBFcQ/XA=="
         }
       },
       "is_incremental": false,
@@ -957,7 +945,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogData.Models.Subscription.Money.html",
-          "hash": "JjiNAqEaVBQ6sEjNy0SwkA=="
+          "hash": "K2CUiSfjdF1p10F+VgcSzA=="
         }
       },
       "is_incremental": false,
@@ -969,7 +957,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogData.Models.Subscription.Payment.html",
-          "hash": "QR2+EoKQp+ahz5qWieac1Q=="
+          "hash": "pPqy4sSS1WtghcVQuQE/hg=="
         }
       },
       "is_incremental": false,
@@ -981,7 +969,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogData.Models.Subscription.Subscription.html",
-          "hash": "/aocC3g/qOMnMUNrpFnqRg=="
+          "hash": "19bw9BF4Yx6uQ9zZ7GAbwQ=="
         }
       },
       "is_incremental": false,
@@ -993,7 +981,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogData.Models.Subscription.SubscriptionPeriod.html",
-          "hash": "rJHeg/f4dENrgcsK5wuzpw=="
+          "hash": "9FwqjLJInruhKDD7H8qfiA=="
         }
       },
       "is_incremental": false,
@@ -1005,7 +993,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogData.Models.Subscription.SubscriptionPrice.html",
-          "hash": "uFbSdGl0xFyGoEeXSTG8dQ=="
+          "hash": "O14+kyRtptrM2/Mvi5AmNQ=="
         }
       },
       "is_incremental": false,
@@ -1017,7 +1005,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogData.Models.Subscription.html",
-          "hash": "2DtVMDZuQK1qRV9HvmLf4w=="
+          "hash": "g/mhEJ7S2u4VhjTtSqdAtQ=="
         }
       },
       "is_incremental": false,
@@ -1029,7 +1017,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogData.Models.Tab.html",
-          "hash": "WDGWmX+ZChKk5EHoKEOD6g=="
+          "hash": "Nh5YSJ7LMVZyHgEDlhiAxg=="
         }
       },
       "is_incremental": false,
@@ -1041,7 +1029,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogData.Models.User.html",
-          "hash": "K/MROatEl/yNf7tkqVrgbQ=="
+          "hash": "XV+Y9r6m5e5IegsUS9F5hQ=="
         }
       },
       "is_incremental": false,
@@ -1053,7 +1041,7 @@
       "output": {
         ".html": {
           "relative_path": "api/GuitarCogData.Models.html",
-          "hash": "I9syKUx+18wH3pX4JTKDjg=="
+          "hash": "7yA+Oz9K/Ce+kQMpavTP9w=="
         }
       },
       "is_incremental": false,
@@ -1077,7 +1065,7 @@
       "output": {
         ".html": {
           "relative_path": "api/index.html",
-          "hash": "kBhXw7krTIJcnJWQBX/Oig=="
+          "hash": "WRik0SX+KHatR07Fhha3CA=="
         }
       },
       "is_incremental": false,
@@ -1089,7 +1077,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "SL3kPB0kaFCr8vE3rGVHPg=="
+          "hash": "yOSMlud8T01vaOu4LeZr4w=="
         }
       },
       "is_incremental": false,
@@ -1101,7 +1089,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/intro.html",
-          "hash": "5E2W0h62yRzDv2oK9Ui56w=="
+          "hash": "hABgs+a7GmvIT0t+xZMBzA=="
         }
       },
       "is_incremental": false,
@@ -1128,7 +1116,7 @@
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "7bOCf9wr1BrTOtAN1yrjJA=="
+          "hash": "MhY+VHQoeSjfr7eadaZTCQ=="
         }
       },
       "is_incremental": false,
@@ -1167,7 +1155,7 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 89,
+          "total_file_count": 88,
           "skipped_file_count": 0
         },
         "TocDocumentProcessor": {
