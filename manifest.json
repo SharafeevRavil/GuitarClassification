@@ -1,0 +1,1196 @@
+{
+  "homepages": [],
+  "source_base_path": "/github/workspace/docfx_project",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Controllers.AdController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Controllers.AdController.html",
+          "hash": "G/b5y1+6gFbgtiWBGitnGQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Controllers.AuthController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Controllers.AuthController.html",
+          "hash": "bSuiaCjo2BiqvVF44wTXTA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Controllers.AuthService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Controllers.AuthService.html",
+          "hash": "PT1uftEQnMzm4F+z10htHw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Controllers.CheckAuthControllerBase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Controllers.CheckAuthControllerBase.html",
+          "hash": "LNLXmyIse1xvqUjaZH/d4w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Controllers.FileController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Controllers.FileController.html",
+          "hash": "BSfBV9+0GDVHvdMFZxEpnw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Controllers.ModerUserController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Controllers.ModerUserController.html",
+          "hash": "VAH1xQFXc5l8bENk0Dk4pQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Controllers.ProfileController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Controllers.ProfileController.html",
+          "hash": "aG1x6C/kjED5mN2g6Amk4w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Controllers.ReportController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Controllers.ReportController.html",
+          "hash": "AyLYfSPuCJ/hYBTce2Umdg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Controllers.SubscriptionController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Controllers.SubscriptionController.html",
+          "hash": "Zs+avoBoN8gdWe5fWRQD4w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Controllers.TabController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Controllers.TabController.html",
+          "hash": "aWlrR0Hmj255Rn/jnMrREA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Controllers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Controllers.html",
+          "hash": "CVcPnbt+pHG1nZlkQ5VgUg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Dtos.Ad.AdDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Dtos.Ad.AdDto.html",
+          "hash": "HC59qYiDFjQ9UxOl/pPx2A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Dtos.Ad.AdListDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Dtos.Ad.AdListDto.html",
+          "hash": "2Av49C6y6/szd7y3sR8Hjw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Dtos.Ad.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Dtos.Ad.html",
+          "hash": "QnkFUYaEpJKFln7AicLmbA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Dtos.Auth.AuthorizedDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Dtos.Auth.AuthorizedDto.html",
+          "hash": "jbZncAyXYPPG8IJHavFN5A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Dtos.Auth.SignInDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Dtos.Auth.SignInDto.html",
+          "hash": "vvBLaFmu96ySxiHvPUuc7g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Dtos.Auth.SignUpDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Dtos.Auth.SignUpDto.html",
+          "hash": "AyFV9pZ8SE8xglV/eyhyEA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Dtos.Auth.TokenDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Dtos.Auth.TokenDto.html",
+          "hash": "EBTxoz0oJSjjNxUAarcnuA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Dtos.Auth.TokenPairDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Dtos.Auth.TokenPairDto.html",
+          "hash": "IiRpPLnthHpEleGwbxLkLQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Dtos.Auth.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Dtos.Auth.html",
+          "hash": "PYG+a876Pk2AhU2+XTyPMw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Dtos.General.PagedFilter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Dtos.General.PagedFilter.html",
+          "hash": "rdYWoOUHK2jey92oTdC3vg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Dtos.General.PagedResponse-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Dtos.General.PagedResponse-1.html",
+          "hash": "q5hP1H+L+MbfRP6BkgVPcg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Dtos.General.Response.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Dtos.General.Response.html",
+          "hash": "T6yJqXQzbfUFA2n0mzGANA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Dtos.General.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Dtos.General.html",
+          "hash": "04ZCYVCWsb8adcQ4zlBusw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Dtos.Moder.ModerUser.CreateModerDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Dtos.Moder.ModerUser.CreateModerDto.html",
+          "hash": "ZzSSMJSs+hQiL5rMh47kQg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Dtos.Moder.ModerUser.ModerUserDto.html",
+          "hash": "GHzCWeyIWbws2WZsnXgJBQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Dtos.Moder.ModerUser.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Dtos.Moder.ModerUser.html",
+          "hash": "ffw6ijz4gdDUoX+loHGuWg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Dtos.ModerUser.ModerUserListDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Dtos.ModerUser.ModerUserListDto.html",
+          "hash": "J8Uw9jj/vncxJTnJzx/8vw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Dtos.ModerUser.ModerUserPagedFilter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Dtos.ModerUser.ModerUserPagedFilter.html",
+          "hash": "Uh6Bn5DYXTh3Khu0uB85Bw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Dtos.ModerUser.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Dtos.ModerUser.html",
+          "hash": "yjI/0iZkjn2AgF5Ezckk4g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Dtos.Profile.AvatarDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Dtos.Profile.AvatarDto.html",
+          "hash": "r+LIq7SeKZ6RyYJ5+gClsw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Dtos.Profile.ChangeEmailDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Dtos.Profile.ChangeEmailDto.html",
+          "hash": "/kGV/2/1C57wAfYy9L0V3g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Dtos.Profile.ChangePasswordDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Dtos.Profile.ChangePasswordDto.html",
+          "hash": "SGh1wmMgrq3lWzOSJ9qEZA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Dtos.Profile.ChangeUsernameDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Dtos.Profile.ChangeUsernameDto.html",
+          "hash": "yFGJGJrtsz9Fv4/Q62Gbmw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Dtos.Profile.ProfileDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Dtos.Profile.ProfileDto.html",
+          "hash": "eTB+Xvyh5PfjVCaBnCousw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Dtos.Profile.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Dtos.Profile.html",
+          "hash": "9DSYahNx0bjYXCHtZGIciQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Dtos.Report.ReportListDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Dtos.Report.ReportListDto.html",
+          "hash": "Jh7z7+MUDrpIZZy7UCdMDw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Dtos.Report.ReportPagedFilter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Dtos.Report.ReportPagedFilter.html",
+          "hash": "Qo3W8dxb2ZeJJrr0b3WLww=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Dtos.Report.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Dtos.Report.html",
+          "hash": "gCZkL7iQqg3vC7csS3wepQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Dtos.Subscription.GetSubscriptionPriceDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Dtos.Subscription.GetSubscriptionPriceDto.html",
+          "hash": "OwrDoKgj0LCYZ4frwj1+rw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Dtos.Subscription.SubscribeDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Dtos.Subscription.SubscribeDto.html",
+          "hash": "jf/PXyIRAGhHT37fSw2ZcQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Dtos.Subscription.SubscribeResultDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Dtos.Subscription.SubscribeResultDto.html",
+          "hash": "rBpdareuimnRFTL3yWcT9A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Dtos.Subscription.SubscriptionInfoDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Dtos.Subscription.SubscriptionInfoDto.html",
+          "hash": "/slARE+EYzDVrFi73mdaSw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Dtos.Subscription.SubscriptionPriceDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Dtos.Subscription.SubscriptionPriceDto.html",
+          "hash": "EA/qH0a+KOopcE290bzdSw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Dtos.Subscription.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Dtos.Subscription.html",
+          "hash": "LecMcqClL0LFHwfDz3FQ4Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Dtos.Tab.AddTabDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Dtos.Tab.AddTabDto.html",
+          "hash": "vOEsdSWlocYeHH0n16tZnA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Dtos.Tab.AddTabRespDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Dtos.Tab.AddTabRespDto.html",
+          "hash": "vjwo7D+rr1gLDL000gqskg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Dtos.Tab.TabFilter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Dtos.Tab.TabFilter.html",
+          "hash": "CrptVP3ck2iy9BTYdf1/OA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Dtos.Tab.TabLimitDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Dtos.Tab.TabLimitDto.html",
+          "hash": "HP0xGu23Cz8fbdRg/qoa3Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Dtos.Tab.TabListDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Dtos.Tab.TabListDto.html",
+          "hash": "Qr7hEYzhSFObCfzVozqCdw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Dtos.Tab.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Dtos.Tab.html",
+          "hash": "JR53a4bhbbZD0zuo1CMeOQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Helpers.PageHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Helpers.PageHelper.html",
+          "hash": "2CmvoCvpBPHBeHSKrGD4cw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Helpers.UriHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Helpers.UriHelper.html",
+          "hash": "N9AMtIYBWNpMOSnVB24y0A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Helpers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Helpers.html",
+          "hash": "iCLK+Ji8YlvC2twXON5UHg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Initializers.DatabaseInitializer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Initializers.DatabaseInitializer.html",
+          "hash": "vg3TWSNN/F2u1ie06oKoWQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Initializers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Initializers.html",
+          "hash": "/yIjueK+J228zUhq9PAeXw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Services.AdService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Services.AdService.html",
+          "hash": "+KijEzQe3zGR2U7tXQtxrA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Services.FileService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Services.FileService.html",
+          "hash": "fBp8H10ZJxqURkvKqwqg/g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Services.Moder.ModerUserService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Services.Moder.ModerUserService.html",
+          "hash": "ONNBzNahzlhGzY5a7IzkZA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Services.Moder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Services.Moder.html",
+          "hash": "5MlgEo7uj8CdR59UxnW9WA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Services.ReportService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Services.ReportService.html",
+          "hash": "7VAleS6zonkx04iKkG/XFw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Services.SubscriptionService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Services.SubscriptionService.html",
+          "hash": "TC7Ln9sZSeqzMK+IQBIPig=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Services.TabService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Services.TabService.html",
+          "hash": "/F6I2ctK6XduxPtQuZ4Kig=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Services.UserService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Services.UserService.html",
+          "hash": "Up2+mS88d+y4FD/trik4kg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogApi.Services.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogApi.Services.html",
+          "hash": "BX7Uck3eIFfyZ5RIm7cqQQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogData.ApplicationDbContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogData.ApplicationDbContext.html",
+          "hash": "fnMZkxY4CT5BwpOhR/YMUg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogData.Migrations.avatar.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogData.Migrations.avatar.html",
+          "hash": "tqhnE7XFoBJ363JAXL+pEQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogData.Migrations.avatarfix.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogData.Migrations.avatarfix.html",
+          "hash": "uP+K7I8LRGhFaprIP7J+KQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogData.Migrations.ban.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogData.Migrations.ban.html",
+          "hash": "ARa2TRwCPRjllX9rrZKr1w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogData.Migrations.init.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogData.Migrations.init.html",
+          "hash": "7t41M9UU95TQoeLU8MuB4g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogData.Migrations.refreshtoken.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogData.Migrations.refreshtoken.html",
+          "hash": "fj3kPvOQ9P8FQ27D4azcdg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogData.Migrations.report.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogData.Migrations.report.html",
+          "hash": "JBV20mMyia14xi7BjEiotQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogData.Migrations.subscription.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogData.Migrations.subscription.html",
+          "hash": "kpNZvkJsNDItzqWxpj/YFQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogData.Migrations.tabandfilefixes.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogData.Migrations.tabandfilefixes.html",
+          "hash": "/hk6l4tAgqfZL1eq89urfg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogData.Migrations.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogData.Migrations.html",
+          "hash": "mJvuZ37GvW4y0P7+ETlIRA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogData.Models.File.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogData.Models.File.html",
+          "hash": "Z1UB1530ll8MyR9YcOSb5Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogData.Models.Report.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogData.Models.Report.html",
+          "hash": "kwb4jnr/5HDV1P2jmLjkBA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogData.Models.Role.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogData.Models.Role.html",
+          "hash": "ULOFL3iFkQ8Hdjc3LBn54w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogData.Models.Subscription.Currency.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogData.Models.Subscription.Currency.html",
+          "hash": "ej19fR/qsa4xSB5rHp1sNQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogData.Models.Subscription.Money.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogData.Models.Subscription.Money.html",
+          "hash": "JjiNAqEaVBQ6sEjNy0SwkA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogData.Models.Subscription.Payment.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogData.Models.Subscription.Payment.html",
+          "hash": "QR2+EoKQp+ahz5qWieac1Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogData.Models.Subscription.Subscription.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogData.Models.Subscription.Subscription.html",
+          "hash": "/aocC3g/qOMnMUNrpFnqRg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogData.Models.Subscription.SubscriptionPeriod.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogData.Models.Subscription.SubscriptionPeriod.html",
+          "hash": "rJHeg/f4dENrgcsK5wuzpw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogData.Models.Subscription.SubscriptionPrice.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogData.Models.Subscription.SubscriptionPrice.html",
+          "hash": "uFbSdGl0xFyGoEeXSTG8dQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogData.Models.Subscription.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogData.Models.Subscription.html",
+          "hash": "2DtVMDZuQK1qRV9HvmLf4w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogData.Models.Tab.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogData.Models.Tab.html",
+          "hash": "WDGWmX+ZChKk5EHoKEOD6g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogData.Models.User.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogData.Models.User.html",
+          "hash": "K/MROatEl/yNf7tkqVrgbQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogData.Models.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogData.Models.html",
+          "hash": "I9syKUx+18wH3pX4JTKDjg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/GuitarCogData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/GuitarCogData.html",
+          "hash": "xpa4umKEYe7VOGJj2+gTVA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "api/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "api/index.html",
+          "hash": "kBhXw7krTIJcnJWQBX/Oig=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html",
+          "hash": "SL3kPB0kaFCr8vE3rGVHPg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/intro.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/intro.html",
+          "hash": "5E2W0h62yRzDv2oK9Ui56w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "articles/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "articles/toc.html",
+          "hash": "gB8AESyvNru97tzIZofEEg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html",
+          "hash": "/pjh10brOjLONiR51vnS0Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html",
+          "hash": "+rHUkRZHZRi5gd1aTU6lJA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot build incrementally because last build info is missing.",
+        "incrementalPhase": "build",
+        "total_file_count": 0,
+        "skipped_file_count": 0,
+        "full_build_reason_code": "NoAvailableBuildCache"
+      },
+      "processors": {
+        "ConceptualDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 3,
+          "skipped_file_count": 0
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 89,
+          "skipped_file_count": 0
+        },
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot support incremental post processing, the reason is: last post processor info is null.",
+        "incrementalPhase": "postProcessing",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}
