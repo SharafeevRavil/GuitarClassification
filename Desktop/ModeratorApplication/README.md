@@ -25,7 +25,7 @@ pip install keyring
 pip install requests
 pip install dateutil
 pip install pyjwt
-pip install python-magic
+pip install python-magic-bin==0.4.14
 ```
 
 ## Преднастройка расширения Qt for Python
