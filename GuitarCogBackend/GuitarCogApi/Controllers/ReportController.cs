@@ -22,6 +22,11 @@ public class ReportController : CheckAuthControllerBase
         _reportService = reportService;
     }
 
+    /// <summary>
+    /// Эндпоинт отправки пользователем жалобы на табулатуру
+    /// </summary>
+    /// <param name="tabId"></param>
+    /// <returns></returns>
     [HttpPost("{tabId:long}")]
     [Authorize]
     [ProducesResponseType(typeof(long), StatusCodes.Status200OK)]
@@ -39,6 +44,11 @@ public class ReportController : CheckAuthControllerBase
         return Ok(report.Id);
     }
 
+    /// <summary>
+    /// Эндпоинт получения модератором списка жалоб на табулатуры
+    /// </summary>
+    /// <param name="filter"></param>
+    /// <returns></returns>
     [HttpGet("/Moder/Report")]
     [Authorize(Roles = $"{nameof(Role.SuperAdmin)},{nameof(Role.Moderator)}")]
     [ApiExplorerSettings(GroupName = "ModerReport")]
@@ -53,6 +63,11 @@ public class ReportController : CheckAuthControllerBase
         return Ok(await _reportService.GetReports(Request, filter));
     }
 
+    /// <summary>
+    /// Эндпоинт отметки жалобы как просмотренной модератором
+    /// </summary>
+    /// <param name="reportId"></param>
+    /// <returns></returns>
     [HttpPost("/Moder/Report/MarkAsViewed")]
     [Authorize(Roles = $"{nameof(Role.SuperAdmin)},{nameof(Role.Moderator)}")]
     [ApiExplorerSettings(GroupName = "ModerReport")]

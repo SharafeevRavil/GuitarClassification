@@ -24,6 +24,12 @@ public class TabService
         _subscriptionService = subscriptionService;
     }
 
+    /// <summary>
+    /// Загрузка табулатуры
+    /// </summary>
+    /// <param name="addTabDto"></param>
+    /// <param name="user"></param>
+    /// <returns></returns>
     public async Task<(Tab?, Response?)> AddTab(AddTabDto addTabDto, User user)
     {
         var limits = await GetTabLimit(user);
@@ -40,6 +46,12 @@ public class TabService
         return (tab, null);
     }
 
+    /// <summary>
+    /// Удаление табулатуры
+    /// </summary>
+    /// <param name="tabId"></param>
+    /// <param name="authUser"></param>
+    /// <returns></returns>
     public async Task<(long?, Response?)> DeleteTab(long tabId, User? authUser = null)
     {
         var tab = await _dbContext.Tabs
@@ -56,6 +68,13 @@ public class TabService
         return (tab.Id, null);
     }
 
+    /// <summary>
+    /// Получение списка табулатур
+    /// </summary>
+    /// <param name="request"></param>
+    /// <param name="tabFilter"></param>
+    /// <param name="user"></param>
+    /// <returns></returns>
     public async Task<PagedResponse<TabListDto>> GetTabs(HttpRequest request, TabFilter tabFilter, User? user = null)
     {
         IQueryable<Tab> tabs = _dbContext.Tabs
@@ -80,6 +99,11 @@ public class TabService
         return paged;
     }
 
+    /// <summary>
+    /// Получение лимита на число загруженных пользователем табулатур
+    /// </summary>
+    /// <param name="user"></param>
+    /// <returns></returns>
     public async Task<TabLimitDto> GetTabLimit(User user)
     {
         const int userLimit = 1;

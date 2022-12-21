@@ -1,4 +1,4 @@
-﻿namespace GuitarCogApi.Dtos.Moder.ModerUser;
+﻿namespace GuitarCogApi.Dtos.ModerUser;
 
 public class CreateModerDto
 {

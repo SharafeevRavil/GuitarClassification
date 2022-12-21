@@ -1,5 +1,4 @@
 ﻿using GuitarCogApi.Dtos.General;
-using GuitarCogApi.Dtos.Moder.ModerUser;
 using GuitarCogApi.Dtos.ModerUser;
 using GuitarCogApi.Services.Moder;
 using GuitarCogData.Models;
@@ -80,6 +79,11 @@ public class ModerUserController : CheckAuthControllerBase
         return Ok(userDto);
     }
 
+    /// <summary>
+    /// Эндпоинт для бана пользователя
+    /// </summary>
+    /// <param name="userId"></param>
+    /// <returns></returns>
     [HttpPost("BanUser")]
     [Authorize(Roles = $"{nameof(Role.SuperAdmin)},{nameof(Role.Moderator)}")]
     [ProducesResponseType(typeof(void), StatusCodes.Status200OK)]
@@ -97,6 +101,11 @@ public class ModerUserController : CheckAuthControllerBase
         return Ok();
     }
 
+    /// <summary>
+    /// Эндпоинт разбана забаненного пользователя
+    /// </summary>
+    /// <param name="userId"></param>
+    /// <returns></returns>
     [HttpPost("UnbanUser")]
     [Authorize(Roles = $"{nameof(Role.SuperAdmin)},{nameof(Role.Moderator)}")]
     [ProducesResponseType(typeof(void), StatusCodes.Status200OK)]

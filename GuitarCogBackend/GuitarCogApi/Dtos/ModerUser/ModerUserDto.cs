@@ -1,6 +1,6 @@
 ﻿using GuitarCogApi.Dtos.Subscription;
 
-namespace GuitarCogApi.Dtos.Moder.ModerUser;
+namespace GuitarCogApi.Dtos.ModerUser;
 
 public class ModerUserDto
 {

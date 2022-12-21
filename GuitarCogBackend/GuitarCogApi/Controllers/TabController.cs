@@ -25,6 +25,11 @@ public class TabController : CheckAuthControllerBase
         _fileService = fileService;
     }
 
+    /// <summary>
+    /// Эндпоинт добавления пользователем табулатуры на сервер
+    /// </summary>
+    /// <param name="addTabDto"></param>
+    /// <returns></returns>
     [HttpPost]
     [Authorize]
     [ProducesResponseType(typeof(AddTabRespDto), StatusCodes.Status200OK)]
@@ -42,6 +47,11 @@ public class TabController : CheckAuthControllerBase
         return Ok(new AddTabRespDto(_fileService.GetUrlByFileId(Request, tab.TabFile.Id)));
     }
 
+    /// <summary>
+    /// Эндпоинт удаления пользователем собственной табулатуры
+    /// </summary>
+    /// <param name="tabId"></param>
+    /// <returns></returns>
     [HttpDelete("{tabId:long}")]
     [Authorize]
     [ProducesResponseType(typeof(AddTabRespDto), StatusCodes.Status200OK)]
@@ -59,6 +69,11 @@ public class TabController : CheckAuthControllerBase
         return Ok(tabId);
     }
 
+    /// <summary>
+    /// Эндпоинт удаления табулатуры модератором
+    /// </summary>
+    /// <param name="tabId"></param>
+    /// <returns></returns>
     [HttpDelete("/Moder/Tab/{tabId:long}")]
     [Authorize(Roles = $"{nameof(Role.SuperAdmin)},{nameof(Role.Moderator)}")]
     [ApiExplorerSettings(GroupName = "ModerTab")]
@@ -77,6 +92,11 @@ public class TabController : CheckAuthControllerBase
         return Ok(tabId);
     }
 
+    /// <summary>
+    /// Эндпоинт получения списка загруженных на сервер табулатур
+    /// </summary>
+    /// <param name="tabFilter"></param>
+    /// <returns></returns>
     [HttpGet]
     [ProducesResponseType(typeof(PagedResponse<TabListDto>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(Response), StatusCodes.Status400BadRequest)]
@@ -86,6 +106,10 @@ public class TabController : CheckAuthControllerBase
         return Ok(await _tabService.GetTabs(Request, tabFilter, user));
     }
 
+    /// <summary>
+    /// Эндпоинт получения максимального количества табулатур, которых может загрузить пользователь
+    /// </summary>
+    /// <returns></returns>
     [HttpGet("GetTabLimit")]
     [Authorize]
     [ProducesResponseType(typeof(PagedResponse<TabListDto>), StatusCodes.Status200OK)]

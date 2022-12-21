@@ -18,6 +18,12 @@ public class ReportService
         _fileService = fileService;
     }
 
+    /// <summary>
+    /// Жалоба на табулатуру
+    /// </summary>
+    /// <param name="user"></param>
+    /// <param name="tabId"></param>
+    /// <returns></returns>
     public async Task<(Report?, Response?)> ReportTab(User user, long tabId)
     {
         if (await CheckReported(user.Id, tabId))
@@ -37,12 +43,24 @@ public class ReportService
         return (report, null);
     }
 
+    /// <summary>
+    /// Проверка, жаловался ли пользователь на табулатуру 
+    /// </summary>
+    /// <param name="userId"></param>
+    /// <param name="tabId"></param>
+    /// <returns></returns>
     public Task<bool> CheckReported(string userId, long tabId) =>
         _dbContext.Report
             .Include(x => x.Tab)
             .Include(x => x.FromUser)
             .AnyAsync(x => x.FromUser.Id == userId && x.Tab.Id == tabId);
 
+    /// <summary>
+    /// Получение списка жалоб
+    /// </summary>
+    /// <param name="request"></param>
+    /// <param name="filter"></param>
+    /// <returns></returns>
     public async Task<PagedResponse<ReportListDto>> GetReports(HttpRequest request, ReportPagedFilter filter)
     {
         IQueryable<Report> reports = _dbContext.Report
@@ -78,6 +96,11 @@ public class ReportService
         return paged;
     }
 
+    /// <summary>
+    /// Отметка жалобы как просмотренной модераторм
+    /// </summary>
+    /// <param name="reportId"></param>
+    /// <returns></returns>
     public async Task<Response?> MarkAsViewed(long reportId)
     {
         var report = await _dbContext.Report.FirstOrDefaultAsync(x => x.Id == reportId);

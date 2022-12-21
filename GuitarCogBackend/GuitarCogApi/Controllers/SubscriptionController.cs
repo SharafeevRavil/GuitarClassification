@@ -22,6 +22,11 @@ public class SubscriptionController : CheckAuthControllerBase
         _subscriptionService = subscriptionService;
     }
 
+    /// <summary>
+    /// Эндпонт получения стоимости подписки с указанными параметрами
+    /// </summary>
+    /// <param name="getSubscriptionPriceDto"></param>
+    /// <returns></returns>
     [HttpGet("Price")]
     [ProducesResponseType(typeof(List<SubscriptionPriceDto>),StatusCodes.Status200OK)]
     public Task<IActionResult> GetPrice([FromQuery] GetSubscriptionPriceDto getSubscriptionPriceDto)
@@ -32,6 +37,11 @@ public class SubscriptionController : CheckAuthControllerBase
         return Task.FromResult<IActionResult>(Ok(list));
     }
 
+    /// <summary>
+    /// Эндпоинт подписки пользователем на сервис
+    /// </summary>
+    /// <param name="subscribeDto"></param>
+    /// <returns></returns>
     [Authorize]
     [HttpPost("Subscribe")]
     [ProducesResponseType(typeof(List<SubscriptionPriceDto>),StatusCodes.Status200OK)]
@@ -50,6 +60,11 @@ public class SubscriptionController : CheckAuthControllerBase
         return Ok(resultDto);
     }
 
+    /// <summary>
+    /// Эндпоинт получения статуса подипски пользователя
+    /// </summary>
+    /// <param name="date"></param>
+    /// <returns></returns>
     [Authorize]
     [HttpGet("CheckSubscribed")]
     [ProducesResponseType(typeof(SubscriptionInfoDto),StatusCodes.Status200OK)]

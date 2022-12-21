@@ -30,6 +30,11 @@ public class ProfileController : CheckAuthControllerBase
         _fileService = fileService;
     }
     
+    /// <summary>
+    /// Эндпоинт смены пароля пользователя
+    /// </summary>
+    /// <param name="dto"></param>
+    /// <returns></returns>
     [Authorize]
     [HttpPost("ChangePassword")]
     [ProducesResponseType(typeof(TokenDto),StatusCodes.Status200OK)]
@@ -56,6 +61,11 @@ public class ProfileController : CheckAuthControllerBase
         return Ok(new TokenDto(new JwtSecurityTokenHandler().WriteToken(token), token.ValidTo, refreshToken));
     }
 
+    /// <summary>
+    /// Эндпоинт смены электронной почты пользователя
+    /// </summary>
+    /// <param name="dto"></param>
+    /// <returns></returns>
     [Authorize]
     [HttpPost("ChangeEmail")]
     [ProducesResponseType(typeof(TokenDto),StatusCodes.Status200OK)]
@@ -88,6 +98,11 @@ public class ProfileController : CheckAuthControllerBase
         return Ok(new TokenDto(new JwtSecurityTokenHandler().WriteToken(token), token.ValidTo, refreshToken));
     }
 
+    /// <summary>
+    /// Эндпоинт смены именя пользователя
+    /// </summary>
+    /// <param name="dto"></param>
+    /// <returns></returns>
     [Authorize]
     [HttpPost("ChangeUsername")]
     [ProducesResponseType(typeof(TokenDto),StatusCodes.Status200OK)]
@@ -118,6 +133,10 @@ public class ProfileController : CheckAuthControllerBase
         return Ok(new TokenDto(new JwtSecurityTokenHandler().WriteToken(token), token.ValidTo, refreshToken));
     }
 
+    /// <summary>
+    /// Эндпоинт получения информации о пользователя
+    /// </summary>
+    /// <returns></returns>
     [Authorize]
     [HttpGet("GetUserInfo")]
     [ProducesResponseType(typeof(ProfileDto),StatusCodes.Status200OK)]
@@ -142,6 +161,11 @@ public class ProfileController : CheckAuthControllerBase
         return Ok(dto);
     }
 
+    /// <summary>
+    /// Эндпоинт смены аватара пользователя
+    /// </summary>
+    /// <param name="image"></param>
+    /// <returns></returns>
     [Authorize]
     [HttpPost("ChangeAvatar")]
     [ProducesResponseType(typeof(AvatarDto),StatusCodes.Status200OK)]

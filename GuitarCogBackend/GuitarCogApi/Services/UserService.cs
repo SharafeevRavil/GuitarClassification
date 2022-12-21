@@ -13,6 +13,13 @@ public class UserService
         _userManager = userManager;
     }
 
+    /// <summary>
+    /// Создание пользователя
+    /// </summary>
+    /// <param name="username"></param>
+    /// <param name="email"></param>
+    /// <param name="password"></param>
+    /// <returns></returns>
     public async Task<(User?, Response?)> CreateUser(string username, string email, string password)
     {
         var userExists = await _userManager.FindByNameAsync(username);
