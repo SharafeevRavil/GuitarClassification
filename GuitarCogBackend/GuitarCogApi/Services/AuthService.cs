@@ -22,8 +22,8 @@ public class AuthService
     /// <summary>
     /// Генерация токенов
     /// </summary>
-    /// <param name="user"></param>
-    /// <returns></returns>
+    /// <param name="user">Пользователь для которого генерируются токены</param>
+    /// <returns>Пара access и refresh токенов</returns>
     public async Task<(JwtSecurityToken token, string refreshToken)> GenerateTokensPair(User user)
     {
         var token = await GetToken(user);
@@ -37,10 +37,10 @@ public class AuthService
     }
 
     /// <summary>
-    /// Генерация токенов для пользователя
+    /// Генерация access токена для пользователя
     /// </summary>
-    /// <param name="user"></param>
-    /// <returns></returns>
+    /// <param name="user">Пользователь</param>
+    /// <returns>Access токен</returns>
     private async Task<JwtSecurityToken> GetToken(User user)
     {
         var userRoles = await _userManager.GetRolesAsync(user);
@@ -70,7 +70,7 @@ public class AuthService
     /// <summary>
     /// Генерация refresh токена
     /// </summary>
-    /// <returns></returns>
+    /// <returns>refresh токен</returns>
     private static string GenerateRefreshToken()
     {
         var randomNumber = new byte[64];
@@ -82,8 +82,8 @@ public class AuthService
     /// <summary>
     /// Получение информации из просроченного токена
     /// </summary>
-    /// <param name="token"></param>
-    /// <returns></returns>
+    /// <param name="token">access token</param>
+    /// <returns>Claims из токена</returns>
     /// <exception cref="SecurityTokenException"></exception>
     public ClaimsPrincipal? GetPrincipalFromExpiredToken(string? token)
     {

@@ -27,9 +27,9 @@ public class TabService
     /// <summary>
     /// Загрузка табулатуры
     /// </summary>
-    /// <param name="addTabDto"></param>
-    /// <param name="user"></param>
-    /// <returns></returns>
+    /// <param name="addTabDto">dto запроса</param>
+    /// <param name="user">Пользователь</param>
+    /// <returns>Табулатура/ошибка</returns>
     public async Task<(Tab?, Response?)> AddTab(AddTabDto addTabDto, User user)
     {
         var limits = await GetTabLimit(user);
@@ -49,9 +49,9 @@ public class TabService
     /// <summary>
     /// Удаление табулатуры
     /// </summary>
-    /// <param name="tabId"></param>
-    /// <param name="authUser"></param>
-    /// <returns></returns>
+    /// <param name="tabId">id табулатуры</param>
+    /// <param name="authUser">пользователь, если подписка его</param>
+    /// <returns>Id удаленной табулатуры/ошибка</returns>
     public async Task<(long?, Response?)> DeleteTab(long tabId, User? authUser = null)
     {
         var tab = await _dbContext.Tabs
@@ -71,10 +71,10 @@ public class TabService
     /// <summary>
     /// Получение списка табулатур
     /// </summary>
-    /// <param name="request"></param>
-    /// <param name="tabFilter"></param>
-    /// <param name="user"></param>
-    /// <returns></returns>
+    /// <param name="request">HttpRequest текущего контекста</param>
+    /// <param name="tabFilter">фильтр табулатур</param>
+    /// <param name="user">Пользователь</param>
+    /// <returns>Пагинированный список табулатур</returns>
     public async Task<PagedResponse<TabListDto>> GetTabs(HttpRequest request, TabFilter tabFilter, User? user = null)
     {
         IQueryable<Tab> tabs = _dbContext.Tabs
@@ -102,8 +102,8 @@ public class TabService
     /// <summary>
     /// Получение лимита на число загруженных пользователем табулатур
     /// </summary>
-    /// <param name="user"></param>
-    /// <returns></returns>
+    /// <param name="user">Пользователь</param>
+    /// <returns>Лимит табулатур</returns>
     public async Task<TabLimitDto> GetTabLimit(User user)
     {
         const int userLimit = 1;

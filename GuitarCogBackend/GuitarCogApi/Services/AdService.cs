@@ -16,9 +16,9 @@ public class AdService
     /// <summary>
     /// Получение рекламы
     /// </summary>
-    /// <param name="httpRequest"></param>
+    /// <param name="httpRequest">HttpRequest текущего реквеста</param>
     /// <param name="count">Количество рекламных баннеров</param>
-    /// <returns></returns>
+    /// <returns>Список рекламы</returns>
     public List<AdListDto> GetAvailableAds(HttpRequest httpRequest, int count = 10)
     {
         var adsPath = Path.Combine(Directory.GetCurrentDirectory(), "StaticFiles", "Ads");

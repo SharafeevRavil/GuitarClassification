@@ -30,8 +30,8 @@ public class ModerUserService
     /// <summary>
     /// Создание модератора
     /// </summary>
-    /// <param name="dto"></param>
-    /// <returns></returns>
+    /// <param name="dto">dto с данными пользователя</param>
+    /// <returns>Созданный пользователь/ошибка</returns>
     public async Task<(User?, Response?)> CreateModer(CreateModerDto dto)
     {
         var (user, response) = await _userService.CreateUser(dto.Username, dto.Email, dto.Password);
@@ -45,8 +45,8 @@ public class ModerUserService
     /// <summary>
     /// Получение списка пользователей
     /// </summary>
-    /// <param name="pagedFilter"></param>
-    /// <returns></returns>
+    /// <param name="pagedFilter">фильтр</param>
+    /// <returns>Пагинированный список пользователей</returns>
     public async Task<PagedResponse<ModerUserListDto>> GetUsers(ModerUserPagedFilter pagedFilter)
     {
         IQueryable<User> users = _dbContext.Users
@@ -65,9 +65,9 @@ public class ModerUserService
     /// <summary>
     /// Получение данных о пользователе
     /// </summary>
-    /// <param name="request"></param>
-    /// <param name="userId"></param>
-    /// <returns></returns>
+    /// <param name="request">HttpRequest текущего контекста</param>
+    /// <param name="userId">Id пользователя</param>
+    /// <returns>Информация о пользователя/ошибка</returns>
     public async Task<(ModerUserDto?, Response?)> GetUser(HttpRequest request, string userId)
     {
         var user = await _dbContext.Users
@@ -91,9 +91,9 @@ public class ModerUserService
     /// <summary>
     /// Бан пользователя
     /// </summary>
-    /// <param name="moder"></param>
-    /// <param name="userId"></param>
-    /// <returns></returns>
+    /// <param name="moder">Модератор, выполняющий действие</param>
+    /// <param name="userId">Id пользователя для бана</param>
+    /// <returns>null или ошибка</returns>
     public async Task<Response?> BanUser(User moder, string userId)
     {
         var user = await _dbContext.Users
@@ -117,9 +117,9 @@ public class ModerUserService
     /// <summary>
     /// Разбан пользователя
     /// </summary>
-    /// <param name="moder"></param>
-    /// <param name="userId"></param>
-    /// <returns></returns>
+    /// <param name="moder">Модератор, выполняющий действие</param>
+    /// <param name="userId">Id пользователя для бана</param>
+    /// <returns>null или ошибка</returns>
     public async Task<Response?> UnbanUser(User moder, string userId)
     {
         var user = await _dbContext.Users

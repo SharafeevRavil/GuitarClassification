@@ -28,8 +28,8 @@ public class TabController : CheckAuthControllerBase
     /// <summary>
     /// Эндпоинт добавления пользователем табулатуры на сервер
     /// </summary>
-    /// <param name="addTabDto"></param>
-    /// <returns></returns>
+    /// <param name="addTabDto">dto добавления табулатуры</param>
+    /// <returns>результат добавления</returns>
     [HttpPost]
     [Authorize]
     [ProducesResponseType(typeof(AddTabRespDto), StatusCodes.Status200OK)]
@@ -50,11 +50,11 @@ public class TabController : CheckAuthControllerBase
     /// <summary>
     /// Эндпоинт удаления пользователем собственной табулатуры
     /// </summary>
-    /// <param name="tabId"></param>
-    /// <returns></returns>
+    /// <param name="tabId">id табулатуры</param>
+    /// <returns>id удаленной табулары</returns>
     [HttpDelete("{tabId:long}")]
     [Authorize]
-    [ProducesResponseType(typeof(AddTabRespDto), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(long), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(Response), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> DeleteTab(long tabId)
     {
@@ -72,12 +72,12 @@ public class TabController : CheckAuthControllerBase
     /// <summary>
     /// Эндпоинт удаления табулатуры модератором
     /// </summary>
-    /// <param name="tabId"></param>
-    /// <returns></returns>
+    /// <param name="tabId">id табулатуры</param>
+    /// <returns>id удаленной табулатуры</returns>
     [HttpDelete("/Moder/Tab/{tabId:long}")]
     [Authorize(Roles = $"{nameof(Role.SuperAdmin)},{nameof(Role.Moderator)}")]
     [ApiExplorerSettings(GroupName = "ModerTab")]
-    [ProducesResponseType(typeof(AddTabRespDto), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(long), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(Response), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> DeleteModerTab(long tabId)
     {
@@ -95,8 +95,8 @@ public class TabController : CheckAuthControllerBase
     /// <summary>
     /// Эндпоинт получения списка загруженных на сервер табулатур
     /// </summary>
-    /// <param name="tabFilter"></param>
-    /// <returns></returns>
+    /// <param name="tabFilter">фильтр табулатур</param>
+    /// <returns>Пагинированный список табулатур</returns>
     [HttpGet]
     [ProducesResponseType(typeof(PagedResponse<TabListDto>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(Response), StatusCodes.Status400BadRequest)]
@@ -109,7 +109,7 @@ public class TabController : CheckAuthControllerBase
     /// <summary>
     /// Эндпоинт получения максимального количества табулатур, которых может загрузить пользователь
     /// </summary>
-    /// <returns></returns>
+    /// <returns>Лимиты табулатур пользователя</returns>
     [HttpGet("GetTabLimit")]
     [Authorize]
     [ProducesResponseType(typeof(PagedResponse<TabListDto>), StatusCodes.Status200OK)]

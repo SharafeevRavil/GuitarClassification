@@ -25,8 +25,8 @@ public class ModerUserController : CheckAuthControllerBase
     /// <summary>
     /// Эндпоинт получения списка пользователей
     /// </summary>
-    /// <param name="pagedFilter"></param>
-    /// <returns></returns>
+    /// <param name="pagedFilter">фильтр пользователей</param>
+    /// <returns>Пагинированный список пользователей</returns>
     [HttpGet]
     [Authorize(Roles = $"{nameof(Role.SuperAdmin)},{nameof(Role.Moderator)}")]
     [ProducesResponseType(typeof(PagedResponse<ModerUserListDto>), StatusCodes.Status200OK)]
@@ -43,7 +43,7 @@ public class ModerUserController : CheckAuthControllerBase
     /// <summary>
     /// Эндпоинт создания модератора главным админом
     /// </summary>
-    /// <param name="createModerDto"></param>
+    /// <param name="createModerDto">dto создания пользователя</param>
     /// <returns>ID модера</returns>
     [HttpPost]
     [Authorize(Roles = $"{nameof(Role.SuperAdmin)}")]
@@ -61,8 +61,8 @@ public class ModerUserController : CheckAuthControllerBase
     /// <summary>
     /// Эндпоинт получения информации о пользователе
     /// </summary>
-    /// <param name="id"></param>
-    /// <returns></returns>
+    /// <param name="id">id пользователя</param>
+    /// <returns>Информация о пользователе</returns>
     [HttpGet("{id}")]
     [Authorize(Roles = $"{nameof(Role.SuperAdmin)},{nameof(Role.Moderator)}")]
     [ProducesResponseType(typeof(ModerUserDto), StatusCodes.Status200OK)]
@@ -82,8 +82,8 @@ public class ModerUserController : CheckAuthControllerBase
     /// <summary>
     /// Эндпоинт для бана пользователя
     /// </summary>
-    /// <param name="userId"></param>
-    /// <returns></returns>
+    /// <param name="userId">id пользователя</param>
+    /// <returns>void</returns>
     [HttpPost("BanUser")]
     [Authorize(Roles = $"{nameof(Role.SuperAdmin)},{nameof(Role.Moderator)}")]
     [ProducesResponseType(typeof(void), StatusCodes.Status200OK)]
@@ -104,8 +104,8 @@ public class ModerUserController : CheckAuthControllerBase
     /// <summary>
     /// Эндпоинт разбана забаненного пользователя
     /// </summary>
-    /// <param name="userId"></param>
-    /// <returns></returns>
+    /// <param name="userId">id пользователя</param>
+    /// <returns>void</returns>
     [HttpPost("UnbanUser")]
     [Authorize(Roles = $"{nameof(Role.SuperAdmin)},{nameof(Role.Moderator)}")]
     [ProducesResponseType(typeof(void), StatusCodes.Status200OK)]

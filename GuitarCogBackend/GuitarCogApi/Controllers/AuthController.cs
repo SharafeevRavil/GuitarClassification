@@ -32,8 +32,8 @@ public class AuthController : CheckAuthControllerBase
     /// <summary>
     /// Эндпоинт входа 
     /// </summary>
-    /// <param name="model"></param>
-    /// <returns></returns>
+    /// <param name="model">Dto входа</param>
+    /// <returns>Пара токенов</returns>
     [HttpPost("SignIn")]
     [ProducesResponseType(typeof(TokenDto),StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(Response),StatusCodes.Status400BadRequest)]
@@ -53,8 +53,8 @@ public class AuthController : CheckAuthControllerBase
     /// <summary>
     /// Эндпоинт регистрации
     /// </summary>
-    /// <param name="model"></param>
-    /// <returns></returns>
+    /// <param name="model">dto регистрации</param>
+    /// <returns>Пара токенов</returns>
     [HttpPost("SignUp")]
     [ProducesResponseType(typeof(TokenDto),StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(Response),StatusCodes.Status400BadRequest)]
@@ -72,8 +72,8 @@ public class AuthController : CheckAuthControllerBase
     /// <summary>
     /// Эндпоинт обновления токена
     /// </summary>
-    /// <param name="tokenModel"></param>
-    /// <returns></returns>
+    /// <param name="tokenModel">Токены</param>
+    /// <returns>Новая пара токенов</returns>
     [HttpPost("RefreshToken")]
     [ProducesResponseType(typeof(TokenDto),StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(Response),StatusCodes.Status400BadRequest)]
@@ -99,7 +99,7 @@ public class AuthController : CheckAuthControllerBase
     /// <summary>
     /// Эндпоинт проверки входа
     /// </summary>
-    /// <returns></returns>
+    /// <returns>Статус авторизации</returns>
     [Authorize]
     [HttpGet("CheckAuthorized")]
     [ProducesResponseType(typeof(AuthorizedDto),StatusCodes.Status200OK)]

@@ -21,9 +21,9 @@ public class ReportService
     /// <summary>
     /// Жалоба на табулатуру
     /// </summary>
-    /// <param name="user"></param>
-    /// <param name="tabId"></param>
-    /// <returns></returns>
+    /// <param name="user">Пользователь</param>
+    /// <param name="tabId">Id табулатуры</param>
+    /// <returns>Жалоба/ошибка</returns>
     public async Task<(Report?, Response?)> ReportTab(User user, long tabId)
     {
         if (await CheckReported(user.Id, tabId))
@@ -46,9 +46,9 @@ public class ReportService
     /// <summary>
     /// Проверка, жаловался ли пользователь на табулатуру 
     /// </summary>
-    /// <param name="userId"></param>
-    /// <param name="tabId"></param>
-    /// <returns></returns>
+    /// <param name="userId">Id пользователя</param>
+    /// <param name="tabId">Id табулатуры</param>
+    /// <returns>Пожаловался или нет</returns>
     public Task<bool> CheckReported(string userId, long tabId) =>
         _dbContext.Report
             .Include(x => x.Tab)
@@ -58,9 +58,9 @@ public class ReportService
     /// <summary>
     /// Получение списка жалоб
     /// </summary>
-    /// <param name="request"></param>
-    /// <param name="filter"></param>
-    /// <returns></returns>
+    /// <param name="request">HttpRequest текущего контекста</param>
+    /// <param name="filter">фильтр жалоб</param>
+    /// <returns>пагинированный список жалоб</returns>
     public async Task<PagedResponse<ReportListDto>> GetReports(HttpRequest request, ReportPagedFilter filter)
     {
         IQueryable<Report> reports = _dbContext.Report
@@ -99,8 +99,8 @@ public class ReportService
     /// <summary>
     /// Отметка жалобы как просмотренной модераторм
     /// </summary>
-    /// <param name="reportId"></param>
-    /// <returns></returns>
+    /// <param name="reportId">Id жалобы</param>
+    /// <returns>null или ошибка</returns>
     public async Task<Response?> MarkAsViewed(long reportId)
     {
         var report = await _dbContext.Report.FirstOrDefaultAsync(x => x.Id == reportId);
