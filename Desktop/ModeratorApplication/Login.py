@@ -40,6 +40,8 @@ class Login(QDialog):
             keyring.set_password('GuitarCogModerator', 'refreshToken', response_json['refreshToken'])
             keyring.set_password('GuitarCogModerator', 'expiration', response_json['expiration'])
             self.accept()
+        elif response.status_code == 401:
+            self.ui.error_label.setText('Wrong username of password')
         elif response.headers.get('content-type') == 'application/json':
             response_json = response.json()
             if 'status' in response_json and response_json['status'] == 'Error':

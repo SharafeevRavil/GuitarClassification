@@ -76,12 +76,12 @@ class List(QtWidgets.QWidget):
     
     def load_reports_all(self, page = 1):
         self.source_type = 'reports_all'
-        params = {'Page': page, 'PageSize': 2, 'ShowViewedReports': True}
+        params = {'Page': page, 'PageSize': 2, 'ShowViewedReports': True, 'HideBannedUserTabsReports': True}
         self.load_reports(params)
 
     def load_reports_new(self, page = 1):
         self.source_type = 'reports_new'
-        params = {'Page': page, 'PageSize': 2, 'ShowViewedReports': False}
+        params = {'Page': page, 'PageSize': 2, 'ShowViewedReports': False, 'HideBannedUserTabsReports': True}
         self.load_reports(params)
 
     def load_reports(self, params):

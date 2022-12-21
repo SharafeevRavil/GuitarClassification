@@ -38,7 +38,7 @@ class ReportListItem(QtWidgets.QWidget):
         self.main_window.user_profile.load_profile(self.user_id)
 
     def open_tab(self):
-        self.main_window.view_tab.open(self.tab_url, self.tab_name, self.ui.label_reported.text(), self.id, self.main_window)
+        self.main_window.view_tab.open(self.tab_url, self.tab_name, self.ui.label_reported.text(), self.tab_id, self.main_window)
         self.main_window.ui.stackedWidget.setCurrentWidget(self.main_window.view_tab)
 
     def mark_viewed(self):

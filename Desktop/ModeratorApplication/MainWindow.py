@@ -69,25 +69,34 @@ class MainWindow(QMainWindow):
                         self.ui.action_users_all.setVisible(True)
                         self.ui.action_users_banned.setVisible(True)
                         self.ui.action_view_all.setVisible(True)
-                        self.ui.action_view_reported.setVisible(True)
+                        self.ui.action_reports_all.setVisible(True)
+                        self.ui.action_reports_new.setVisible(True)
                         self.ui.actionCreate.setVisible(True)
                     elif 'Moderator' in decoded['http://schemas.microsoft.com/ws/2008/06/identity/claims/role']:
                         self.ui.action_users_all.setVisible(True)
                         self.ui.action_users_banned.setVisible(True)
                         self.ui.action_view_all.setVisible(True)
-                        self.ui.action_view_reported.setVisible(True)
+                        self.ui.action_reports_all.setVisible(True)
+                        self.ui.action_reports_new.setVisible(True)
                         self.ui.actionCreate.setVisible(False)
                 else:
                     self.ui.action_users_all.setVisible(False)
                     self.ui.action_users_banned.setVisible(False)
                     self.ui.action_view_all.setVisible(False)
-                    self.ui.action_view_reported.setVisible(False)
+                    self.ui.action_reports_all.setVisible(False)
+                    self.ui.action_reports_new.setVisible(False)
                     self.ui.actionCreate.setVisible(False)
                     self.logout()
 
         if not self.isAuthed:
             self.username = ''
-            self.user_id = ''           
+            self.user_id = ''
+            self.ui.action_users_all.setVisible(False)
+            self.ui.action_users_banned.setVisible(False)
+            self.ui.action_view_all.setVisible(False)
+            self.ui.action_reports_all.setVisible(False)
+            self.ui.action_reports_new.setVisible(False)
+            self.ui.actionCreate.setVisible(False)           
 
         self.ui.actionLogin.setVisible(not self.isAuthed)
         

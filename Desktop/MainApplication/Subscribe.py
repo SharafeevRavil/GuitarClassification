@@ -38,7 +38,7 @@ class Subscribe(QDialog):
         response = Requests.post(settings.api_path + settings.subscribe_path, json=json, needAuth=True)
         if response.status_code == 200:
             self.accept()
-        elif response.headers.get('content-type') == 'application/json':
+        elif 'application/json' in response.headers.get('content-type'):
             response_json = response.json()
             if 'status' in response_json and response_json['status'] == 'Error':
                 self.ui.label_error.setText(response_json['message'])
@@ -52,7 +52,7 @@ class Subscribe(QDialog):
         if response.status_code == 200:
             response_json = response.json()
             self.ui.label_price.setText(str(response_json[0]['money']['amount']))
-        elif response.headers.get('content-type') == 'application/json':
+        elif 'application/json' in response.headers.get('content-type'):
             response_json = response.json()
             if 'status' in response_json and response_json['status'] == 'Error':
                 self.ui.label_error.setText(response_json['message'])

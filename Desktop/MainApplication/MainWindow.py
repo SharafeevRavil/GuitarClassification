@@ -63,10 +63,15 @@ class MainWindow(QMainWindow):
         self.ui.stackedWidget.addWidget(self.from_real_time)
 
         self.from_file.ui.button_generate.clicked.connect(lambda: self.generate_gp(self.from_file.filename))
-        self.from_real_time.ui.button_submit.clicked.connect(self.generate_gp)
+        self.from_real_time.ui.button_submit.clicked.connect(lambda: self.generate_gp())
         self.view_tab.ui.button_return.clicked.connect(self.return_to_list)
 
         GPCreator.create(settings.preload_file)
+
+        self.adTimer = QTimer()
+        self.adTimer.setInterval(60 * 1000)
+        self.adTimer.timeout.connect(self.load_ads)
+        self.adTimer.start()
 
     def check_authorized(self):
         self.isAuthed = False
@@ -84,7 +89,8 @@ class MainWindow(QMainWindow):
 
         if not self.isAuthed:
             self.username = ''
-            self.user_id = ''           
+            self.user_id = ''
+            self.ui.stackedWidget.setCurrentWidget(self.ui.page_welcome)           
 
         self.ui.action_login.setVisible(not self.isAuthed)
         self.ui.action_register.setVisible(not self.isAuthed)
@@ -99,10 +105,6 @@ class MainWindow(QMainWindow):
             self.ui.label_welcome.setText(f'Welcome, {self.username}!')
         
         self.load_ads()
-        self.adTimer = QTimer()
-        self.adTimer.setInterval(60 * 1000)
-        self.adTimer.timeout.connect(self.load_ads)
-        self.adTimer.start()
   
     def generate_gp(self, filename = None):
         self.check_authorized()
@@ -178,7 +180,7 @@ class MainWindow(QMainWindow):
                 self.ui.ad2.setVisible(False)
                 self.ui.ad3.setVisible(False)
 
-        elif response.headers.get('content-type') == 'application/json':
+        elif 'application/json' in response.headers.get('content-type'):
             response_json = response.json()
             if 'status' in response_json and response_json['status'] == 'Error':
                 self.ui.label_error.setText(response_json['message'])
