@@ -30,6 +30,7 @@ class Profile(QtWidgets.QWidget):
         self.ui.button_subscribe.clicked.connect(self.open_subscribe)
 
     def load_profile(self):
+        self.main_window.check_authorized()
         response = Requests.get(settings.api_path + settings.user_info_path, needAuth=True)            
         if response.status_code == 200:
             response_json = response.json()
@@ -50,7 +51,7 @@ class Profile(QtWidgets.QWidget):
             keyring.set_password('GuitarCog', 'token', response_json['token'])
             keyring.set_password('GuitarCog', 'refreshToken', response_json['refreshToken'])
             keyring.set_password('GuitarCog', 'expiration', response_json['expiration'])
-        elif response.headers.get('content-type') == 'application/json':
+        elif 'application/json' in response.headers.get('content-type'):
             response_json = response.json()
             if 'status' in response_json and response_json['status'] == 'Error':
                 self.ui.label_error.setText(response_json['message'])
@@ -64,7 +65,7 @@ class Profile(QtWidgets.QWidget):
             keyring.set_password('GuitarCog', 'token', response_json['token'])
             keyring.set_password('GuitarCog', 'refreshToken', response_json['refreshToken'])
             keyring.set_password('GuitarCog', 'expiration', response_json['expiration'])
-        elif response.headers.get('content-type') == 'application/json':
+        elif 'application/json' in response.headers.get('content-type'):
             response_json = response.json()
             if 'status' in response_json and response_json['status'] == 'Error':
                 self.ui.label_error.setText(response_json['message'])
@@ -90,7 +91,7 @@ class Profile(QtWidgets.QWidget):
             if response.status_code == 200:
                 response_json = response.json()
                 self.load_avatar(response_json['avatarUrl'])
-            elif response.headers.get('content-type') == 'application/json':
+            elif 'application/json' in response.headers.get('content-type'):
                 response_json = response.json()
                 if 'status' in response_json and response_json['status'] == 'Error':
                     self.ui.label_error.setText(response_json['message'])
@@ -127,7 +128,7 @@ class Profile(QtWidgets.QWidget):
                 self.ui.label_subscription.setText('No subscription')
                 self.ui.label_subscribed_until.setText('')
                 self.ui.button_subscribe.setVisible(True)
-        elif response.headers.get('content-type') == 'application/json':
+        elif 'application/json' in response.headers.get('content-type'):
             response_json = response.json()
             if 'status' in response_json and response_json['status'] == 'Error':
                 self.ui.label_error.setText(response_json['message'])

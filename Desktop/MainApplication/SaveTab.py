@@ -54,7 +54,7 @@ class SaveTab(QtWidgets.QWidget):
         response = Requests.post(settings.api_path + settings.tab_path, files=files, data=data, needAuth=True)
         if response.status_code == 200:
             pass
-        elif response.headers.get('content-type') == 'application/json':
+        elif 'application/json' in response.headers.get('content-type'):
             response_json = response.json()
             if 'status' in response_json and response_json['status'] == 'Error':
                 self.ui.label_error.setText(response_json['message'])
@@ -70,4 +70,4 @@ class SaveTab(QtWidgets.QWidget):
         self.ui.label_error.setText('')
 
     def return_button(self):
-        self.main_window.ui.stackedWidget.setCurrentWidget(self.ui.page_welcome)
+        self.main_window.ui.stackedWidget.setCurrentWidget(self.main_window.ui.page_welcome)
