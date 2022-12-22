@@ -19,8 +19,8 @@ halfwin = con_win_size // 2 # половина окна
 num_classes = num_classes # количество классов - см. выше
 num_strings = 6 # количество струн
 input_shape = (cqt_n_bins, con_win_size, 1) # формат входных данных CNN
-train_split = 0.90 # разделение на трейн и тест
-epochs = 8 # число эпох
+train_split = 0.80 # разделение на трейн и тест
+epochs = 4 # число эпох
 
 batch_size = 128 # размер батча генератора
 shuffle = True # перемешивание в генераторе

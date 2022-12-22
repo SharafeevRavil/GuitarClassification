@@ -3,7 +3,8 @@ from keras.models import Sequential
 from keras.layers import Dense, Dropout, Flatten, Reshape, Activation
 from keras.layers import Conv2D, MaxPooling2D
 from keras import backend as K
-from . import Settings
+#from . import Settings
+import Settings
 
 # софтмакс по каждой струне
 def softmax_by_string(t):
