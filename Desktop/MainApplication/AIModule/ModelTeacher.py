@@ -10,8 +10,8 @@ from NotIntersectingGenerator import NotIntersectingGenerator as NIGenerator
 from sklearn.model_selection import train_test_split
 import CnnModel as cnnModel
 import matplotlib
-matplotlib.use('tkagg')
-from matplotlib import pyplot
+#matplotlib.use('tkagg')
+#from matplotlib import pyplot
 
 class ModelTeacher():
     def load_IDs(self):
@@ -30,10 +30,10 @@ class ModelTeacher():
                 train_ids.append(i)
         return train_ids, test_ids
 
-    def teach_model(self, model, gen_train, callbacks = [], workers = 6, gen_test = None):
+    def teach_model(self, model, gen_train, callbacks = [], workers = 6, gen_test = None, epochs=Settings.epochs):
         history = model.fit(x = gen_train
                     ,validation_data=gen_test
-                    ,epochs=Settings.epochs
+                    ,epochs=epochs
                     ,verbose=1
                     #,use_multiprocessing=True # не работает и намертво лочит комп - возможно генератор плохо написан
                     ,workers=workers
@@ -88,15 +88,21 @@ class LossHistory(keras.callbacks.Callback):
     def on_train_begin(self, logs={}):
         self.loss = []
         self.avg_acc = []
+        self.val_loss = []
+        self.val_avg_acc = []
 
     def on_batch_end(self, batch, logs={}):
         self.loss.append(logs.get('loss'))
         self.avg_acc.append(logs.get('avg_acc'))
+        self.val_loss.append(logs.get('val_loss'))
+        self.val_avg_acc.append(logs.get('val_avg_acc'))
 
     def get_data(self):
         return {
             "loss": self.loss,
-            "avg_acc": self.avg_acc
+            "avg_acc": self.avg_acc,
+            "val_loss": self.val_loss,
+            "val_avg_acc": self.val_avg_acc
         }
 
 
@@ -117,16 +123,16 @@ if __name__ == "__main__":
 
     mt.save_weights(model)
     
-    pyplot.title('Loss')
-    pyplot.plot(history.history['loss'], label='train')
-    pyplot.legend()
-    pyplot.show()
+    #pyplot.title('Loss')
+    #pyplot.plot(history.history['loss'], label='train')
+    #pyplot.legend()
+    #pyplot.show()
     
-    pyplot.title('Loss by batches')
-    pyplot.plot(lossHistory.loss, label='loss')
-    pyplot.plot(lossHistory.avg_acc, label='avg_acc')
-    pyplot.legend()
-    pyplot.show()
+    #pyplot.title('Loss by batches')
+    #pyplot.plot(lossHistory.loss, label='loss')
+    #pyplot.plot(lossHistory.avg_acc, label='avg_acc')
+    #pyplot.legend()
+    #pyplot.show()
 
     historyFile = os.path.realpath(os.path.join(os.path.dirname(__file__), "history.json"))
     json.dump(history.history, open(historyFile, 'w'))

@@ -1,4 +1,4 @@
-from . import Settings
+import Settings
 import numpy as np
 
 def beautify_output(output, cat):

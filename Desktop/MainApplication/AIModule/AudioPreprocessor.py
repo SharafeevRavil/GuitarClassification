@@ -5,7 +5,7 @@ from scipy.io import wavfile
 import sys
 import librosa
 from keras.utils import to_categorical
-from . import Settings
+import Settings
 
 class AudioPreprocessor:
     # загрузка аудиофайла по пути
