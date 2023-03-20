@@ -84,7 +84,7 @@ class DatasetPreprocessor:
         audio_chunks, frets = self.process_audiofile(filename)
         if not os.path.exists(folder_path):
             os.makedirs(folder_path)
-        save_path = os.path.join(folder_path, filename + ".npz")
+        save_path = os.path.join(folder_path, filename + ".npz")    
         np.savez(save_path, audio_chunks=audio_chunks, frets=frets)
 
         with open(idsFile, 'a+') as ids:
