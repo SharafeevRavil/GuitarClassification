@@ -1,4 +1,7 @@
 # GuitarClassification
+
+[![api tests](https://github.com/SharafeevRavil/GuitarClassification/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/SharafeevRavil/GuitarClassification/actions/workflows/build-and-test.yml)
+
 Приложение для формирования гитарной табулатуры из аудиофайла с помощью машинного обучения с использованием QT.<br>
 Приложение позволяет сохранять сгенерированные табулатуры на сервере атентифицированным пользователям.<br>
 
