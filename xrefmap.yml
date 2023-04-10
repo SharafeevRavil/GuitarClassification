@@ -2939,6 +2939,31 @@ references:
   isSpec: "True"
   fullName: GuitarCogApi.Services.UserService.CreateUser
   nameWithType: UserService.CreateUser
+- uid: GuitarCogApi.Test
+  name: GuitarCogApi.Test
+  href: api/GuitarCogApi.Test.html
+  commentId: N:GuitarCogApi.Test
+  fullName: GuitarCogApi.Test
+  nameWithType: GuitarCogApi.Test
+- uid: GuitarCogApi.Test.UnitTest1
+  name: UnitTest1
+  href: api/GuitarCogApi.Test.UnitTest1.html
+  commentId: T:GuitarCogApi.Test.UnitTest1
+  fullName: GuitarCogApi.Test.UnitTest1
+  nameWithType: UnitTest1
+- uid: GuitarCogApi.Test.UnitTest1.Test1
+  name: Test1()
+  href: api/GuitarCogApi.Test.UnitTest1.html#GuitarCogApi_Test_UnitTest1_Test1
+  commentId: M:GuitarCogApi.Test.UnitTest1.Test1
+  fullName: GuitarCogApi.Test.UnitTest1.Test1()
+  nameWithType: UnitTest1.Test1()
+- uid: GuitarCogApi.Test.UnitTest1.Test1*
+  name: Test1
+  href: api/GuitarCogApi.Test.UnitTest1.html#GuitarCogApi_Test_UnitTest1_Test1_
+  commentId: Overload:GuitarCogApi.Test.UnitTest1.Test1
+  isSpec: "True"
+  fullName: GuitarCogApi.Test.UnitTest1.Test1
+  nameWithType: UnitTest1.Test1
 - uid: GuitarCogData
   name: GuitarCogData
   href: api/GuitarCogData.html
