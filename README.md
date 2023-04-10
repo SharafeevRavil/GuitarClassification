@@ -1,6 +1,8 @@
 # GuitarClassification
 
-[![api tests](https://github.com/SharafeevRavil/GuitarClassification/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/SharafeevRavil/GuitarClassification/actions/workflows/build-and-test.yml)
+[![build and test](https://github.com/SharafeevRavil/GuitarClassification/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/SharafeevRavil/GuitarClassification/actions/workflows/build-and-test.yml)
+[![Lint Code](https://github.com/SharafeevRavil/GuitarClassification/actions/workflows/linter.yml/badge.svg)](https://github.com/SharafeevRavil/GuitarClassification/actions/workflows/linter.yml)
+[![DocFX Build and Publish](https://github.com/SharafeevRavil/GuitarClassification/actions/workflows/docfx-build-publish.yml/badge.svg)](https://github.com/SharafeevRavil/GuitarClassification/actions/workflows/docfx-build-publish.yml)
 
 Приложение для формирования гитарной табулатуры из аудиофайла с помощью машинного обучения с использованием QT.<br>
 Приложение позволяет сохранять сгенерированные табулатуры на сервере атентифицированным пользователям.<br>
