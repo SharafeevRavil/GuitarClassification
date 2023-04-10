@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuitarCogApi", "GuitarCogAp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuitarCogData", "GuitarCogData\GuitarCogData.csproj", "{EBF9CD7B-DCE8-468A-B0A2-B454B3E27BAF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuitarCogApi.Test", "GuitarCogApi.Test\GuitarCogApi.Test.csproj", "{6612E98D-DC30-4F06-9F15-DA646CE6C5B7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{EBF9CD7B-DCE8-468A-B0A2-B454B3E27BAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EBF9CD7B-DCE8-468A-B0A2-B454B3E27BAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EBF9CD7B-DCE8-468A-B0A2-B454B3E27BAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6612E98D-DC30-4F06-9F15-DA646CE6C5B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6612E98D-DC30-4F06-9F15-DA646CE6C5B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6612E98D-DC30-4F06-9F15-DA646CE6C5B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6612E98D-DC30-4F06-9F15-DA646CE6C5B7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
