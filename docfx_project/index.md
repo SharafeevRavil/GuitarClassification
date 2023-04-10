@@ -3,7 +3,7 @@
 Приложение позволяет сохранять сгенерированные табулатуры на сервере атентифицированным пользователям.<br>
 
 ### Документация API:
-[Документация API](..GuitarClassification/api/index.html)
+[Документация API](/api/index.html)
 
 ### Ссылки на README проектов:
 [Backend](https://github.com/SharafeevRavil/GuitarClassification/blob/main/GuitarCogBackend/README.md)<br>
