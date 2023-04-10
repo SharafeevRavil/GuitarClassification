@@ -2,9 +2,9 @@
 
 # GuitarClassification
 
-[![build and test](https://GitHub.com/SharafeevRavil/GuitarClassification/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/SharafeevRavil/GuitarClassification/actions/workflows/build-and-test.yml)
-[![Lint Code](https://GitHub.com/SharafeevRavil/GuitarClassification/actions/workflows/linter.yml/badge.svg)](https://github.com/SharafeevRavil/GuitarClassification/actions/workflows/linter.yml)
-[![DocFX Build and Publish](https://GitHub.com/SharafeevRavil/GuitarClassification/actions/workflows/docfx-build-publish.yml/badge.svg)](https://github.com/SharafeevRavil/GuitarClassification/actions/workflows/docfx-build-publish.yml)
+[![build and test](https://GitHub.com/SharafeevRavil/GuitarClassification/actions/workflows/build-and-test.yml/badge.svg)](https://GitHub.com/SharafeevRavil/GuitarClassification/actions/workflows/build-and-test.yml)
+[![Lint Code](https://GitHub.com/SharafeevRavil/GuitarClassification/actions/workflows/linter.yml/badge.svg)](https://GitHub.com/SharafeevRavil/GuitarClassification/actions/workflows/linter.yml)
+[![DocFX Build and Publish](https://GitHub.com/SharafeevRavil/GuitarClassification/actions/workflows/docfx-build-publish.yml/badge.svg)](https://GitHub.com/SharafeevRavil/GuitarClassification/actions/workflows/docfx-build-publish.yml)
 
 Приложение для формирования гитарной табулатуры из аудиофайла с помощью машинного обучения с использованием QT.<br>
 Приложение позволяет сохранять сгенерированные табулатуры на сервере атентифицированным пользователям.<br>
@@ -16,5 +16,5 @@
 [AI модуль распознования гитары](./Desktop/MainApplication/AIModule/README.md)<br>
 
 ### Другие ссылки:
-[Документация (github pages)](https://sharafeevravil.github.io/GuitarClassification/)<br>
+[Документация (GitHub pages)](https://sharafeevravil.GitHub.io/GuitarClassification/)<br>
 [develop стенд (swagger)](https://guitarclassification-production.up.railway.app/swagger/index.html)<br>
