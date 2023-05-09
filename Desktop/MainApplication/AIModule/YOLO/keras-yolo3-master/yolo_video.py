@@ -2,6 +2,7 @@ import sys
 import argparse
 from yolo import YOLO, detect_video
 from PIL import Image
+import os
 
 def detect_img(yolo):
     while True:
@@ -14,6 +15,19 @@ def detect_img(yolo):
         else:
             r_image = yolo.detect_image(image)
             r_image.show()
+    yolo.close_session()
+
+def detect_img_mAP(yolo):
+    images_dir = input('Input image directory without slash at the end:')
+    saveDir = images_dir + "/mAP_results/"
+    if not os.path.exists(saveDir):
+        os.makedirs(saveDir)
+    for filename in [file for file in os.listdir(images_dir) if file.endswith('.png')]:
+        annoname = filename.split("\\")[-1][:-4] + '.txt'
+        image = Image.open(os.path.join(images_dir,filename))
+        anno = yolo.detect_image_mAP(image)
+        with open(saveDir + annoname, 'w+') as mAP_anno_file:
+            mAP_anno_file.writelines(anno)
     yolo.close_session()
 
 FLAGS = None
@@ -70,7 +84,9 @@ if __name__ == '__main__':
         print("Image detection mode")
         if "input" in FLAGS:
             print(" Ignoring remaining command line arguments: " + FLAGS.input + "," + FLAGS.output)
-        detect_img(YOLO(**vars(FLAGS)))
+        print(FLAGS)
+        #detect_img(YOLO(**vars(FLAGS)))
+        detect_img_mAP(YOLO(**vars(FLAGS)))
     elif "input" in FLAGS:
         detect_video(YOLO(**vars(FLAGS)), FLAGS.input, FLAGS.output)
     else:
