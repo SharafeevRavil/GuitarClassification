@@ -8,13 +8,49 @@ import tensorflow as tf
 from keras.layers import Input, Lambda
 from keras.models import Model
 from keras.optimizers import Adam
-from keras.callbacks import TensorBoard, ModelCheckpoint, ReduceLROnPlateau, EarlyStopping
+from keras.callbacks import TensorBoard, ModelCheckpoint, ReduceLROnPlateau, EarlyStopping, Callback
 
 from yolo3.model import preprocess_true_boxes, yolo_body, tiny_yolo_body, yolo_loss
 from yolo3.utils import get_random_data
 
+import os
+import json
+
+def mean_pred(y_true, y_pred):
+    return K.mean(y_pred)
+
+def avg_acc(y_true, y_pred):
+    print(y_true)
+    tf.print(y_true)
+    print(y_pred)
+    tf.print(y_pred)
+    return K.mean(K.equal(K.argmax(y_true, axis=-1), K.argmax(y_pred, axis=-1)))
+
+class LossHistory(Callback):
+    def on_train_begin(self, logs={}):
+        self.loss = []
+        #self.avg_acc = []
+        #self.val_loss = []
+        #self.val_avg_acc = []
+
+    def on_batch_end(self, batch, logs={}):
+        self.loss.append(logs.get('loss'))
+        #only loss exists
+        #self.avg_acc.append(logs.get('avg_acc'))
+        #self.val_loss.append(logs.get('val_loss'))
+        #self.val_avg_acc.append(logs.get('val_avg_acc'))
+
+    def get_data(self):
+        return {
+            "loss": self.loss,
+            #"avg_acc": self.avg_acc,
+            #"val_loss": self.val_loss,
+            #"val_avg_acc": self.val_avg_acc
+        }
 
 def _main():
+    tf.config.run_functions_eagerly(True)
+
     annotation_path = 'train/_annotations.txt'
     log_dir = 'logs/000/'
     classes_path = 'model_data/voc_classes.txt'
@@ -53,37 +89,56 @@ def _main():
     if True:
         model.compile(optimizer=Adam(lr=1e-3), loss={
             # use custom yolo_loss Lambda layer.
-            'yolo_loss': lambda y_true, y_pred: y_pred})
+            'yolo_loss': lambda y_true, y_pred: y_pred}
+            #,metrics=[tf.keras.metrics.Accuracy()]
+            #,metrics=['val_acc']
+            #,metrics=['accuracy', mean_pred]
+            #,metrics=[avg_acc]
+              )
 
         batch_size = 4
         print('Train on {} samples, val on {} samples, with batch size {}.'.format(num_train, num_val, batch_size))
-        model.fit_generator(data_generator_wrapper(lines[:num_train], batch_size, input_shape, anchors, num_classes),
+        lossHistory = LossHistory()
+        history = model.fit_generator(data_generator_wrapper(lines[:num_train], batch_size, input_shape, anchors, num_classes),
                 steps_per_epoch=max(1, num_train//batch_size),
                 validation_data=data_generator_wrapper(lines[num_train:], batch_size, input_shape, anchors, num_classes),
                 validation_steps=max(1, num_val//batch_size),
                 epochs=50,
                 initial_epoch=0,
-                callbacks=[logging, checkpoint])
+                callbacks=[logging, checkpoint, lossHistory])
         model.save_weights(log_dir + 'trained_weights_stage_1.h5')
+        historyFile = os.path.realpath(os.path.join(os.path.dirname(__file__), "history_yolo_1.json"))
+        json.dump(history.history, open(historyFile, 'w'))
+        lossHistoryFile = os.path.realpath(os.path.join(os.path.dirname(__file__), "lossHistory_yolo_1.json"))
+        json.dump(lossHistory.get_data(), open(lossHistoryFile, 'w'))
 
     # Unfreeze and continue training, to fine-tune.
     # Train longer if the result is not good.
     if True:
         for i in range(len(model.layers)):
             model.layers[i].trainable = True
-        model.compile(optimizer=Adam(lr=1e-4), loss={'yolo_loss': lambda y_true, y_pred: y_pred}) # recompile to apply the change
+        model.compile(optimizer=Adam(lr=1e-4), loss={'yolo_loss': lambda y_true, y_pred: y_pred}
+                #,metrics=[tf.keras.metrics.Accuracy()]
+                #,metrics=['acc']
+                #,metrics=['accuracy', mean_pred]
+              ) # recompile to apply the change
         print('Unfreeze all of the layers.')
 
         batch_size = 4 # note that more GPU memory is required after unfreezing the body
         print('Train on {} samples, val on {} samples, with batch size {}.'.format(num_train, num_val, batch_size))
+        lossHistory = LossHistory()
         model.fit_generator(data_generator_wrapper(lines[:num_train], batch_size, input_shape, anchors, num_classes),
             steps_per_epoch=max(1, num_train//batch_size),
             validation_data=data_generator_wrapper(lines[num_train:], batch_size, input_shape, anchors, num_classes),
             validation_steps=max(1, num_val//batch_size),
             epochs=100,
             initial_epoch=50,
-            callbacks=[logging, checkpoint, reduce_lr, early_stopping])
+            callbacks=[logging, checkpoint, reduce_lr, early_stopping, lossHistory])
         model.save_weights(log_dir + 'trained_weights_final.h5')
+        historyFile = os.path.realpath(os.path.join(os.path.dirname(__file__), "history_yolo_2.json"))
+        json.dump(history.history, open(historyFile, 'w'))
+        lossHistoryFile = os.path.realpath(os.path.join(os.path.dirname(__file__), "lossHistory_yolo_2.json"))
+        json.dump(lossHistory.get_data(), open(lossHistoryFile, 'w'))
 
     # Further training if needed.
 

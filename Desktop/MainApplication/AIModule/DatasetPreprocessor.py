@@ -78,7 +78,7 @@ class DatasetPreprocessor:
 
     # получает все имена файлов по папке с аннотациями
     def get_all_filenames(self):
-        return [file[:-5] for file in os.listdir(Settings.annotations_path) if file.endswith(".jams")]
+        return [file[:-5] for file in os.listdir(Settings.annotations_path) if file.endswith("solo.jams")]
 
     def process_audiofile_and_save(self, filename, folder_path = Settings.dataset_path, idsFile = Settings.ids_path):
         audio_chunks, frets = self.process_audiofile(filename)
