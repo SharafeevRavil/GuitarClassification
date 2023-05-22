@@ -8,7 +8,7 @@ exports.rule = entities.Issue.onChange({
     return true;
   },
   action: (ctx) => {
-    //Тело правила, которое запускается при
+    //Тело правила, которое запускается при изменении issue
     const issue = ctx.issue;
     const fs = issue.fields;
     
